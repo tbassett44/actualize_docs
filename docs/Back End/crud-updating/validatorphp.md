@@ -12,7 +12,7 @@ next:
 ---
 # `validator.php` — Validation & Sanitization Engine
 
-**What it does (at a glance):** Centralizes data validation/sanitization for objects described by your `schema.json`. Given an input `$data` and a schema `$conf`, it normalizes values, enforces required/unique rules, validates types (including nested arrays/objects), and returns either a **cleaned payload limited to the schema’s `order`** or a structured error report.  
+**What it does (at a glance):** Centralizes data validation/sanitization for objects described by your `schema.json`. Given an input `$data` and a schema `$conf`, it normalizes values, enforces required/unique rules, validates types (including nested arrays/objects), and returns either a **cleaned payload limited to the schema’s`order`** or a structured error report.  
 
 ***
 
@@ -29,8 +29,8 @@ Runs the full pipeline:
 5. **Malformed check** via `checkData()` and `isValidDataType()`. 
 6. **Return**:
 
-   - On error → structured `['error' => …, 'schema' => …]`. 
-   - On success → **only** fields listed in schema `order` (or pass-through when `jsonEditable`). 
+   * On error → structured `['error' => …, 'schema' => …]`. 
+   * On success → **only** fields listed in schema `order` (or pass-through when `jsonEditable`). 
 
 ### `VALIDATOR::keepFields($arr, $fields)`
 
@@ -79,29 +79,29 @@ Primitive & composite types (with special behavior):
 
 ## Formatting vs. Validating
 
-- **`formatData()`** → coercion & sanitization (e.g., strip tags, lowercase emails, add `https://`, hash passwords, round floats, recursive handling for arrays/objects). 
-- **`checkData()`** → structural & type validation; delegates to `isValidDataType()` for primitives; recurses for arrays/objects. 
-- **`isValidDataType()`** → primitive checks + extras (bounds, min/max, regex for hex color, select-option enforcement, URL/email rules). 
+* **`formatData()`** → coercion & sanitization (e.g., strip tags, lowercase emails, add `https://`, hash passwords, round floats, recursive handling for arrays/objects). 
+* **`checkData()`** → structural & type validation; delegates to `isValidDataType()` for primitives; recurses for arrays/objects. 
+* **`isValidDataType()`** → primitive checks + extras (bounds, min/max, regex for hex color, select-option enforcement, URL/email rules). 
 
 ***
 
 ## Required, Defaults & Special Flags
 
-- **Required logic**:
+* **Required logic**:
 
-  - On **create** (`$update=false`): missing/blank fails except for `bool=false` and numeric `0`. 
-  - On **update** (`$update=true`): run required checks **only** for fields present in input; same `false/0` allowances apply. 
-- **`create`**: auto-fill `id/_id` (GUID) or `timestamp`. 
-- **`dontAllowZero`**: after formatting, if value is `0`/falsy, the field is **unset** (useful when zero is semantically invalid). 
-- **`_validateOpts[field].dontCheckURL`**: bypass live URL validation for that field. 
-- **Unset sentinel**: sending the literal string `'[unset]'` attempts to unset a field; disallowed if the field is required. 
+  * On **create** (`$update=false`): missing/blank fails except for `bool=false` and numeric `0`. 
+  * On **update** (`$update=true`): run required checks **only** for fields present in input; same `false/0` allowances apply. 
+* **`create`**: auto-fill `id/_id` (GUID) or `timestamp`. 
+* **`dontAllowZero`**: after formatting, if value is `0`/falsy, the field is **unset** (useful when zero is semantically invalid). 
+* **`_validateOpts[field].dontCheckURL`**: bypass live URL validation for that field. 
+* **Unset sentinel**: sending the literal string `'[unset]'` attempts to unset a field; disallowed if the field is required. 
 
 ***
 
 ## Unique Constraints
 
-- Add `{ unique: true }` to a field to ensure uniqueness across the collection.
-- To allow updates when the “same record” is being modified, use `unique.updateOn` with a **dot path** that must equal in both the incoming `$data` and the existing row. On match, the update is allowed. 
+* Add `{ unique: true }` to a field to ensure uniqueness across the collection.
+* To allow updates when the “same record” is being modified, use `unique.updateOn` with a **dot path** that must equal in both the incoming `$data` and the existing row. On match, the update is allowed. 
 
 ***
 
@@ -139,29 +139,29 @@ When validation fails, `validate()` returns:
 }
 ```
 
-- On create, `id` is generated; `email` must be unique; `website` auto-prefixed with `https://` if missing.   
+* On create, `id` is generated; `email` must be unique; `website` auto-prefixed with `https://` if missing.   
 
 ***
 
 ## Gotchas & Recommendations (robustness / security)
 
-- **Password hashing (`md5`)**: MD5 is not suitable for passwords. Prefer `password_hash()`/`password_verify()` (bcrypt/Argon2) and store a per-user salt; keep `$hashPassword` for tests/seeding only. 
-- **URL validation side-effects**: `isValidUrl()` may perform a network request (`get_headers`) and even contains a `die(json_encode($headers))` code path—this can terminate execution unexpectedly and risks SSRF. Strongly consider removing remote fetches or constraining them via allowlists/timeouts. 
-- **`ensureURL()`** always forces `https://` when no scheme—great default, but may reject valid non-HTTP(S) schemes you might want (e.g., `mailto:`, `tel:`, `ipfs://`). Consider a scheme allowlist per field. 
-- **`imageextension` case-sensitivity**: allowed list is lower-case; ensure upstream normalization (or lower-case here) to avoid false negatives. 
-- **`index` type** is empty—clarify or remove to avoid confusion. 
-- **Sentinel `'[unset]'`**: convenient, but be cautious exposing it directly to clients; consider explicit patch semantics for clarity. 
+* **Password hashing (`md5`)**: MD5 is not suitable for passwords. Prefer `password_hash()`/`password_verify()` (bcrypt/Argon2) and store a per-user salt; keep `$hashPassword` for tests/seeding only. 
+* **URL validation side-effects**: `isValidUrl()` may perform a network request (`get_headers`) and even contains a `die(json_encode($headers))` code path—this can terminate execution unexpectedly and risks SSRF. Strongly consider removing remote fetches or constraining them via allowlists/timeouts. 
+* **`ensureURL()`** always forces `https://` when no scheme—great default, but may reject valid non-HTTP(S) schemes you might want (e.g., `mailto:`, `tel:`, `ipfs://`). Consider a scheme allowlist per field. 
+* **`imageextension`case-sensitivity** : allowed list is lower-case; ensure upstream normalization (or lower-case here) to avoid false negatives. 
+* **`index`type** is empty—clarify or remove to avoid confusion. 
+* **Sentinel`'[unset]'`** : convenient, but be cautious exposing it directly to clients; consider explicit patch semantics for clarity. 
 
 ***
 
 ## Implementation Notes
 
-- **Formatting is applied before validation** (`formatData()` then `checkData()`), so constraints (e.g., `min/max`) evaluate on normalized values.  
-- **Select fields**: ensure your `schema.json` has `form.options.order` enumerated; otherwise valid values will be rejected. 
-- **Output field limiting** via `order` ensures only **validated** fields flow downstream. For JSON-editable documents (`jsonEditable`), the raw (formatted) data is returned. 
+* **Formatting is applied before validation** (`formatData()` then `checkData()`), so constraints (e.g., `min/max`) evaluate on normalized values.  
+* **Select fields**: ensure your `schema.json` has `form.options.order` enumerated; otherwise valid values will be rejected. 
+* **Output field limiting** via `order` ensures only **validated** fields flow downstream. For JSON-editable documents (`jsonEditable`), the raw (formatted) data is returned. 
 
 ***
 
 ## Quick Reference (flow)
 
-1. Strip private/system → type lookup → (optional) create defaults → format → uniqueness → required → validate → **`order` filter / jsonEditable** → return.
+1. Strip private/system → type lookup → (optional) create defaults → format → uniqueness → required → validate → **`order`filter / jsonEditable** → return.
