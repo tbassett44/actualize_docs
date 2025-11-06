@@ -22,3 +22,4 @@
 - exchange_save
 - event_save
 - event_breakdown_save
+- event_rsvp_save
