@@ -56,3 +56,4 @@
 - delete_confirmation_save
 - bug_save
 - trial_code_used_save
+- plan_category_save
