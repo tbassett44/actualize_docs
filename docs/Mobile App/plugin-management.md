@@ -24,11 +24,11 @@ dapp [app_name] plugin [action] [arg?]
 
 ## What it touches
 
-- **Template plugin cache:** `<templateDir>/plugins/<plugin-id>/`  
+* **Template plugin cache:** `<templateDir>/plugins/<plugin-id>/`\
   (each contains the plugin’s `plugin.xml`, `package.json`, etc.)
-- **Template status file:** `<templateDir>/plugin_status.json`  
+* **Template status file:** `<templateDir>/plugin_status.json`\
   (tracks enabled/disabled state and last update)
-- **Project install (transient):** plugin add/remove via Cordova to discover metadata, then copied into the template cache
+* **Project install (transient):** plugin add/remove via Cordova to discover metadata, then copied into the template cache
 
 ***
 
@@ -38,12 +38,12 @@ dapp [app_name] plugin [action] [arg?]
 
 Lists all known plugins with status and version.
 
-- Reads the template’s `plugins/` and `plugin_status.json`
-- Outputs a table: **Status | Version | Plugin ID**
-- Status values:
+* Reads the template’s `plugins/` and `plugin_status.json`
+* Outputs a table: **Status | Version | Plugin ID**
+* Status values:
 
-  - **Enabled** — will be enforced by build steps (e.g., `fixplugins`)
-  - **Disabled** — present in cache but not active
+  * **Enabled** — will be enforced by build steps (e.g., `fixplugins`)
+  * **Disabled** — present in cache but not active
 
 **Example**
 
@@ -59,20 +59,20 @@ Adds a plugin to the **template cache** and marks it **enabled**.
 
 Accepted `<spec>` formats:
 
-- **GitHub URL**: `https://github.com/<author>/<repo>`
-- **Pinned tag/branch**: `https://github.com/<author>/<repo>/tree/<tagOrBranch>`
-- **With commit hash**: same as above, but will install with `#<commit>`
-- **Registry name**: `cordova-plugin-camera` (npm/Cordova registry)
+* **GitHub URL**: `https://github.com/<author>/<repo>`
+* **Pinned tag/branch**: `https://github.com/<author>/<repo>/tree/<tagOrBranch>`
+* **With commit hash**: same as above, but will install with `#<commit>`
+* **Registry name**: `cordova-plugin-camera` (npm/Cordova registry)
 
 What it does (high level):
 
 1. If GitHub URL:
 
-   - Validates `plugin.xml` exists at the specified tag/branch.
-   - Installs with `cordova plugin add <repo>[#commit]` (verbose).
+   * Validates `plugin.xml` exists at the specified tag/branch.
+   * Installs with `cordova plugin add <repo>[#commit]` (verbose).
 2. If registry name:
 
-   - Removes any prior install and runs `cordova plugin add <name>`.
+   * Removes any prior install and runs `cordova plugin add <name>`.
 3. Detects which new folder appeared (`plugins/` or `node_modules/`), resolves **plugin id** from `plugin.xml`.
 4. Copies the installed plugin into **`<templateDir>/plugins/<plugin-id>`**.
 5. Cleans transient keys in `package.json` (e.g., keys starting with `_`).
@@ -97,7 +97,7 @@ dapp actualize plugin add https://github.com/apache/cordova-plugin-whitelist#<co
 
 Marks a cached plugin as **enabled** in `plugin_status.json`.
 
-- Does **not** rebuild immediately; takes effect on next `build*` (via `fixplugins`).
+* Does **not** rebuild immediately; takes effect on next `build*` (via `fixplugins`).
 
 **Example**
 
@@ -111,7 +111,7 @@ dapp actualize plugin enable cordova-plugin-camera
 
 Marks a cached plugin as **disabled** in `plugin_status.json`.
 
-- Leaves the plugin in cache but it will be **removed/not installed** during the next build’s plugin sync.
+* Leaves the plugin in cache but it will be **removed/not installed** during the next build’s plugin sync.
 
 **Example**
 
@@ -145,11 +145,11 @@ Rationale: Retaining plugins in the template cache (but **disabled**) preserves 
 
 ## How this integrates with builds
 
-- During `buildit` / `buildios` / `buildandroid`, the step **`fixplugins`** aligns the working project with the template cache and **enabled** set:
+* During `buildit` / `buildios` / `buildandroid`, the step **`fixplugins`** aligns the working project with the template cache and **enabled** set:
 
-  - installs/pins required plugins,
-  - removes extra/stale ones,
-  - repairs `package.json` when needed.
+  * installs/pins required plugins,
+  * removes extra/stale ones,
+  * repairs `package.json` when needed.
 
 This means the **plugin manager** is your single source of truth for plugin composition; the **build** enforces it.
 
@@ -157,27 +157,27 @@ This means the **plugin manager** is your single source of truth for plugin comp
 
 ## “Holes to poke” & fixes
 
-1. **Missing `loadPlugins()` implementation**
+1. **Missing`loadPlugins()` implementation**
 
-   - The CLI references it, but no handler exists. Without this, `plugin load` breaks.
-   - Suggested minimal implementation (below) to:
+   * The CLI references it, but no handler exists. Without this, `plugin load` breaks.
+   * Suggested minimal implementation (below) to:
 
-     - ensure `plugin_status.json` exists,
-     - iterate `<templateDir>/plugins/*`,
-     - (re)install each plugin into the current project,
-     - mark status to **enabled** unless explicitly disabled.
+     * ensure `plugin_status.json` exists,
+     * iterate `<templateDir>/plugins/*`,
+     * (re)install each plugin into the current project,
+     * mark status to **enabled** unless explicitly disabled.
 
-2. **No explicit `remove`**
+2. **No explicit`remove`**
 
-   - By policy, use `disable` instead. That’s fine, but consider adding `purge <plugin-id>` to delete a plugin from cache **only** if you want a way to clean dead code (guard it behind `--force`).
+   * By policy, use `disable` instead. That’s fine, but consider adding `purge <plugin-id>` to delete a plugin from cache **only** if you want a way to clean dead code (guard it behind `--force`).
 
 3. **Version provenance**
 
-   - `add` copies the installed plugin into cache. If the source was a GitHub URL, also persist the **source + tag/commit** alongside (e.g., in `plugin_status.json` or a `sources.json`) so you can reconstruct/verify provenance later.
+   * `add` copies the installed plugin into cache. If the source was a GitHub URL, also persist the **source + tag/commit** alongside (e.g., in `plugin_status.json` or a `sources.json`) so you can reconstruct/verify provenance later.
 
 4. **Atomicity & errors**
 
-   - If `cordova plugin add` succeeds but copying to cache fails, you can get drift. Consider staging to a temp dir and moving atomically.
+   * If `cordova plugin add` succeeds but copying to cache fails, you can get drift. Consider staging to a temp dir and moving atomically.
 
 ***
 
@@ -185,9 +185,9 @@ This means the **plugin manager** is your single source of truth for plugin comp
 
 Here’s a safe minimal version you can drop into `dapp.php` (near your other plugin helpers). It:
 
-- Ensures `plugin_status.json` exists,
-- Installs **enabled** plugins from the template cache,
-- Optionally supports `--all` to install everything regardless of status.
+* Ensures `plugin_status.json` exists,
+* Installs **enabled** plugins from the template cache,
+* Optionally supports `--all` to install everything regardless of status.
 
 ```php
 public static function loadPlugins($installAll = false){
@@ -249,8 +249,8 @@ public static function loadPlugins($installAll = false){
 
 **Wire it to the CLI:**
 
-- Keep your existing `case 'load': self::loadPlugins(); break;`
-- Add support for `--all` by parsing flags in `init()` and passing `true` into `loadPlugins(true)` if present.
+* Keep your existing `case 'load': self::loadPlugins(); break;`
+* Add support for `--all` by parsing flags in `init()` and passing `true` into `loadPlugins(true)` if present.
 
 **Usage**
 
