@@ -14,7 +14,7 @@ next:
 
 ## High-level summary
 
-A small, device-aware scroller that runs in either **native scroll** or **iScroll** mode, adds quality-of-life helpers (caret-aware auto-scroll while typing, keyboard insets, sticky headers), optional **horizontal** behavior with **snap-to** cards, and—importantly—**ties into your View Manager** so a **right-swipe** can drive a _“go back”_ transition (`context.setX(dx)` while swiping, `context.goBack()` on release). 
+A small, device-aware scroller that runs in either **native scroll** or **iScroll** mode, adds quality-of-life helpers (caret-aware auto-scroll while typing, keyboard insets, sticky headers), optional **horizontal** behavior with **snap-to** cards, and—importantly—**ties into your View Manager** so a **right-swipe** can drive a *“go back”* transition (`context.setX(dx)` while swiping, `context.goBack()` on release). 
 
 ***
 
@@ -24,9 +24,9 @@ A small, device-aware scroller that runs in either **native scroll** or **iScrol
 const sc = new modules.scroller(ele, options?, bindings?)
 ```
 
-- `ele` — jQuery element acting as the scroll container (its **first child** is treated as the scrollable content).
-- `options` — behavior flags (below).
-- `bindings` — event callbacks (below). 
+* `ele` — jQuery element acting as the scroll container (its **first child** is treated as the scrollable content).
+* `options` — behavior flags (below).
+* `bindings` — event callbacks (below). 
 
 ***
 
@@ -34,7 +34,7 @@ const sc = new modules.scroller(ele, options?, bindings?)
 
 | Option                 | Type                                    | Default | What it does                                                                                                                                                     |
 | ---------------------- | --------------------------------------- | ------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                 | `'iscroll' \| undefined`                |       — | If `'iscroll'`, initialize **IScroll** with `opts`; otherwise use native scrolling and custom handlers.                                                          |
+| `type`                 | `'iscroll' \\| undefined`               |       — | If `'iscroll'`, initialize **IScroll** with `opts`; otherwise use native scrolling and custom handlers.                                                          |
 | `scrollX`              | `bool`                                  | `false` | Horizontal mode; adds `scrollX` class; stores horizontal `max`.                                                                                                  |
 | `passthrough`          | `bool`                                  | `false` | When container has nested `.scrollX`, temporarily sets `app.pauseSwipe=true` during inner scroll to avoid triggering **swipe-back**.                             |
 | `noSwipe`              | `bool`                                  | `false` | Disable swipe gesture handling entirely (useful for modal content).                                                                                              |
@@ -56,10 +56,10 @@ const sc = new modules.scroller(ele, options?, bindings?)
 
 Provide any of these in the `bindings` object:
 
-- **Swipe lifecycle:** `onSwipeStart(info)`, `onSwipe(info)`, `onSwipeEnd(info)` – Only fired when **not** paused and no text selection. Drives `context.setX`/`goBack` by default. 
-- **Scroll lifecycle:** `scrollStart(obj)`, `scroll(obj)`, `scrollEnd(obj)`, `bounce(obj)` – `obj` includes current position, max, direction flags, and `bouncing` clamp state. Throttled on mobile. 
-- **Resize:** `onResize()` – Triggered when content height changes (native mode via `ResizeSensor`; iScroll mode calls `refresh()`). 
-- **Snap hooks:** `onSnapStart()`, `onSnapEnd({x})` – Around horizontal snap animation. 
+* **Swipe lifecycle:** `onSwipeStart(info)`, `onSwipe(info)`, `onSwipeEnd(info)` – Only fired when **not** paused and no text selection. Drives `context.setX`/`goBack` by default. 
+* **Scroll lifecycle:** `scrollStart(obj)`, `scroll(obj)`, `scrollEnd(obj)`, `bounce(obj)` – `obj` includes current position, max, direction flags, and `bouncing` clamp state. Throttled on mobile. 
+* **Resize:** `onResize()` – Triggered when content height changes (native mode via `ResizeSensor`; iScroll mode calls `refresh()`). 
+* **Snap hooks:** `onSnapStart()`, `onSnapEnd({x})` – Around horizontal snap animation. 
 
 ***
 
@@ -83,29 +83,29 @@ Provide any of these in the `bindings` object:
 | `ensure()`                                                           | —                      | Adjusts native scrollTop using last measured value (helper).                                                         |                                                   |
 | `getStickyOffset()`                                                  | —                      | Computes header offset with notch-aware defaults and optional `stickeyOffset`.                                       |                                                   |
 
-**Special events on container**  
+**Special events on container**\
 The scroller listens for a custom **`inline_search`** event to bring the current active input into view (textarea path uses caret height). 
 
 ***
 
 ## View Manager (“swipe-back”) integration
 
-- While the user swipes right (dx > 0), **and** `!app.pauseSwipe && !phone.isSelectingText`, the scroller calls:
+* While the user swipes right (dx > 0), **and** `!app.pauseSwipe && !phone.isSelectingText`, the scroller calls:
 
-  - `options.context.setX(e.dx)` – to translate the current view based on swipe distance.
-  - On release, if `dx > 50`:
+  * `options.context.setX(e.dx)` – to translate the current view based on swipe distance.
+  * On release, if `dx > 50`:
 
-    - `options.context.goBack()` – to finalize the back navigation.
-  - Otherwise, `options.context.setX(0)` – to cancel and snap back.
-- You can **disable** this entirely via `noSwipe: true`, or temporarily by setting `app.pauseSwipe=true` (e.g., when interacting with a nested horizontal scroller). 
+    * `options.context.goBack()` – to finalize the back navigation.
+  * Otherwise, `options.context.setX(0)` – to cancel and snap back.
+* You can **disable** this entirely via `noSwipe: true`, or temporarily by setting `app.pauseSwipe=true` (e.g., when interacting with a nested horizontal scroller). 
 
 ***
 
 ## Horizontal + snap-to cards
 
-- Add `scrollX: true` and `snapTo: '.card'`.
-- On touch end, the module measures each card’s left offset and **leans** toward the next/prev card using a 40/60% bias, then animates to that card using GSAP’s `scrollTo`.
-- Hooks `onSnapStart/onSnapEnd` fire around the animation. 
+* Add `scrollX: true` and `snapTo: '.card'`.
+* On touch end, the module measures each card’s left offset and **leans** toward the next/prev card using a 40/60% bias, then animates to that card using GSAP’s `scrollTo`.
+* Hooks `onSnapStart/onSnapEnd` fire around the animation. 
 
 ***
 
@@ -128,9 +128,9 @@ A **Waypoint** pins/clones the header into `renderTo` when scrolled past; `getSt
 
 ## Keyboard & caret UX
 
-- `followTyping`: when set, caret movement in a textarea/input triggers auto-scroll so the cursor stays above the keyboard.
-- `bindInputs(...)` also shows a **Done** button row (`keyboard_done` template) when inputs opt-in via `data-showdone`, and removes it when the keyboard hides.
-- Fast upward scroll with `hideKeyboardOnScroll: true` will programmatically close the keyboard on mobile (threshold: speed \< −2). 
+* `followTyping`: when set, caret movement in a textarea/input triggers auto-scroll so the cursor stays above the keyboard.
+* `bindInputs(...)` also shows a **Done** button row (`keyboard_done` template) when inputs opt-in via `data-showdone`, and removes it when the keyboard hides.
+* Fast upward scroll with `hideKeyboardOnScroll: true` will programmatically close the keyboard on mobile (threshold: speed \< −2). 
 
 ***
 
@@ -176,9 +176,9 @@ new modules.scroller($('.list'), {
 
 ## Things to watch (and small hardening ideas)
 
-- **Option name typo:** the sticky option is spelled **`stickey`** in code. Document it as-is, or add a compatibility alias. 
-- **Back-swipe threshold:** `dx>50` is hard-coded; consider exposing `backSwipeThreshold`. 
-- **Performance:** In horizontal lists with many cards, `getNearest` queries all matches each gesture—cache widths/offsets if needed. 
-- **Keyboard math:** caret calculations rely on `textareaHelper('caretPos')` and `modules.keyboard_global.keyboardHeight`; ensure both are present in every screen where `followTyping` is used. 
-- **Selection guard:** Swipes are ignored while selecting text (`phone.isSelectingText`). If users report missed swipes, check for unintended selection states. 
-- **Waypoints cleanup:** If you build/destroy lists frequently, consider exposing a `teardown()` that also removes Waypoints held in `self.stickeys`.
+* **Option name typo:** the sticky option is spelled **`stickey`** in code. Document it as-is, or add a compatibility alias. 
+* **Back-swipe threshold:** `dx>50` is hard-coded; consider exposing `backSwipeThreshold`. 
+* **Performance:** In horizontal lists with many cards, `getNearest` queries all matches each gesture—cache widths/offsets if needed. 
+* **Keyboard math:** caret calculations rely on `textareaHelper('caretPos')` and `modules.keyboard_global.keyboardHeight`; ensure both are present in every screen where `followTyping` is used. 
+* **Selection guard:** Swipes are ignored while selecting text (`phone.isSelectingText`). If users report missed swipes, check for unintended selection states. 
+* **Waypoints cleanup:** If you build/destroy lists frequently, consider exposing a `teardown()` that also removes Waypoints held in `self.stickeys`.
