@@ -71,3 +71,4 @@
 - survey_inc_save
 - map_layer_save
 - email_event_save
+- email_broadcast_save
