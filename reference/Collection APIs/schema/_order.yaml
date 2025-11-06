@@ -102,3 +102,4 @@
 - general_webhook_save
 - general_webhook_stat_save
 - quote_save
+- chat_group_save
