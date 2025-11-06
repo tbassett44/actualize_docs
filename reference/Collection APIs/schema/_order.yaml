@@ -13,3 +13,4 @@
 - news_save
 - news_source_save
 - news_feed_save
+- user_questions_save
