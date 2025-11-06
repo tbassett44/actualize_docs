@@ -28,3 +28,4 @@
 - event_time_save
 - ticket_question_save
 - event_promotion_save
+- event_broadcast_save
