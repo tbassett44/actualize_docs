@@ -86,3 +86,4 @@
 - email_template_save
 - termdata_save
 - config_save
+- current_subscription_info_save
