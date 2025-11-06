@@ -53,3 +53,4 @@
 - service_save
 - podcast_artist_save
 - upset_save
+- delete_confirmation_save
