@@ -33,7 +33,7 @@ modules.api({
 });
 ```
 
-That means **the server uses schema.json** to validate/sanitize based on the `schema` string, _not_ on a client-passed shape. 
+That means **the server uses schema.json** to validate/sanitize based on the `schema` string, *not* on a client-passed shape. 
 
 ### Server Side
 
@@ -45,18 +45,18 @@ That means **the server uses schema.json** to validate/sanitize based on the `sc
 
 A typical collection entry in `schema.json` includes:
 
-- **Collection-level metadata**: `name`, `module`, `module_path`, `roles`, `order`, `compoundIndexes`, and optional `graph` (server-side population rules). Example: the `event_promotion` collection declares `module_path`, `module`, `roles`, an `order` array, and a compound index on `start,end`. 
+* **Collection-level metadata**: `name`, `module`, `module_path`, `roles`, `order`, `compoundIndexes`, and optional `graph` (server-side population rules). Example: the `event_promotion` collection declares `module_path`, `module`, `roles`, an `order` array, and a compound index on `start,end`. 
 
-- **Fields**: Each field has a `type`, `required`, `name`, optional `_index`, and a **`form` config** (used by the FE generator but also helpful to understand constraints).  
+* **Fields**: Each field has a `type`, `required`, `name`, optional `_index`, and a **`form`config** (used by the FE generator but also helpful to understand constraints).\
   Example field types you use here: `id`, `text`, `timestamp`, `object`, `image`, `point`, `tag`, `int`, `string`, etc. The `point` field uses a **geospatial index**: `"_index": "2dsphere"`. 
 
-- **Creation helpers**: `id` fields often include a `create` block with `len`, `pre`, and optional **uniqueness constraints** (collection/table/field) enforced server-side. 
+* **Creation helpers**: `id` fields often include a `create` block with `len`, `pre`, and optional **uniqueness constraints** (collection/table/field) enforced server-side. 
 
-- **Permissions / privacy**: Per-field restrictions like `permission: ["admin"]` and flags like `"private": true` exist (e.g., `_id` is private in `email_broadcast`).  
+* **Permissions / privacy**: Per-field restrictions like `permission: ["admin"]` and flags like `"private": true` exist (e.g., `_id` is private in `email_broadcast`).  
 
-- **Graph joins**: Collection-level `graph` defines how the backend materializes references (which collection to join, which field to match, and where to put the result). Example: `signal_group.graph.threads` and `email_broadcast.graph` entries.  
+* **Graph joins**: Collection-level `graph` defines how the backend materializes references (which collection to join, which field to match, and where to put the result). Example: `signal_group.graph.threads` and `email_broadcast.graph` entries.  
 
-- **Channels**: Some collections define outbound “channels” with a `template` and `variables` (e.g., email campaigns). 
+* **Channels**: Some collections define outbound “channels” with a `template` and `variables` (e.g., email campaigns). 
 
 ***
 
@@ -72,24 +72,26 @@ From `schema.json` you define **lifecycle hooks** that the backend calls at spec
 
 You use all three hook phases extensively:
 
-- **onBeforeValidation** — normalize inputs so the later validators have the right shape
+* **onBeforeValidation** — normalize inputs so the later validators have the right shape
 
-  - `location` fields call `ensureLocation` to fill geodata and project to a `point` field. 
-  - `birthday` calls `setBirthdayTime` to set a derived timestamp (and sign/month/day/year). 
-  - `tags` call `ensureTags` to resolve/insert tags and attach `*_info` lists. (Used for `tags`, `skills`, `event` tags, etc.) 
+  * `location` fields call `ensureLocation` to fill geodata and project to a `point` field. 
+  * `birthday` calls `setBirthdayTime` to set a derived timestamp (and sign/month/day/year). 
+  * `tags` call `ensureTags` to resolve/insert tags and attach `*_info` lists. (Used for `tags`, `skills`, `event` tags, etc.) 
 
-- **onBeforeSave** — prepare data, enforce business rules, or compute IDs
+* **onBeforeSave** — prepare data, enforce business rules, or compute IDs
 
-  - `event_promotion.id` runs `preProcessPromotion` before commit. 
-  - Other examples include checking contacts before saving and similar gating logic. 
+  * `event_promotion.id` runs `preProcessPromotion` before commit. 
+  * Other examples include checking contacts before saving and similar gating logic. 
 
-- **onAfterSave** — trigger actions that should run only once the record exists
+* **onAfterSave** — trigger actions that should run only once the record exists
 
-  - Scheduling future sends for `email_broadcast.time` (`scheduleSend`) and a guard `checkSend`. 
-  - Post-save game mechanics such as `checkBirthdayGame` and `checkSkillsGame`. 
-  - Creating QR codes or downstream artifacts (`initiateSignalQR`). 
+  * Scheduling future sends for `email_broadcast.time` (`scheduleSend`) and a guard `checkSend`. 
+  * Post-save game mechanics such as `checkBirthdayGame` and `checkSkillsGame`. 
+  * Creating QR codes or downstream artifacts (`initiateSignalQR`). 
 
-> 🔎 **Client/server boundary:** because FormBuilder submits only `schema` + `current`, _all_ these decisions are driven server-side, which is good for integrity and permissioning.
+<Callout icon="🔎" theme="default">
+  ### **Client/server boundary:** because FormBuilder submits only `schema` + `current`, *all* these decisions are driven server-side, which is good for integrity and permissioning.
+</Callout>
 
 ***
 
@@ -117,43 +119,43 @@ Below is a non-exhaustive list of hook names you’ve defined in `schema.json` (
 
 ## 5. Patterns worth calling out (design guidance)
 
-- **Keep mutations in `onBeforeValidation`, not in validators**  
-  Your current use (e.g., `ensureLocation`, `ensureTags`, `setBirthdayTime`) is ideal: derive canonical values _before_ validation rules run, so validators operate on stable shapes.  
+* **Keep mutations in`onBeforeValidation`, not in validators**\
+  Your current use (e.g., `ensureLocation`, `ensureTags`, `setBirthdayTime`) is ideal: derive canonical values *before* validation rules run, so validators operate on stable shapes.  
 
-- **Idempotency & retries for `onAfterSave`**  
+* **Idempotency & retries for`onAfterSave`**\
   Hooks like `scheduleSend`, `initiateSignalQR`, and game triggers should tolerate duplicate delivery (e.g., via idempotency keys) because clients may retry saves or servers may re-run jobs after failures.  
 
-- **Put heavy effects on a queue**  
+* **Put heavy effects on a queue**\
   Anything that schedules, hits third-party APIs, or creates images should enqueue a job rather than run inline; it reduces tail latency and avoids timeouts. (You’re already time-boxing client calls at 5–8s in other modules.)
 
-- **Geospatial correctness**  
-  You’re generating a `point` with a `2dsphere` index—great for `$near` queries. Make sure `ensureLocation` always writes **[lng, lat]** ordering (it does today) and normalizes precision to reduce noisy duplicates. 
+* **Geospatial correctness**\
+  You’re generating a `point` with a `2dsphere` index—great for `$near` queries. Make sure `ensureLocation` always writes **\[lng, lat]** ordering (it does today) and normalizes precision to reduce noisy duplicates. 
 
-- **Uniqueness enforcement**  
+* **Uniqueness enforcement**\
   You use both explicit uniqueness in `create.unique` and logical uniqueness hooks (e.g., `eventStartUnique`). Prefer **DB-level unique indexes** (where feasible) to ensure correctness under concurrency; back them up with hook checks for clear UX.  
 
-- **Security & permissions**  
+* **Security & permissions**\
   Respect field-level `permission` arrays on the server, not just in the UI. Avoid trusting `form` settings from clients; treat them as hints only. (E.g., `city_steward.permission: ["admin"]`, `_id.private: true`.)  
 
-- **Graphs are read-model helpers**  
+* **Graphs are read-model helpers**\
   Because `graph` drives server-side hydration, keep it **deterministic** and **side-effect free**. If a join can explode cardinality, use `collapseList: true` like you do today. 
 
-- **Clock & timezone safety**  
+* **Clock & timezone safety**\
   Date fields often bind to a `timezoneField` (e.g., `timezone`); that’s excellent. Ensure the server resolves all timestamps using that field to avoid drift (and validate that `start <= end`). 
 
-- **Cost/throughput considerations (finance minded)**
+* **Cost/throughput considerations (finance minded)**
 
-  - **Email scheduling** and **QR/image generation** can create bursty spend. Rate-limit `onAfterSave` operations and centralize retry with exponential backoff.
-  - Caching for `ensureTags`/`ensureLocation` avoids re-creating the same entries, reducing DB writes and API costs over time. 
+  * **Email scheduling** and **QR/image generation** can create bursty spend. Rate-limit `onAfterSave` operations and centralize retry with exponential backoff.
+  * Caching for `ensureTags`/`ensureLocation` avoids re-creating the same entries, reducing DB writes and API costs over time. 
 
 ***
 
 ## 6. Quick reference: schema building blocks you use
 
-- **Collection metadata**: `name`, `module`, `module_path`, `roles`, `order`, `graph`, `compoundIndexes`.  
-- **Field core**: `type`, `name`, `required`, `_index`, `permission`, `private`, `create`, `hooks`.  
-- **Form hints** (front-end): `form.type`, `placeholder`, `template`, `endpoint`, `info`, `timezoneField`, `toggle`, etc. (Good for FE, but server must not trust them.)  
-- **Graph joins**: `coll`, `to`, `match`, `collapseList`. 
+* **Collection metadata**: `name`, `module`, `module_path`, `roles`, `order`, `graph`, `compoundIndexes`.  
+* **Field core**: `type`, `name`, `required`, `_index`, `permission`, `private`, `create`, `hooks`.  
+* **Form hints** (front-end): `form.type`, `placeholder`, `template`, `endpoint`, `info`, `timezoneField`, `toggle`, etc. (Good for FE, but server must not trust them.)  
+* **Graph joins**: `coll`, `to`, `match`, `collapseList`. 
 
 ***
 
@@ -174,14 +176,14 @@ Below is a non-exhaustive list of hook names you’ve defined in `schema.json` (
 }
 ```
 
-- FE renders a location picker, stores both the chosen place and a projected **`point`**.
-- Server runs `ensureLocation` **before validation** to guarantee geo coherence and attach `location.data`, then validates, saves, and any `onAfterSave` hooks run. 
+* FE renders a location picker, stores both the chosen place and a projected **`point`**.
+* Server runs `ensureLocation` **before validation** to guarantee geo coherence and attach `location.data`, then validates, saves, and any `onAfterSave` hooks run. 
 
 ***
 
 ## 8. What to add next (recommendations)
 
-- **Formalize hook interfaces**: Document required params & return contracts for each hook (`ensureTags`, `ensureLocation`, etc.) and make them **pure functions** (inputs → outputs), so they’re testable and cost-predictable.
-- **Central error taxonomy**: Your FE already normalizes errors via `modules.formbuilder_global.getError`. Mirror that shape in hook errors (e.g., `type`, `field`, `message`) so the UI can highlight fields precisely. 
-- **Audit & replay**: Record hook decisions (e.g., why an email was scheduled) for accountability and future reprocessing.
-- **DB constraints**: Back critical invariants with DB indexes (unique, partial), especially for promotions and event times.
+* **Formalize hook interfaces**: Document required params & return contracts for each hook (`ensureTags`, `ensureLocation`, etc.) and make them **pure functions** (inputs → outputs), so they’re testable and cost-predictable.
+* **Central error taxonomy**: Your FE already normalizes errors via `modules.formbuilder_global.getError`. Mirror that shape in hook errors (e.g., `type`, `field`, `message`) so the UI can highlight fields precisely. 
+* **Audit & replay**: Record hook decisions (e.g., why an email was scheduled) for accountability and future reprocessing.
+* **DB constraints**: Back critical invariants with DB indexes (unique, partial), especially for promotions and event times.
