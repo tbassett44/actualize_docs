@@ -16,9 +16,9 @@ There are two QR flows; both ultimately output a PNG to the response.
 
 1. **PHP-QRcode direct** (`generateQR`):
 
-- `content` — raw content to encode
-- `url` — URL to encode (will be `urldecode`d)
-- `url_64` — base64-encoded URL to encode
+* `content` — raw content to encode
+* `url` — URL to encode (will be `urldecode`d)
+* `url_64` — base64-encoded URL to encode
 
 Examples:
 
@@ -34,8 +34,8 @@ https://img.actualize.earth/qr2?url_64=aHR0cHM6Ly9hY3R1YWxpemUuZWFydGgvam9pbg==
 
 2. **Node-rendered QR** (`generateQR2`):
 
-- `url` or `url_64` — same as above; it builds a signed render URL and calls Node (`node/qr.js`) to produce the PNG, then streams it.
+* `url` or `url_64` — same as above; it builds a signed render URL and calls Node (`node/qr.js`) to produce the PNG, then streams it.
 
 NOTE
 
-More settings are possible for version 2 of the qr code generator. Only url/url_64 is supported right now.  Additional settings can be added from the documentation of the library used here: <https://qr-code-styling.com/>
+More settings are possible for version 2 of the qr code generator. Only url/url\_64 is supported right now.  Additional settings can be added from the documentation of the library used here: [https://qr-code-styling.com/](https://qr-code-styling.com/)
