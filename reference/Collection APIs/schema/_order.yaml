@@ -21,3 +21,4 @@
 - phi_token_receipt_save
 - exchange_save
 - event_save
+- event_breakdown_save
