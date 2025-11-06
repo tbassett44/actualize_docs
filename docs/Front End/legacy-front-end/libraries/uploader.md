@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-<https://github.com/LPology/Simple-Ajax-Uploader>
+[https://github.com/LPology/Simple-Ajax-Uploader](https://github.com/LPology/Simple-Ajax-Uploader)
 
 # Simple Ajax Uploader
 
@@ -26,19 +26,19 @@ var uploader = new ss.SimpleUpload({
 
 ### Features
 
-- Cross-browser -- works in IE7+, Firefox, Chrome, Safari, Opera
-- Supports multiple, concurrent file uploads (even in non-HTML5 browsers)
-- Built-in CORS support
-- Drag and drop file uploads (<strong>new in v2.0</strong>)
-- No flash or external CSS -- a single 6Kb Javascript file (minified and gzipped)
-- Progress bars in all browsers, including IE9 and older. Built-in support for:
-  - <a href="http://wiki.nginx.org/HttpUploadProgressModule">Nginx Upload Progress Module</a>
-  - <a href="http://www.php.net/manual/en/apc.configuration.php#ini.apc.rfc1867">PHP APC File Upload Progress</a>
-  - <a href="http://php.net/manual/en/session.upload-progress.php">PHP Session Upload Progress</a>
-- Use any HTML element as the upload button
-- No dependencies - use it with or without jQuery
-- Provides individual callback functions for XHR-supported browsers and for browsers that do not support XHR uploads
-- Ability to pass custom headers in request such as the Authorization header
+* Cross-browser -- works in IE7+, Firefox, Chrome, Safari, Opera
+* Supports multiple, concurrent file uploads (even in non-HTML5 browsers)
+* Built-in CORS support
+* Drag and drop file uploads (<strong>new in v2.0</strong>)
+* No flash or external CSS -- a single 6Kb Javascript file (minified and gzipped)
+* Progress bars in all browsers, including IE9 and older. Built-in support for:
+  * <a href="http://wiki.nginx.org/HttpUploadProgressModule">Nginx Upload Progress Module</a>
+  * <a href="http://www.php.net/manual/en/apc.configuration.php#ini.apc.rfc1867">PHP APC File Upload Progress</a>
+  * <a href="http://php.net/manual/en/session.upload-progress.php">PHP Session Upload Progress</a>
+* Use any HTML element as the upload button
+* No dependencies - use it with or without jQuery
+* Provides individual callback functions for XHR-supported browsers and for browsers that do not support XHR uploads
+* Ability to pass custom headers in request such as the Authorization header
 
 ### Frequently Asked Questions
 
@@ -46,21 +46,17 @@ Visit the new <a href="https://www.lpology.com/code/ajaxuploader/faq.php">FAQ</a
 
 ### How to Use
 
-<a href="https://www.lpology.com/code/ajaxuploader/">Live Demo</a><br />  
-<a href="https://www.lpology.com/code/ajaxuploader/docs.php">API Reference</a><br />  
-<a href="https://www.lpology.com/code/ajaxuploader/progress.php">Upload progress bars in IE9 (and older)</a><br />  
-<a href="https://www.lpology.com/code/ajaxuploader/How-to-Cross-Domain-File-Uploading.php">CORS — Cross-domain file uploading with Simple Ajax Uploader</a>
+<a href="https://www.lpology.com/code/ajaxuploader/">Live Demo</a><br />\ <a href="https://www.lpology.com/code/ajaxuploader/docs.php">API Reference</a><br />\ <a href="https://www.lpology.com/code/ajaxuploader/progress.php">Upload progress bars in IE9 (and older)</a><br />\ <a href="https://www.lpology.com/code/ajaxuploader/How-to-Cross-Domain-File-Uploading.php">CORS — Cross-domain file uploading with Simple Ajax Uploader</a>
 
 There are two main ways to use the plugin:
 
-<strong>1. Single file uploading</strong> - Only one upload allowed at a time. Progress bar is an element that is re-used for each upload.<br />  
-<strong>2. Multiple file uploading</strong> - Allow multiple, concurrent file uploads. Progress bars are created on the fly before each upload.
+<strong>1. Single file uploading</strong> - Only one upload allowed at a time. Progress bar is an element that is re-used for each upload.<br />\ <strong>2. Multiple file uploading</strong> - Allow multiple, concurrent file uploads. Progress bars are created on the fly before each upload.
 
 #### Method 1: Single file uploading (one file at a time)
 
 Before each upload, in the `onSubmit()` callback function, the on-page <code>sizeBox</code> and <code>progress</code> elements are assigned specific roles using these two functions:
 
-`setProgressBar(elem)` - Designates an element as the progress bar for an upload.<br />  
+`setProgressBar(elem)` - Designates an element as the progress bar for an upload.<br />\
 `setFileSizeBox(elem)` - Designates an element as the container in which the file size of an uploading file will be inserted.
 
 As a result, when an upload begins, the file size of the upload is inserted into the <code>sizeBox</code> element and the CSS width of the <code>progress</code> element is set to 0%. As the upload progresses, the CSS width percentage of the <code>progress</code> element will be updated accordingly.
@@ -173,10 +169,7 @@ By default, the plugin will override native submission of the form. Submit attem
 
 To ease the pain of supporting older browsers, the plugin includes a set of callback functions which allow specific behavior to be defined based on whether the user's browser supports XHR uploads/HTML5 File API:
 
-<code>startXHR(filename, fileSize)</code> - Called prior to upload -- only in browsers that support XHR uploads<br />  
-<code>endXHR(filename)</code> - Called after upload is completed -- only in browsers that support XHR uploads<br />  
-<code>startNonXHR(filename)</code> - Called prior to upload -- only in browsers that <strong>do not</strong> support XHR uploads<br />  
-<code>endNonXHR(filename)</code> - Called after upload is completed -- only in browsers that <strong>do not</strong> support XHR uploads<br />
+<code>startXHR(filename, fileSize)</code> - Called prior to upload -- only in browsers that support XHR uploads<br />\ <code>endXHR(filename)</code> - Called after upload is completed -- only in browsers that support XHR uploads<br />\ <code>startNonXHR(filename)</code> - Called prior to upload -- only in browsers that <strong>do not</strong> support XHR uploads<br />\ <code>endNonXHR(filename)</code> - Called after upload is completed -- only in browsers that <strong>do not</strong> support XHR uploads<br />
 
 A common use case is to show an upload progress bar in browsers that support the <code>progress</code> event while displaying an animated GIF in older browsers:
 
