@@ -38,3 +38,4 @@
 - ticket_anon_save
 - event_affiliate_settings_save
 - event_affiliate_save
+- event_type_save
