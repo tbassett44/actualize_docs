@@ -16,7 +16,7 @@ We currently accept Credit Card and Debit Card payments through Stripe.  We are 
 
 **When and how do I get paid for my ticket sales?**
 
-Ticket purchases typically take 3 days for their funds to clear.  Once these funds have been marked clear, they become available for you to pay out. You can do incremental payouts when you like.  _note_ to issue refunds to someone, if you do not have enough money in your holdings to cover the refund, you have to add money to pay for the cost of the refunds. 
+Ticket purchases typically take 3 days for their funds to clear.  Once these funds have been marked clear, they become available for you to pay out. You can do incremental payouts when you like.  *note* to issue refunds to someone, if you do not have enough money in your holdings to cover the refund, you have to add money to pay for the cost of the refunds. 
 
 **Is there a payout schedule or threshold?**
 
