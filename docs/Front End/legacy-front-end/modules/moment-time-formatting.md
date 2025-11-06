@@ -20,10 +20,10 @@ A lightweight wrapper around **moment** and **moment-timezone** that normalizes 
 
 ## Dependencies & globals
 
-- `moment` and `moment.tz` (moment-timezone is bundled at the bottom of the file)
-- `_.getTimeZone()` (your project’s helper that returns the local IANA zone)
-- `app.time` (optional “current time” override for deterministic rendering)
-- Exposes under `window.modules.moment`
+* `moment` and `moment.tz` (moment-timezone is bundled at the bottom of the file)
+* `_.getTimeZone()` (your project’s helper that returns the local IANA zone)
+* `app.time` (optional “current time” override for deterministic rendering)
+* Exposes under `window.modules.moment`
 
 ## API
 
@@ -45,14 +45,14 @@ Returns the timezone **abbreviation** for an IANA zone, e.g., `America/Denver �
 
 Accepts:
 
-- Plain JS `Date` or parseable date string
-- **PHP/Unix seconds** when `php===true` → multiplied by 1000
-- MongoDB:
+* Plain JS `Date` or parseable date string
+* **PHP/Unix seconds** when `php===true` → multiplied by 1000
+* MongoDB:
 
-  - `{"$oid": "…"}:` decodes ObjectId’s first 4 bytes (seconds), _minus 30s_ (heuristic cushion)
-  - ISO string ending in `.000Z` → `new Date(...).getTime()`
-  - `{"$date": <number|string|{"$numberLong": "…" } >}` → number
-- `{ day, month }` → constructs a date at **12:00** local on that month/day this year
+  * `{"$oid": "…"}:` decodes ObjectId’s first 4 bytes (seconds), *minus 30s* (heuristic cushion)
+  * ISO string ending in `.000Z` → `new Date(...).getTime()`
+  * `{"$date": <number|string|{"$numberLong": "…" } >}` → number
+* `{ day, month }` → constructs a date at **12:00** local on that month/day this year
 
 Returns `false` if parsing fails and logs a console warning.
 
@@ -88,23 +88,23 @@ The workhorse formatter. Normalizes `ts` (and optional `end`) via `getTs`, then 
 
 Common `type` options (selected highlights):
 
-- **`simplerelative`** – `m.fromNow()`
-- **`ago`** – Relative (“2 hours ago”). If both `end` and `app.time` are present, shows **“Happening Now”** when `app.time` is between `ts` and `end`.
-- **`ago_day`** – Human day buckets: `Today`, `Yesterday`, `Tomorrow`, `in N days`, `N days/month(s) ago`
-- **`chat_ago` / `chat`** – Compact chat timestamp logic (time today, weekday if \<4 days, or `MMM Do`)
-- **`date` / `prettydate` / `nicedate`** – Various fixed patterns (`l`, `ddd MMM Do`, `dddd MMMM Do`)
-- **`ts`** – Returns **ms epoch** as number via `moment(ts).format('x')`
-- **Event display**:
+* **`simplerelative`** – `m.fromNow()`
+* **`ago`** – Relative (“2 hours ago”). If both `end` and `app.time` are present, shows **“Happening Now”** when `app.time` is between `ts` and `end`.
+* **`ago_day`** – Human day buckets: `Today`, `Yesterday`, `Tomorrow`, `in N days`, `N days/month(s) ago`
+* **`chat_ago`/`chat`** – Compact chat timestamp logic (time today, weekday if \<4 days, or `MMM Do`)
+* **`date`/`prettydate` /`nicedate`** – Various fixed patterns (`l`, `ddd MMM Do`, `dddd MMMM Do`)
+* **`ts`** – Returns **ms epoch** as number via `moment(ts).format('x')`
+* **Event display**:
 
-  - `timerange`, `times`, `event_time` – `h:mm a` ranges
-  - `event`, `event_full`, `event_full_short`, `eventheader`, `prettyevent` – verbose strings with day/month and, when provided, an end time; some variants append a timezone **abbr**
-- **Calendar helpers**:
+  * `timerange`, `times`, `event_time` – `h:mm a` ranges
+  * `event`, `event_full`, `event_full_short`, `eventheader`, `prettyevent` – verbose strings with day/month and, when provided, an end time; some variants append a timezone **abbr**
+* **Calendar helpers**:
 
-  - `start_of_day` → start-of-day epoch (ms)
-  - `calendar_lastdate` → `YYYY-MM-DD`
-  - `calendar_time` → `HH:mm`
-- **`simpledate`** – Returns `Today` / `Yesterday` or `M/D/YY` (respects `timezone` if provided)
-- **`time`** – `h:mm a` or a range with `end`
+  * `start_of_day` → start-of-day epoch (ms)
+  * `calendar_lastdate` → `YYYY-MM-DD`
+  * `calendar_time` → `HH:mm`
+* **`simpledate`** – Returns `Today` / `Yesterday` or `M/D/YY` (respects `timezone` if provided)
+* **`time`** – `h:mm a` or a range with `end`
 
 Returns `''` for empty input, `false` for invalid timestamps.
 
@@ -137,19 +137,19 @@ m.getDiff(Date.now() + 3*864e5, false, 'days');     // -3 (future)
 
 ## Design notes & edge cases (recommended fixes / cautions)
 
-- **Duplicate switch case**: `case 'birthday'` appears twice with different formats (`'MMM Do'` and `'MMM Do, YYYY'`). Pick one identifier (e.g., keep `'birthday'` for month/day; rename the full one to `'birthday_full'`) to avoid dead code paths.
-- **Undeclared variables in `'event'`**: Uses `event_year` / `current_year` before they’re defined—define them early (like in `eventheader`) to avoid `ReferenceError`.
-- **Timezone abbreviation**: Several branches append `moment.tz.zone(timezone).abbr(360)`. `zone.abbr()` expects an **epoch ms** to resolve DST-aware abbr, not `360`. Pass the event instant (e.g., `m.valueOf()`) to ensure correct DST labels.
-- **DST adjustments commented out**: There’s commented logic for manual DST correction. Since you call `moment(ts).tz(timezone)`, Moment-TZ already handles DST. Keeping the manual code disabled is correct to avoid double-shifting.
-- **`app.time` test path**: When set, it’s converted with `getTs(app.time, 1)` (treating as PHP seconds). Ensure `app.time` really is seconds; otherwise you’ll shift by 1000×.
-- **ObjectId → “minus 30s” heuristic**: `getTs` subtracts 30 seconds from ObjectId-derived seconds. It may be intentional (ordering cushion) but document it so readers aren’t surprised by slightly “earlier” times.
-- **`parse()` returns seconds**: Everything else returns ms; call-sites must not mix units. Prefer `getTs` unless you specifically need seconds.
+* **Duplicate switch case**: `case 'birthday'` appears twice with different formats (`'MMM Do'` and `'MMM Do, YYYY'`). Pick one identifier (e.g., keep `'birthday'` for month/day; rename the full one to `'birthday_full'`) to avoid dead code paths.
+* **Undeclared variables in`'event'`** : Uses `event_year` / `current_year` before they’re defined—define them early (like in `eventheader`) to avoid `ReferenceError`.
+* **Timezone abbreviation**: Several branches append `moment.tz.zone(timezone).abbr(360)`. `zone.abbr()` expects an **epoch ms** to resolve DST-aware abbr, not `360`. Pass the event instant (e.g., `m.valueOf()`) to ensure correct DST labels.
+* **DST adjustments commented out**: There’s commented logic for manual DST correction. Since you call `moment(ts).tz(timezone)`, Moment-TZ already handles DST. Keeping the manual code disabled is correct to avoid double-shifting.
+* **`app.time`test path** : When set, it’s converted with `getTs(app.time, 1)` (treating as PHP seconds). Ensure `app.time` really is seconds; otherwise you’ll shift by 1000×.
+* **ObjectId → “minus 30s” heuristic**: `getTs` subtracts 30 seconds from ObjectId-derived seconds. It may be intentional (ordering cushion) but document it so readers aren’t surprised by slightly “earlier” times.
+* **`parse()`returns seconds** : Everything else returns ms; call-sites must not mix units. Prefer `getTs` unless you specifically need seconds.
 
 ## When to prefer each formatter
 
-- **Lists, feeds, chat** → `simplerelative`, `comment`, `chat_ago`
-- **Event cards** → `event_full_short` (short day + clear range + tz abbr)
-- **Detail pages** → `event_full` (includes day name and year if different)
-- **Dashboards** → `prettydate` / `nicedate` for consistent visual rhythm
+* **Lists, feeds, chat** → `simplerelative`, `comment`, `chat_ago`
+* **Event cards** → `event_full_short` (short day + clear range + tz abbr)
+* **Detail pages** → `event_full` (includes day name and year if different)
+* **Dashboards** → `prettydate` / `nicedate` for consistent visual rhythm
 
 ***
