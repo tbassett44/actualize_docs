@@ -20,42 +20,13 @@ https://img.actualize.earth/favicon/favicon.php?src=[URL]&count=[integer]
 
 EG
 
-<https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a_logo.png&count=5>
+[https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a\_logo.png\&count=5](https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a_logo.png\&count=5)
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/9788f44900786023dcb867452205b78e408aa5d290768f6da3d69d3ed4b90aa7-image.png",
-        null,
-        null
-      ],
-      "align": "center",
-      "sizing": "50px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="50px" src="https://files.readme.io/9788f44900786023dcb867452205b78e408aa5d290768f6da3d69d3ed4b90aa7-image.png" />
 
 <br />
 
-OR  
-<https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a_logo.png>
+OR\
+[https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a\_logo.png](https://img.actualize.earth/favicon/favicon.php?src=https://one-earth.s3.amazonaws.com/static/a_logo.png)
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6a1fc3b371d6fd8617acf4b2220ab1c4407d1acc07d9251a3a034681984aefe3-image.png",
-        null,
-        null
-      ],
-      "align": "center",
-      "sizing": "50px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="50px" src="https://files.readme.io/6a1fc3b371d6fd8617acf4b2220ab1c4407d1acc07d9251a3a034681984aefe3-image.png" />
