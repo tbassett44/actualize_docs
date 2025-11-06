@@ -35,3 +35,4 @@
 - event_ticketconfirmation_save
 - ticket_taptopay_save
 - ticket_discount_save
+- ticket_anon_save
