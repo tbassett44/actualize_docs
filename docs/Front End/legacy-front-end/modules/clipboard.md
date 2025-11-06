@@ -35,35 +35,35 @@ next:
 
 ## Behavior by Environment
 
-- **Cordova/PhoneGap (iOS only):**
+* **Cordova/PhoneGap (iOS only):**
 
-  - Checks `isPhoneGap() && app.device === 'iOS'`.
-  - If `cordova.plugins.clipboard` exists, calls `cordova.plugins.clipboard.copy(text, onSuccess, onError)`.
-  - If plugin missing → `_alert('clipboard not installed')`.
+  * Checks `isPhoneGap() && app.device === 'iOS'`.
+  * If `cordova.plugins.clipboard` exists, calls `cordova.plugins.clipboard.copy(text, onSuccess, onError)`.
+  * If plugin missing → `_alert('clipboard not installed')`.
 
-- **Web (default path):**
+* **Web (default path):**
 
-  - Constructs a `ClipboardItem` with:
+  * Constructs a `ClipboardItem` with:
 
-    - `'text/html'`: `new Blob([text], { type: 'text/html' })`
-    - `'text/plain'`: `new Blob([text], { type: 'text/plain' })`
-  - Calls `navigator.clipboard.write([clipboardItem])`, then:
+    * `'text/html'`: `new Blob([text], { type: 'text/html' })`
+    * `'text/plain'`: `new Blob([text], { type: 'text/plain' })`
+  * Calls `navigator.clipboard.write([clipboardItem])`, then:
 
-    - on **resolve** → calls `success()` if provided
-    - on **reject** → `alert('error')` (does **not** call `fail`, see notes)
+    * on **resolve** → calls `success()` if provided
+    * on **reject** → `alert('error')` (does **not** call `fail`, see notes)
 
-- **Commented legacy fallback (ClipboardJS):**
+* **Commented legacy fallback (ClipboardJS):**
 
-  - Code is present but commented out; would support older browsers where the Async Clipboard API is unavailable.
+  * Code is present but commented out; would support older browsers where the Async Clipboard API is unavailable.
 
 ***
 
 ## Dependencies & Side Effects
 
-- **Cordova path:** `cordova.plugins.clipboard` plugin (iOS); `_alert` function for plugin-missing message.
-- **Web path:** `navigator.clipboard` (Async Clipboard API), `ClipboardItem`, `Blob`. Requires **secure context (HTTPS)** and typically a **user gesture**.
-- **Global checks:** `isPhoneGap()`, `app.device`.
-- **Side effects:** Shows a native alert `'error'` on web failure; in Cordova path, invokes provided `fail` callback on error.
+* **Cordova path:** `cordova.plugins.clipboard` plugin (iOS); `_alert` function for plugin-missing message.
+* **Web path:** `navigator.clipboard` (Async Clipboard API), `ClipboardItem`, `Blob`. Requires **secure context (HTTPS)** and typically a **user gesture**.
+* **Global checks:** `isPhoneGap()`, `app.device`.
+* **Side effects:** Shows a native alert `'error'` on web failure; in Cordova path, invokes provided `fail` callback on error.
 
 ***
 
@@ -91,30 +91,30 @@ modules.clipboard.copy(
 
 ## Notes & Edge Cases (rigorous checks)
 
-1. **Web permissions / gestures:**  
+1. **Web permissions / gestures:**\
    `navigator.clipboard.write` generally requires **HTTPS** and a **user interaction** (e.g., click). Calls from timers or background scripts may be rejected.
 
-2. **Failure callback (web path):**  
-   On rejection, code currently calls `alert('error')` and **does not invoke `fail`**.  
+2. **Failure callback (web path):**\
+   On rejection, code currently calls `alert('error')` and **does not invoke`fail`** .\
    **Recommendation:** Replace with `if (fail) fail(error);` and avoid disruptive alerts.
 
-3. **HTML vs. plain text:**  
-   The web path writes both `text/html` and `text/plain`. Some browsers (esp. older Safari) have partial support for `ClipboardItem` and MIME types.  
+3. **HTML vs. plain text:**\
+   The web path writes both `text/html` and `text/plain`. Some browsers (esp. older Safari) have partial support for `ClipboardItem` and MIME types.\
    **Recommendation:** Consider feature checks and fallback to `navigator.clipboard.writeText(text)` when `ClipboardItem` isn’t supported.
 
-4. **Android Cordova:**  
+4. **Android Cordova:**\
    The Cordova branch only runs for `app.device === 'iOS'`. If you need Android support, ensure the plugin is available there too and relax the device check.
 
-5. **`force` parameter is unused:**  
+5. **`force`parameter is unused:**\
    Safe to remove or implement (e.g., to force plain-text mode).
 
-6. **Missing plugin handling:**  
+6. **Missing plugin handling:**\
    If the Cordova clipboard plugin is absent, code calls `_alert('clipboard not installed')`. Provide install guidance in dev tools/logs.
 
-7. **Security & privacy:**  
+7. **Security & privacy:**\
    Browsers limit clipboard writes for security. Always prefer calling from explicit user actions (e.g., button clicks). Avoid copying sensitive tokens without consent.
 
-8. **Legacy fallback (ClipboardJS):**  
+8. **Legacy fallback (ClipboardJS):**\
    The commented ClipboardJS block indicates a prior fallback approach. If you must support older browsers, consider re-enabling it behind a capability check (`ClipboardJS.isSupported()`), but be mindful of maintenance and UX.
 
 ***
