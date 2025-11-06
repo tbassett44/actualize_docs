@@ -25,3 +25,4 @@
 - event_rsvp_save
 - ticket_save
 - ticket_settings_save
+- event_time_save
