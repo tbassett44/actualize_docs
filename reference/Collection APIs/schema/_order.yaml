@@ -1,3 +1,4 @@
 - user_save
 - user_block_save
 - user_follow_save
+- user_prefs_save
