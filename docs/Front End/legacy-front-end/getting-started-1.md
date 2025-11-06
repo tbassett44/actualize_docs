@@ -29,7 +29,7 @@ Go to [Actualize Web Interface](https://app.actualize.earth) and create/log in t
 
 ![](https://s3.amazonaws.com/one-earth/static/enable_dev.png "dev_mode") 
 
-![dev_mode_enabled](https://s3.amazonaws.com/one-earth/static/dev_testing.png "dev_mode_enabled")
+![dev\_mode\_enabled](https://s3.amazonaws.com/one-earth/static/dev_testing.png "dev_mode_enabled")
 
 For Mobile app views, load the site in a mobile view using your browser development tools. I recommend viewing the code and the app view in the same window at the same time, like this.
 
@@ -37,9 +37,9 @@ For Mobile app views, load the site in a mobile view using your browser developm
 
 You should see the change happen immediately in your browser.
 
-When adding a new view (/app/views/[new_view].view), you need to register the view in the conf.json file.
+When adding a new view (/app/views/\[new\_view].view), you need to register the view in the conf.json file.
 
-_note_ I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading.  First fix is reload the page and try again.  If its still broken, there is probably an issue with templates or the logic.  check your developers console to look for messages that may help.
+*note* I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading.  First fix is reload the page and try again.  If its still broken, there is probably an issue with templates or the logic.  check your developers console to look for messages that may help.
 
 Templating is done with EJS, you can learn more about how EJS works [here](https://ejs.co/#docs).
 
@@ -55,7 +55,7 @@ The relevant files for just getting started are in the
 
 # Using Branches of the Code
 
-Branches allow different versions of code to co-exists and be merge-able with each other.  
+Branches allow different versions of code to co-exists and be merge-able with each other.\
 Creating a branch
 
 ```
@@ -86,14 +86,14 @@ There are 5 main sections that can be used in a view, defined by the following t
 
 # Notable aspects of templating / linking
 
-HTML Attributes  
-action="[event type]\:[Function in Context]" - Used to link an event to a function within the context.  EG action="click:alert" will call a this.alert=function(){} within the context of the view if it exists.
+HTML Attributes\
+action="\[event type]\:[Function in Context]" - Used to link an event to a function within the context.  EG action="click:alert" will call a this.alert=function()\{} within the context of the view if it exists.
 
-link="/route/to/go" - Used to navigate to another page / view within the app.  Routes are made first by the view name, eg event.view gets a route to /event/[event.id].  Additional variables can be passed/used by the view in however they want.
+link="/route/to/go" - Used to navigate to another page / view within the app.  Routes are made first by the view name, eg event.view gets a route to /event/\[event.id].  Additional variables can be passed/used by the view in however they want.
 
-Views are assigned a route when <route></route> tag is present in the the [file_name].view file. The view can then be accessed by using link="/[file_name]".  Or if it is within javascript, you can use app.history.go('/file_name').
+Views are assigned a route when <route></route> tag is present in the the \[file\_name].view file. The view can then be accessed by using link="/\[file\_name]".  Or if it is within javascript, you can use app.history.go('/file\_name').
 
-Within a view, there are a few command methods to be aware of.  The first two (renderOptions and showOptions) are _required_
+Within a view, there are a few command methods to be aware of.  The first two (renderOptions and showOptions) are *required*
 
 ```javascript
 this.renderOptions={
@@ -178,7 +178,11 @@ Each View can have multiple templates that are used. They are defined in the <te
 </templates>
 ```
 
-Rendering additional templates into a view, used in functions in <script></script> tags
+Rendering additional templates into a view, used in functions in <HTMLBlock>{`
+<script>
+`}</HTMLBlock><HTMLBlock>{`
+</script>
+`}</HTMLBlock> tags
 
 ```javascript
 phi.render([jquery or dom element],{ //eg self.ele.find('.extra_area')
@@ -206,7 +210,7 @@ this.getRoute=function(){
 
 # Useful App Variables Available
 
-On the app boot, we connect with an Actualize Server to provide dynamic variables based on the environment.  This includes things like server endpoint bases. Here is a list of some of the relevant ones. Below are listed for production environment, development environment backends follow a similar convention, however all subdomains are adapted to point to the development server configured based on developer.  EG <https://api.actualize.earth> points to production API whereas <https://api-juicy.actualize.earth> points to the API on my development server.
+On the app boot, we connect with an Actualize Server to provide dynamic variables based on the environment.  This includes things like server endpoint bases. Here is a list of some of the relevant ones. Below are listed for production environment, development environment backends follow a similar convention, however all subdomains are adapted to point to the development server configured based on developer.  EG [https://api.actualize.earth](https://api.actualize.earth) points to production API whereas [https://api-juicy.actualize.earth](https://api-juicy.actualize.earth) points to the API on my development server.
 
 ```json
 {
