@@ -10,8 +10,10 @@ metadata:
 next:
   description: ''
 ---
+<HTMLBlock>{`
 <div id="test"></div>
 <script>document.querySelectorAll('#test').innerHTML('TEST')</script>
+`}</HTMLBlock>
 
 <br />
 
@@ -39,12 +41,12 @@ This module defines a jQuery plugin `$.fn.alert(obj)` that renders a modal-style
 | `titleColor`     | `string`                                   |       No | `""`                                       | —                                                                | Title color (template/CSS concern).                                                             |
 | `timeout`        | `number`                                   |       No | `1500`                                     | ms                                                               | Available for consumers/templates to auto-close.                                                |
 | `mobilize`       | `boolean`                                  |       No | `false`                                    | —                                                                | Mobile mode toggle (prevents ESC-close overlay binding).                                        |
-| `rele`           | `object \| false`                          |       No | `false`                                    | `{ render(obj) }`                                                | If truthy, delegates to `rele.render(obj)` and returns early.                                   |
+| `rele`           | `object \\| false`                         |       No | `false`                                    | `{ render(obj) }`                                                | If truthy, delegates to `rele.render(obj)` and returns early.                                   |
 | `close_above`    | `boolean`                                  |       No | `false`                                    | —                                                                | Template/behavior hook (not used in core).                                                      |
 | `clearAnimation` | `boolean`                                  |       No | `false`                                    | —                                                                | Template/behavior hook.                                                                         |
 | `hideonkeyboard` | `boolean`                                  |       No | `false`                                    | —                                                                | Template/behavior hook.                                                                         |
 | `overflow`       | `boolean`                                  |       No | `false`                                    | —                                                                | Template/behavior hook; actual overflow set by `setAutoHeight`.                                 |
-| `image`          | `boolean \| string`                        |       No | `false`                                    | `false` or HTML string                                           | If `false` disables image; otherwise can be HTML/URL used by template.                          |
+| `image`          | `boolean \\| string`                       |       No | `false`                                    | `false` or HTML string                                           | If `false` disables image; otherwise can be HTML/URL used by template.                          |
 | `module`         | `boolean`                                  |       No | `false`                                    | —                                                                | Template/behavior hook.                                                                         |
 | `modalClass`     | `string`                                   |       No | `""`                                       | —                                                                | Additional class for modal root.                                                                |
 | `background`     | `string`                                   |       No | `"black"`                                  | —                                                                | Modal background color (template/CSS).                                                          |
@@ -59,7 +61,7 @@ This module defines a jQuery plugin `$.fn.alert(obj)` that renders a modal-style
 | `iconsize`       | `number`                                   |       No | `60`                                       | px                                                               | Icon size (template/CSS).                                                                       |
 | `spacing`        | `number`                                   |       No | `45`                                       | px                                                               | Vertical padding used when computing available height.                                          |
 | `maxwidth`       | `number`                                   |       No | `900`                                      | px                                                               | Used by `setAutoWidth` as `mw`.                                                                 |
-| `maxHeight`      | `boolean \| number`                        |       No | `false`                                    | —                                                                | If truthy, forces content to available height.                                                  |
+| `maxHeight`      | `boolean \\| number`                       |       No | `false`                                    | —                                                                | If truthy, forces content to available height.                                                  |
 | `escClose`       | `boolean`                                  |       No | `false`                                    | —                                                                | If true (and not `mobilize`), clicking `.clickclose` closes the modal.                          |
 | `buttons`        | `Array<{ btext: string, bclass: string }>` |       No | `[ { btext:'OK', bclass:'x_closer' } ]`    | —                                                                | Button config; `.x_closer` is wired to close.                                                   |
 | `template`       | `string`                                   |       No | uses `$.fn.alert.useTemplate` or `"alert"` | —                                                                | Template name for `$(el).render`.                                                               |
@@ -94,35 +96,35 @@ This module defines a jQuery plugin `$.fn.alert(obj)` that renders a modal-style
 
 ## Dependencies & Side Effects
 
-- **Internal deps:** `$(this).render(opts)`, `$.fn.render.getTemplate(name).render(data)`, `modules.scroller(ele.find('.relativealert'))`
-- **External deps:** GSAP/TweenLite, jQuery, a tap/gesture plugin providing `.stap`, global `isMobile`
-- **DOM classes required by your template:** `.modalalert` (root), `.alertcontent` (for sizing); optional `.scrollingarea`, `.relativealert`, `.normalfastanimated`, `.clickclose`, `.calcheight`, `.x_closer`
-- **Global state:** `$.fn.alert.alertzindex` (starts ~500), `$.fn.alert.storedmodal` (queue), `$.fn.alert.currentalertopts`, `$.fn.alert.noblur`
-- **Queuing:** If an alert is open and `!replace && !overlay`, new alerts are queued (unless `dontstore`), with `animate=false`, to display after the current one closes.
+* **Internal deps:** `$(this).render(opts)`, `$.fn.render.getTemplate(name).render(data)`, `modules.scroller(ele.find('.relativealert'))`
+* **External deps:** GSAP/TweenLite, jQuery, a tap/gesture plugin providing `.stap`, global `isMobile`
+* **DOM classes required by your template:** `.modalalert` (root), `.alertcontent` (for sizing); optional `.scrollingarea`, `.relativealert`, `.normalfastanimated`, `.clickclose`, `.calcheight`, `.x_closer`
+* **Global state:** `$.fn.alert.alertzindex` (starts \~500), `$.fn.alert.storedmodal` (queue), `$.fn.alert.currentalertopts`, `$.fn.alert.noblur`
+* **Queuing:** If an alert is open and `!replace && !overlay`, new alerts are queued (unless `dontstore`), with `animate=false`, to display after the current one closes.
 
 ## Option Details
 
 ### `rele`
 
-- **Purpose:** Bypass plugin rendering and delegate to `rele.render(obj)`.
-- **Side effects:** Sets `obj.append=false`, ensures `obj.data` exists, and forces `obj.data.groupselect=1`; copies `tempdata` into `data`. Returns early.
+* **Purpose:** Bypass plugin rendering and delegate to `rele.render(obj)`.
+* **Side effects:** Sets `obj.append=false`, ensures `obj.data` exists, and forces `obj.data.groupselect=1`; copies `tempdata` into `data`. Returns early.
 
 ### `autowidth` / `maxwidth`
 
-- **Logic:** `w = body.width() * 0.9`, then `min(w, maxwidth)`, applied to `.alertcontent`.
-- **Note:** Code checks `data.maxWidth` (camelCase) in one branch but default is `maxwidth` (lowercase). **Standardize the key** (recommended: `maxWidth`).
+* **Logic:** `w = body.width() * 0.9`, then `min(w, maxwidth)`, applied to `.alertcontent`.
+* **Note:** Code checks `data.maxWidth` (camelCase) in one branch but default is `maxwidth` (lowercase). **Standardize the key** (recommended: `maxWidth`).
 
 ### `autoheight` / `maxHeight` / `spacing`
 
-- **Logic:** If `maxHeight` truthy, set `.alertcontent` height to `body.height() - spacing*2`. Else, sum `.calcheight:visible` heights and clamp if exceeding available space. Calls `onHeightUpdate`.
+* **Logic:** If `maxHeight` truthy, set `.alertcontent` height to `body.height() - spacing*2`. Else, sum `.calcheight:visible` heights and clamp if exceeding available space. Calls `onHeightUpdate`.
 
 ### `escClose`
 
-- **Behavior:** If `true` and not `mobilize`, binds `.clickclose` overlay to trigger `closeAlert`.
+* **Behavior:** If `true` and not `mobilize`, binds `.clickclose` overlay to trigger `closeAlert`.
 
 ### `template` / `content` / `tempdata`
 
-- **Behavior:** If `content` missing but `template` provided, renders via `$.fn.render.getTemplate(template).render({ template, uid, _tid: uid, ...tempdata })`.
+* **Behavior:** If `content` missing but `template` provided, renders via `$.fn.render.getTemplate(template).render({ template, uid, _tid: uid, ...tempdata })`.
 
 ## Usage Example
 
@@ -165,16 +167,16 @@ $('#app').alert({
 
 ## Notes & Edge Cases
 
-- **Z-index lifecycle:** Always close via `$.fn.alert.closeAlert()` to keep global z-index in sync.
-- **Queued modals:** Use `dontstore: true` to skip queueing, or `overlay: true` to allow stacking.
-- **Blur behavior:** Provide a valid `blurEle` (defaults to `#wrapper`) or set `noblur` to disable.
-- **Mobile:** On close, if `isMobile`, scroll resets to `(0,0)`.
-- **Animation classes:** Ensure CSS for `.normalfastanimated` with `zoomIn/zoomOut` and overlay fade.
-- **`shouldClose` hook:** The code calls `obj.shouldClose()` if present and aborts close when it returns `false`. Add it if you need guardrails.
-- **Potential bug:** `maxWidth` vs `maxwidth` mismatch. Standardize to one key.
+* **Z-index lifecycle:** Always close via `$.fn.alert.closeAlert()` to keep global z-index in sync.
+* **Queued modals:** Use `dontstore: true` to skip queueing, or `overlay: true` to allow stacking.
+* **Blur behavior:** Provide a valid `blurEle` (defaults to `#wrapper`) or set `noblur` to disable.
+* **Mobile:** On close, if `isMobile`, scroll resets to `(0,0)`.
+* **Animation classes:** Ensure CSS for `.normalfastanimated` with `zoomIn/zoomOut` and overlay fade.
+* **`shouldClose`hook:** The code calls `obj.shouldClose()` if present and aborts close when it returns `false`. Add it if you need guardrails.
+* **Potential bug:** `maxWidth` vs `maxwidth` mismatch. Standardize to one key.
 
 ## Exported Helpers
 
-- `$.fn.alert.getAlert(): jQuery \| false` — returns the topmost `.modalalert` by z-index.
-- `$.fn.alert.closeAlert` — function reference to instance `closeAlert`.
-- `$.fn.alert.cdot` — base64 1×1 PNG dot (transparent placeholder).
+* `$.fn.alert.getAlert(): jQuery \| false` — returns the topmost `.modalalert` by z-index.
+* `$.fn.alert.closeAlert` — function reference to instance `closeAlert`.
+* `$.fn.alert.cdot` — base64 1×1 PNG dot (transparent placeholder).
