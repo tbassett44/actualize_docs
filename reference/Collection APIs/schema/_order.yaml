@@ -27,3 +27,4 @@
 - ticket_settings_save
 - event_time_save
 - ticket_question_save
+- event_promotion_save
