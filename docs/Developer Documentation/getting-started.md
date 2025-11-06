@@ -48,16 +48,4 @@ Every part of this documentation exists to help you contribute effectively — n
 
 Start your journey with some inspiration with this spoken word poetry flow by Lily Fangz from our First Earth Day Gala!
 
-[block:embed]
-{
-  "html": false,
-  "url": "https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd",
-  "title": "iframe",
-  "provider": "youtube.com",
-  "href": "https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd",
-  "typeOfEmbed": "iframe",
-  "height": "400px",
-  "width": "100%",
-  "iframe": true
-}
-[/block]
+<Embed url="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" title="iframe" provider="youtube.com" href="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" typeOfEmbed="iframe" height="400px" width="100%" iframe="true" />
