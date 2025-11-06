@@ -44,18 +44,18 @@ bun run build
 
 ### Build Outputs
 
-- **Production**: `dist/widget.js` and `dist/widget.css` (minified, UMD format)
-- **Development**: Same output but with readable code for debugging
-- **Library Mode**: UMD format exposing `EventManagementWidget` global
-- **Externals**: React and ReactDOM are externalized (must be provided by host)
+* **Production**: `dist/widget.js` and `dist/widget.css` (minified, UMD format)
+* **Development**: Same output but with readable code for debugging
+* **Library Mode**: UMD format exposing `EventManagementWidget` global
+* **Externals**: React and ReactDOM are externalized (must be provided by host)
 
 ### Vite Configuration (`vite.config.ts`)
 
-- **Mode-specific builds**: Development vs production configurations
-- **CSS Processing**: Tailwind → PostCSS → Autoprefixer → cssnano (production)
-- **CSS Prefixing**: `vite-css-prefixer` adds `event-widget-` prefix to avoid conflicts
-- **Bundle format**: UMD with named exports
-- **Globals**: Expects `React` and `ReactDOM` from host application
+* **Mode-specific builds**: Development vs production configurations
+* **CSS Processing**: Tailwind → PostCSS → Autoprefixer → cssnano (production)
+* **CSS Prefixing**: `vite-css-prefixer` adds `event-widget-` prefix to avoid conflicts
+* **Bundle format**: UMD with named exports
+* **Globals**: Expects `React` and `ReactDOM` from host application
 
 ## Integration Method
 
@@ -180,9 +180,9 @@ widget.mount({
 
 ### Router Type: MemoryRouter
 
-- **No URL changes**: Routes are internal to the widget
-- **Parent app control**: Use `onRouteChange` to sync with parent app
-- **Initial route**: Set via `initialRoute` config option
+* **No URL changes**: Routes are internal to the widget
+* **Parent app control**: Use `onRouteChange` to sync with parent app
+* **Initial route**: Set via `initialRoute` config option
 
 ### Route Change Detection
 
@@ -297,62 +297,62 @@ const queryClient = new QueryClient({
 
 ### Entry Points
 
-- **`src/index.ts`**: Main entry point for UMD build, simple mount/unmount
-- **`src/lib/app-widget.tsx`**: Alternative entry with advanced features
-- **`src/App.tsx`**: Main React application component
+* **`src/index.ts`**: Main entry point for UMD build, simple mount/unmount
+* **`src/lib/app-widget.tsx`**: Alternative entry with advanced features
+* **`src/App.tsx`**: Main React application component
 
 ### Key Files
 
-- **`vite.config.ts`**: Build configuration
-- **`src/index.css`**: Design system CSS variables
-- **`tailwind.config.ts`**: Tailwind configuration
-- **`src/widget-styles.css`**: Widget-specific styles
-- **`src/contexts/PageStateContext.tsx`**: Page state caching
-- **`src/contexts/WidgetContext.tsx`**: Action callback context
-- **`src/components/Layout.tsx`**: Main layout wrapper
+* **`vite.config.ts`**: Build configuration
+* **`src/index.css`**: Design system CSS variables
+* **`tailwind.config.ts`**: Tailwind configuration
+* **`src/widget-styles.css`**: Widget-specific styles
+* **`src/contexts/PageStateContext.tsx`**: Page state caching
+* **`src/contexts/WidgetContext.tsx`**: Action callback context
+* **`src/components/Layout.tsx`**: Main layout wrapper
 
 ### Pages Directory
 
 All page components in `src/pages/`:
 
-- Overview, Dashboard, Tickets, TicketOrders, etc.
-- Settings pages in `src/pages/settings/`
-- NotFound for 404 handling
+* Overview, Dashboard, Tickets, TicketOrders, etc.
+* Settings pages in `src/pages/settings/`
+* NotFound for 404 handling
 
 ## Dependencies
 
 ### Core Dependencies
 
-- **react** & **react-dom**: ^18.3.1 (externalized in build)
-- **react-router-dom**: ^6.30.1 (routing)
-- **@tanstack/react-query**: ^5.83.0 (data fetching)
-- **tailwindcss**: CSS framework
-- **@radix-ui/\***: UI component primitives
+* **react** & **react-dom**: ^18.3.1 (externalized in build)
+* **react-router-dom**: ^6.30.1 (routing)
+* **@tanstack/react-query**: ^5.83.0 (data fetching)
+* **tailwindcss**: CSS framework
+* **@radix-ui/\***: UI component primitives
 
 ### Build Dependencies
 
-- **vite**: Build tool
-- **vite-css-prefixer**: Prefix CSS to avoid conflicts
-- **autoprefixer**: CSS vendor prefixing
-- **cssnano**: CSS minification
+* **vite**: Build tool
+* **vite-css-prefixer**: Prefix CSS to avoid conflicts
+* **autoprefixer**: CSS vendor prefixing
+* **cssnano**: CSS minification
 
 ## Development vs Production
 
 ### Development Mode
 
-- Readable code output
-- Source maps enabled
-- No CSS minification
-- No CSS prefixing
-- Faster build times
+* Readable code output
+* Source maps enabled
+* No CSS minification
+* No CSS prefixing
+* Faster build times
 
 ### Production Mode
 
-- Minified output
-- Tree-shaking enabled
-- CSS prefixing with `event-widget-`
-- CSS minification via cssnano
-- Optimized bundle size
+* Minified output
+* Tree-shaking enabled
+* CSS prefixing with `event-widget-`
+* CSS minification via cssnano
+* Optimized bundle size
 
 ## Multiple Widget Instances
 
@@ -377,10 +377,10 @@ widget.mount({ containerId: 'widget-2', eventId: 'event-2' });
 
 Each instance maintains its own:
 
-- Routing state
-- Page state cache
-- React Query cache
-- Event handlers
+* Routing state
+* Page state cache
+* React Query cache
+* Event handlers
 
 ## Authentication & API
 
@@ -414,62 +414,62 @@ export function appendAuthToUrl(url: string): string {
 
 ### 1. Always Check Context First
 
-- Review `src/index.ts` vs `src/lib/app-widget.tsx` - two different entry points
-- Check which files are already in context before reading
-- Understand the dual implementation pattern
+* Review `src/index.ts` vs `src/lib/app-widget.tsx` - two different entry points
+* Check which files are already in context before reading
+* Understand the dual implementation pattern
 
 ### 2. Maintain Consistency
 
-- If editing one entry point, consider if the other needs updates
-- Keep callback signatures consistent across both implementations
-- Maintain the same route structure in both approaches
+* If editing one entry point, consider if the other needs updates
+* Keep callback signatures consistent across both implementations
+* Maintain the same route structure in both approaches
 
 ### 3. Respect Architecture
 
-- Don't replace MemoryRouter with BrowserRouter
-- Don't bundle React/ReactDOM (they're externalized)
-- Always use semantic tokens for colors (HSL only)
-- Keep CSS prefixing configuration intact
+* Don't replace MemoryRouter with BrowserRouter
+* Don't bundle React/ReactDOM (they're externalized)
+* Always use semantic tokens for colors (HSL only)
+* Keep CSS prefixing configuration intact
 
 ### 4. Testing Considerations
 
-- Test both mount methods (element-based and config-based)
-- Test multiple simultaneous instances
-- Test all callbacks (onRouteChange, onAction, onReady, onError)
-- Test with and without React/ReactDOM available
+* Test both mount methods (element-based and config-based)
+* Test multiple simultaneous instances
+* Test all callbacks (onRouteChange, onAction, onReady, onError)
+* Test with and without React/ReactDOM available
 
 ### 5. Build Verification
 
-- Always test both development and production builds
-- Verify CSS prefixing in production output
-- Check bundle size after changes
-- Ensure externals aren't bundled
+* Always test both development and production builds
+* Verify CSS prefixing in production output
+* Check bundle size after changes
+* Ensure externals aren't bundled
 
 ## Common Pitfalls
 
 1. **Using direct colors instead of semantic tokens**
-   - ❌ `className="bg-white text-black"`
-   - ✅ `className="bg-background text-foreground"`
+   * ❌ `className="bg-white text-black"`
+   * ✅ `className="bg-background text-foreground"`
 
 2. **Modifying URL directly**
-   - Widget uses MemoryRouter, URL changes won't work
-   - Use `onRouteChange` callback to inform parent
+   * Widget uses MemoryRouter, URL changes won't work
+   * Use `onRouteChange` callback to inform parent
 
 3. **Not handling both entry points**
-   - Changes to routing/callbacks need updates in both `src/index.ts` and `src/lib/app-widget.tsx`
+   * Changes to routing/callbacks need updates in both `src/index.ts` and `src/lib/app-widget.tsx`
 
 4. **Forgetting CSS prefixing in production**
-   - Production CSS is prefixed with `event-widget-`
-   - Don't remove or modify the `vite-css-prefixer` configuration
+   * Production CSS is prefixed with `event-widget-`
+   * Don't remove or modify the `vite-css-prefixer` configuration
 
 5. **Bundling React/ReactDOM**
-   - These must remain externalized
-   - Host application must provide them
+   * These must remain externalized
+   * Host application must provide them
 
 ## Future Considerations
 
-- **HashRouter Migration**: If parent app integration requires URL sync, consider migrating to HashRouter
-- **Micro-frontend Architecture**: Current `common-widgets/` suggests multi-widget system
-- **State Persistence**: Consider adding localStorage support for PageStateContext
-- **Error Boundaries**: Add React error boundaries for graceful failure handling
-- **Analytics**: Built-in analytics hooks for tracking widget usage
+* **HashRouter Migration**: If parent app integration requires URL sync, consider migrating to HashRouter
+* **Micro-frontend Architecture**: Current `common-widgets/` suggests multi-widget system
+* **State Persistence**: Consider adding localStorage support for PageStateContext
+* **Error Boundaries**: Add React error boundaries for graceful failure handling
+* **Analytics**: Built-in analytics hooks for tracking widget usage
