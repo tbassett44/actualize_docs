@@ -55,9 +55,9 @@ next:
 
 **Notes**
 
-- iOS/Android differences handled via `calendarName` vs `calendarId`.
-- Sync only for relevant events (e.g., RSVP going/interested/host) and sets 15-minute reminder by default.
-- Uses `modules.api` for server feed; shows toasts on batch update.
+* iOS/Android differences handled via `calendarName` vs `calendarId`.
+* Sync only for relevant events (e.g., RSVP going/interested/host) and sets 15-minute reminder by default.
+* Uses `modules.api` for server feed; shows toasts on batch update.
 
 ***
 
@@ -71,7 +71,7 @@ next:
 | `location.getNearestLocation()`    | Priority: user-picked **city** → **GPS** → **IP** → `false`.                                                                                    |
 | `location.setCity(featureOrFalse)` | Lock proximity bias to a selected Mapbox place (stores center as `{lng,lat}`).                                                                  |
 | `location.getName(data, type)`     | Format helper using `modules.geocode.getText` (e.g., `"city"`, `"city_full"`, `"simple"`).                                                      |
-| `location.locate(cb)`              | Raw `navigator.geolocation.getCurrentPosition` with ~5s timeout and accuracy threshold.                                                         |
+| `location.locate(cb)`              | Raw `navigator.geolocation.getCurrentPosition` with \~5s timeout and accuracy threshold.                                                        |
 
 **Tip:** This integrates with your Mapbox geocoder wrapper for uniform place labeling. 
 
@@ -94,7 +94,7 @@ next:
 
 | API                                             | Behavior                                                                                                                                                                                  |
 | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `camera.getPicture(opts)`                       | Presents a **mobilealert** with “Camera / Photo Library” choices (unless `opts.type` provided), then acquires a file URI via Cordova Camera _or_ a custom `modules.mediapicker` fallback. |
+| `camera.getPicture(opts)`                       | Presents a **mobilealert** with “Camera / Photo Library” choices (unless `opts.type` provided), then acquires a file URI via Cordova Camera *or* a custom `modules.mediapicker` fallback. |
 | `camera.get(opts, cb, err)`                     | Low-level getter that chooses Camera vs. Mediapicker based on `sourceType` and platform.                                                                                                  |
 | `camera.uploadimg(imageURI, opts, fileobj, cb)` | Cordova FileTransfer upload to `app.uploadurl+'/upload/image/submit'`, with progress callback; returns `{ path, ext, ar, v }` or `false`.                                                 |
 
@@ -178,11 +178,11 @@ next:
 
 ## Lifecycle & system wiring (inside `phone.init()`)
 
-- Sets `app.parseURL = phone.parseURL` and optionally reroutes using `?path=...`.
-- Binds `document` listeners: `resume` (debounced), `pause`, `backbutton` (tries component `goBack()`, otherwise exits app).
-- Detects device & version; toggles CSS classes and iOS RTC/adapter script for WebRTC support.
-- Adjusts StatusBar visibility/overlay; detects notch and tablet widths; logs screen info.
-- Initializes `footerBar`, `keyboard_global`, `bg_upload`, and **Mobiscroll** theme per platform. 
+* Sets `app.parseURL = phone.parseURL` and optionally reroutes using `?path=...`.
+* Binds `document` listeners: `resume` (debounced), `pause`, `backbutton` (tries component `goBack()`, otherwise exits app).
+* Detects device & version; toggles CSS classes and iOS RTC/adapter script for WebRTC support.
+* Adjusts StatusBar visibility/overlay; detects notch and tablet widths; logs screen info.
+* Initializes `footerBar`, `keyboard_global`, `bg_upload`, and **Mobiscroll** theme per platform. 
 
 ***
 
@@ -241,9 +241,9 @@ phone.badge.removeChat('room_42');
 
 ## Considerations & hardening (for all devices)
 
-- **Cordova presence:** Many APIs no-op on web. Always guard flows that require native plugins and provide UX fallbacks.
-- **Calendar IDs & permissions:** Selection is persisted; provide a way to **clear** default (`clearDefaultCalendar`) and re-prompt.
-- **Error paths:** Some branches swallow errors (e.g., calendar ops, GPS failures). For critical flows, add callbacks/toasts.
-- **Timezones:** Calendar dates are native `Date` objects; if events cross DST/timezones, ensure server and device are aligned.
-- **Security:** Upload endpoints rely on `app.uploadurl`; ensure tokens/ACLs are enforced server-side.
-- **Notch/safe areas:** The code already adds classes; use them in CSS to avoid content underlaps.
+* **Cordova presence:** Many APIs no-op on web. Always guard flows that require native plugins and provide UX fallbacks.
+* **Calendar IDs & permissions:** Selection is persisted; provide a way to **clear** default (`clearDefaultCalendar`) and re-prompt.
+* **Error paths:** Some branches swallow errors (e.g., calendar ops, GPS failures). For critical flows, add callbacks/toasts.
+* **Timezones:** Calendar dates are native `Date` objects; if events cross DST/timezones, ensure server and device are aligned.
+* **Security:** Upload endpoints rely on `app.uploadurl`; ensure tokens/ACLs are enforced server-side.
+* **Notch/safe areas:** The code already adds classes; use them in CSS to avoid content underlaps.
