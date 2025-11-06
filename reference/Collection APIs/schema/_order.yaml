@@ -65,3 +65,4 @@
 - ci_survey_save
 - signal_contact_save
 - ai_survey_save
+- survey_goal_claim_save
