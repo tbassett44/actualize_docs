@@ -22,7 +22,7 @@ Demographic data isn’t available at this time. However, you can view referral 
 
 Go to Admin Tools → Spread the Word, then click Promote!
 
-The Promote feature highlights your event within the Actualize Earth ecosystem—such as featured spots or visibility at the top of relevant pages.  
+The Promote feature highlights your event within the Actualize Earth ecosystem—such as featured spots or visibility at the top of relevant pages.\
 The Invite feature, on the other hand, lets you send direct invitations to specific people.
 
 Both tools allow you to select a location to help target the right audience for your event.
