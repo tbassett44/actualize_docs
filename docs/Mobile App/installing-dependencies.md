@@ -16,8 +16,8 @@ next:
 
 ## OS & build matrix
 
-- **iOS builds:** _macOS only_ (Apple requires Xcode).
-- **Android builds:** macOS, Linux, or Windows (WSL works, but native is simpler).
+* **iOS builds:** *macOS only* (Apple requires Xcode).
+* **Android builds:** macOS, Linux, or Windows (WSL works, but native is simpler).
 
 > Recommended: macOS 13+ (Ventura or newer) with Apple Silicon or Intel.
 
@@ -27,34 +27,34 @@ next:
 
 ### System & language
 
-- **Node.js (LTS) + npm** – Cordova CLI and many build scripts.
-- **Java JDK (17 recommended)** – Android Gradle builds and signing tools.
-- **Ruby (system or rbenv) + Bundler** – Fastlane (iOS code signing / App Store) and some utilities.
-- **Homebrew (macOS)** – Package manager to install the rest.
+* **Node.js (LTS) + npm** – Cordova CLI and many build scripts.
+* **Java JDK (17 recommended)** – Android Gradle builds and signing tools.
+* **Ruby (system or rbenv) + Bundler** – Fastlane (iOS code signing / App Store) and some utilities.
+* **Homebrew (macOS)** – Package manager to install the rest.
 
 ### Mobile toolchains
 
-- **Xcode + Command Line Tools (macOS)** – iOS SDK, compilers, simulators.
-- **CocoaPods** – iOS dependency manager (Cordova iOS platform uses pods).
-- **Android Studio** – SDK Manager, Platform Tools (adb), Build Tools, Android SDK.
+* **Xcode + Command Line Tools (macOS)** – iOS SDK, compilers, simulators.
+* **CocoaPods** – iOS dependency manager (Cordova iOS platform uses pods).
+* **Android Studio** – SDK Manager, Platform Tools (adb), Build Tools, Android SDK.
 
 ### Cordova & project-level
 
-- **Cordova CLI** – Platform & plugin management, build orchestrator.
-- **Gradle / Android SDK Build-Tools** – Android build system (installed via Android Studio).
-- **Fastlane** – iOS/Android store delivery, provisioning, screenshots.
-- **OpenSSL** – APNs cert/key conversions (`updatepushcert`, etc.).
-- **AWS CLI** – Optional but useful for SNS validation and S3 uploads.
-- **libimobiledevice (optional)** – iOS device logging (`idevicesyslog`).
+* **Cordova CLI** – Platform & plugin management, build orchestrator.
+* **Gradle / Android SDK Build-Tools** – Android build system (installed via Android Studio).
+* **Fastlane** – iOS/Android store delivery, provisioning, screenshots.
+* **OpenSSL** – APNs cert/key conversions (`updatepushcert`, etc.).
+* **AWS CLI** – Optional but useful for SNS validation and S3 uploads.
+* **libimobiledevice (optional)** – iOS device logging (`idevicesyslog`).
 
 ### npm packages used by the pipeline (install on demand)
 
-- `xml-entities`, `html-entities`, `recursive-readdir` (used by `ensurenpm` in dapp).
+* `xml-entities`, `html-entities`, `recursive-readdir` (used by `ensurenpm` in dapp).
 
 ### Optional / helpful
 
-- **bundletool** – Generates APKs from AABs for sideloading/debug.
-- **jq** – JSON CLI processor (debugging configs).
+* **bundletool** – Generates APKs from AABs for sideloading/debug.
+* **jq** – JSON CLI processor (debugging configs).
 
 ***
 
@@ -143,28 +143,28 @@ npm install xml-entities html-entities recursive-readdir --save-dev
 
 ## Installation (Linux)
 
-- Install Node 18/20 LTS + npm via distro or NodeSource.
-- Install **JDK 17** (Temurin/OpenJDK) and set `JAVA_HOME`.
-- Install **Android Studio** & SDKs; set `ANDROID_HOME`, add `platform-tools` to `PATH`.
-- **CocoaPods / Xcode are not available** → Android builds only on Linux.
-- Install Cordova and Fastlane:
+* Install Node 18/20 LTS + npm via distro or NodeSource.
+* Install **JDK 17** (Temurin/OpenJDK) and set `JAVA_HOME`.
+* Install **Android Studio** & SDKs; set `ANDROID_HOME`, add `platform-tools` to `PATH`.
+* **CocoaPods / Xcode are not available** → Android builds only on Linux.
+* Install Cordova and Fastlane:
 
 ```bash
 sudo npm install -g cordova
 sudo gem install fastlane
 ```
 
-- Install OpenSSL, AWS CLI via your package manager.
+* Install OpenSSL, AWS CLI via your package manager.
 
 ***
 
 ## Installation (Windows / WSL)
 
-- **Android only** on Windows. Install Node LTS and JDK 17 (Adoptium).
-- Install **Android Studio** + SDKs; add `platform-tools` to PATH.
-- Install Cordova (`npm i -g cordova`).
-- For Fastlane, Windows support is limited; prefer macOS for iOS automation.
-- WSL can work for Android but device/USB passthrough can be fiddly—native Windows often simpler for adb.
+* **Android only** on Windows. Install Node LTS and JDK 17 (Adoptium).
+* Install **Android Studio** + SDKs; add `platform-tools` to PATH.
+* Install Cordova (`npm i -g cordova`).
+* For Fastlane, Windows support is limited; prefer macOS for iOS automation.
+* WSL can work for Android but device/USB passthrough can be fiddly—native Windows often simpler for adb.
 
 ***
 
@@ -191,10 +191,10 @@ adb version
 2. In App Store Connect, set up your app entry.
 3. `fastlane` will handle:
 
-   - App ID creation (`produce`)
-   - Provisioning profiles (`sigh` / `match`)
-   - APNs certs (`pem`)
-   - Uploads (`deliver`)
+   * App ID creation (`produce`)
+   * Provisioning profiles (`sigh` / `match`)
+   * APNs certs (`pem`)
+   * Uploads (`deliver`)
 
 > If you’re using `dapp`’s `ensureiosapp`, `ensureProvisionProfile`, `updatepushcert`, etc., make sure your Apple credentials are available to Fastlane (via `FASTLANE_USER`, `FASTLANE_PASSWORD` or App Store Connect API key JSON, and any 2FA session as required).
 
@@ -210,12 +210,12 @@ adb version
 
 ## AWS SNS (push) prerequisites (optional but supported)
 
-- AWS account + IAM user with SNS permissions.
-- Configure AWS CLI credentials (`aws configure`).
-- `dapp` actions `createsns`, `updatesns`, `androidsns` expect:
+* AWS account + IAM user with SNS permissions.
+* Configure AWS CLI credentials (`aws configure`).
+* `dapp` actions `createsns`, `updatesns`, `androidsns` expect:
 
-  - iOS: APNs cert + key (converted via OpenSSL).
-  - Android: FCM server key.
+  * iOS: APNs cert + key (converted via OpenSSL).
+  * Android: FCM server key.
 
 ***
 
@@ -277,23 +277,23 @@ php dapp.php actualize development runandroid
 
 If anything fails, check:
 
-- `xcodebuild -showsdks` (iOS SDK present)
-- `adb devices` (Android device/emulator visible)
-- `pod install` inside `platforms/ios` (pods resolve)
-- `JAVA_HOME`, `ANDROID_HOME` are set
-- Apple account / Fastlane auth (for provisioning/deliver)
-- Network access (templates, screenshots, API config)
+* `xcodebuild -showsdks` (iOS SDK present)
+* `adb devices` (Android device/emulator visible)
+* `pod install` inside `platforms/ios` (pods resolve)
+* `JAVA_HOME`, `ANDROID_HOME` are set
+* Apple account / Fastlane auth (for provisioning/deliver)
+* Network access (templates, screenshots, API config)
 
 ***
 
 ## Troubleshooting & considerations (poking holes)
 
-- **Toolchain drift:** New Xcode/AGP releases can break builds; pin platform versions and keep a “known-good” matrix.
-- **Apple Silicon quirks:** Some native gems/pods may need Rosetta or updated binaries. If pods fail, try `sudo gem install ffi -- --enable-libffi-alloc`.
-- **JDK mismatch:** AGP 8.x generally prefers JDK 17; using 11 or 21 can cause Gradle toolchain errors.
-- **CocoaPods repo slow/locked:** Run `pod repo update` or `pod install --repo-update`.
-- **APNs key/cert format:** `dapp` uses OpenSSL to convert; ensure OpenSSL is present and on `PATH`.
-- **CI/CD:** For reproducible builds, capture `node`, `cordova`, platform pins, CocoaPods specs repo snapshot, and cache Gradle/pods between runs.
+* **Toolchain drift:** New Xcode/AGP releases can break builds; pin platform versions and keep a “known-good” matrix.
+* **Apple Silicon quirks:** Some native gems/pods may need Rosetta or updated binaries. If pods fail, try `sudo gem install ffi -- --enable-libffi-alloc`.
+* **JDK mismatch:** AGP 8.x generally prefers JDK 17; using 11 or 21 can cause Gradle toolchain errors.
+* **CocoaPods repo slow/locked:** Run `pod repo update` or `pod install --repo-update`.
+* **APNs key/cert format:** `dapp` uses OpenSSL to convert; ensure OpenSSL is present and on `PATH`.
+* **CI/CD:** For reproducible builds, capture `node`, `cordova`, platform pins, CocoaPods specs repo snapshot, and cache Gradle/pods between runs.
 
 ***
 
