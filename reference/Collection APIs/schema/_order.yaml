@@ -20,3 +20,4 @@
 - phi_token_transfer_save
 - phi_token_receipt_save
 - exchange_save
+- event_save
