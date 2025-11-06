@@ -45,3 +45,4 @@
 - geo_hook_save
 - bitcoin_save
 - payment_save
+- page_save
