@@ -14,7 +14,7 @@ next:
 
 ## High-Level Summary
 
-A small wrapper around the **Mapbox Geocoding API** that normalizes inputs/outputs for your app, adds optional **type filtering** and **location proximity**, and provides helper utilities for parsing text and coordinates. It rate-limits overlapping calls (soft lock + queued retry) and returns **raw Mapbox `features`** on success.  
+A small wrapper around the **Mapbox Geocoding API** that normalizes inputs/outputs for your app, adds optional **type filtering** and **location proximity**, and provides helper utilities for parsing text and coordinates. It rate-limits overlapping calls (soft lock + queued retry) and returns **raw Mapbox`features`** on success.\
 See Mapbox docs: [Mapbox Geocoding API](https://docs.mapbox.com/api/search/geocoding/).
 
 ***
@@ -48,11 +48,11 @@ See Mapbox docs: [Mapbox Geocoding API](https://docs.mapbox.com/api/search/geoco
 
 **Behavior:**
 
-- Debounce-ish queue: if `search` is called while `processing` is true, it **stores the latest call** and replays it after the current request completes (with a 500ms safety timer).
-- Builds endpoint:  
+* Debounce-ish queue: if `search` is called while `processing` is true, it **stores the latest call** and replays it after the current request completes (with a 500ms safety timer).
+* Builds endpoint:\
   `https://api.mapbox.com/geocoding/v5/{type}/{encoded query}.json?autocomplete=true&types=...&access_token=...&proximity=...`
-- Uses `modules.api` with `{ type:'GET', cleanData:true, dataType:'json' }` (no auth/query pollution).
-- Success: if `data.features.length`, calls `cb(features)`; else `cb(false)`.
+* Uses `modules.api` with `{ type:'GET', cleanData:true, dataType:'json' }` (no auth/query pollution).
+* Success: if `data.features.length`, calls `cb(features)`; else `cb(false)`.
 
 ***
 
@@ -60,29 +60,29 @@ See Mapbox docs: [Mapbox Geocoding API](https://docs.mapbox.com/api/search/geoco
 
 ### `getTypes(opts)`
 
-- Input: `{ types?: string[] }`
-- Output: `string[]` of Mapbox types
-- Mapping:
+* Input: `{ types?: string[] }`
+* Output: `string[]` of Mapbox types
+* Mapping:
 
-  - `"(cities)"` → `"place"`
-  - `"(pois)"` → `"poi"`
-  - Unknown entries pass through unchanged.
+  * `"(cities)"` → `"place"`
+  * `"(pois)"` → `"poi"`
+  * Unknown entries pass through unchanged.
 
 ### `getText(feature)`
 
-- Returns a compact object for display/search highlights:
+* Returns a compact object for display/search highlights:
 
-  - `text` (short label)
-  - `place_name` (full label)
-  - Context parts keyed by their type, e.g. `{ country: "United States", region: "Colorado" }` based on `feature.context[].id`.
+  * `text` (short label)
+  * `place_name` (full label)
+  * Context parts keyed by their type, e.g. `{ country: "United States", region: "Colorado" }` based on `feature.context[].id`.
 
 ### `getLoc(data, cb?)`
 
-- Accepts:
+* Accepts:
 
-  - Mapbox `feature` (`feature.geometry.coordinates = [lng, lat]`)
-  - FB-style object: `{ coordinates:{ longitude, latitude } }`
-- Returns `{ lng:Number, lat:Number }`. If `cb` provided, calls and returns that value.
+  * Mapbox `feature` (`feature.geometry.coordinates = [lng, lat]`)
+  * FB-style object: `{ coordinates:{ longitude, latitude } }`
+* Returns `{ lng:Number, lat:Number }`. If `cb` provided, calls and returns that value.
 
 ***
 
@@ -127,11 +127,11 @@ modules.geocode.search('denver', {}, (features) => {
 
 A typical feature includes:
 
-- `place_name`: full human label (`"Denver, Colorado, United States"`)
-- `text`: primary token (`"Denver"`)
-- `center` / `geometry.coordinates`: `[lng, lat]`
-- `place_type`: e.g., `["place"]`, `["poi"]`
-- `context`: array of parent objects with `id` like `country.123`, `region.456`, etc.
+* `place_name`: full human label (`"Denver, Colorado, United States"`)
+* `text`: primary token (`"Denver"`)
+* `center` / `geometry.coordinates`: `[lng, lat]`
+* `place_type`: e.g., `["place"]`, `["poi"]`
+* `context`: array of parent objects with `id` like `country.123`, `region.456`, etc.
 
 Your helpers (`getText`, `getLoc`) already normalize the most commonly needed pieces.
 
@@ -139,23 +139,23 @@ Your helpers (`getText`, `getLoc`) already normalize the most commonly needed pi
 
 ## Notes & Considerations (poking holes)
 
-1. **Hard-coded access token**  
+1. **Hard-coded access token**\
    Token is embedded in source (`modules.geocode.key`). Move to a **server-side config**, environment variable, or injected at build time to reduce exposure and ease rotation.
 
-2. **Minimal error handling**  
+2. **Minimal error handling**\
    Failures return `cb(false)` silently. Consider surfacing network errors/timeouts via an optional `onError` or by passing `{ error }` objects.
 
-3. **Throttling vs. Debounce**  
+3. **Throttling vs. Debounce**\
    Current “latest wins” queue helps, but for aggressive typing a **true debounce** (e.g., 200–300ms) could further reduce requests and Mapbox costs.
 
-4. **Type coverage**  
+4. **Type coverage**\
    Only two friendly aliases are baked in. If you need addresses or neighborhoods, pass Mapbox types directly (`'address'`, `'neighborhood'`, `'locality'`, `'district'`, `'postcode'`, etc.).
 
-5. **Proximity bias**  
+5. **Proximity bias**\
    Relies on `phone.location.getNearestLocation()` being available and synchronous. If not present or stale, results might be less relevant. Consider fetching async and retrying with proximity once available.
 
-6. **Result shaping**  
+6. **Result shaping**\
    `parseData` returns raw features. If the UI expects a normalized array (id, title, subtitle, coords), you might add a small mapper to avoid duplicating logic in callers.
 
-7. **Rate limits / quotas**  
+7. **Rate limits / quotas**\
    Mapbox rate limits apply. Add caching of recent queries and/or a minimum query length (`val.length ≥ 2`) to cut noise.
