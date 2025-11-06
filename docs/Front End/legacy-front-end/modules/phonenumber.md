@@ -14,7 +14,7 @@ next:
 
 ## High-level overview
 
-A tiny UI helper that formats and validates phone numbers **as the user types** by delegating to `libphonenumber`’s parser and “as-you-type” formatter. It keeps the caret sane around edits, emits callbacks when the value becomes valid/invalid, and can prefill from an existing number.  
+A tiny UI helper that formats and validates phone numbers **as the user types** by delegating to `libphonenumber`’s parser and “as-you-type” formatter. It keeps the caret sane around edits, emits callbacks when the value becomes valid/invalid, and can prefill from an existing number.\
 Reference: **[Google’s libphonenumber](https://github.com/google/libphonenumber)** (parsing/validation semantics).
 
 ***
@@ -36,16 +36,16 @@ Reference: **[Google’s libphonenumber](https://github.com/google/libphonenumbe
 
 ### Instance methods
 
-- `getNumber(): PhoneNumber`  
+* `getNumber(): PhoneNumber`\
   Parses `self.current` with `libphonenumber.parsePhoneNumber('US')` and returns the parsed object (throws if unparsable—see notes).
 
-- `isValid(number?: string): boolean`  
+* `isValid(number?: string): boolean`\
   Returns `libphonenumber.parsePhoneNumber(x,'US').isValid()` for either the given `number` or the current input value.
 
-- `setCaretPosition(caretPos: number): void`  
+* `setCaretPosition(caretPos: number): void`\
   Moves the caret to `caretPos` using `setSelectionRange` (or the legacy `createTextRange` path).
 
-_(`init()` is internal and called automatically by the constructor.)_
+*(`init()` is internal and called automatically by the constructor.)*
 
 ***
 
@@ -53,22 +53,22 @@ _(`init()` is internal and called automatically by the constructor.)_
 
 1. **Keydown**
 
-   - If **Backspace** (`e.which === 8`), stores `setPosition = selectionStart - 1`.
-   - For other keys, resets `setPosition = false`.
+   * If **Backspace** (`e.which === 8`), stores `setPosition = selectionStart - 1`.
+   * For other keys, resets `setPosition = false`.
 
 2. **Input / Paste / Keyup**
 
-   - Reads the raw value, then formats with `new libphonenumber.AsYouType('US').input(value)`.
-   - Writes the formatted string back into the input.
-   - If a caret position was staged, calls `setCaretPosition(setPosition)`.
-   - Validates via `libphonenumber.parsePhoneNumber(current,'US').isValid()`.
+   * Reads the raw value, then formats with `new libphonenumber.AsYouType('US').input(value)`.
+   * Writes the formatted string back into the input.
+   * If a caret position was staged, calls `setCaretPosition(setPosition)`.
+   * Validates via `libphonenumber.parsePhoneNumber(current,'US').isValid()`.
 
-     - On **valid** → calls `options.onValid()` (if provided).
-     - On **invalid/parse error** → calls `options.onNotValid()` (intended—see bug).
+     * On **valid** → calls `options.onValid()` (if provided).
+     * On **invalid/parse error** → calls `options.onNotValid()` (intended—see bug).
 
 3. **Prefill**
 
-   - If `options.phone?.number` is set, the constructor sets the input value and triggers `keyup` to format & validate immediately.
+   * If `options.phone?.number` is set, the constructor sets the input value and triggers `keyup` to format & validate immediately.
 
 ***
 
@@ -96,20 +96,20 @@ if (!ctl.isValid()) {
 
 1. ### ❗ Callback wiring bug
 
-   In the invalid branches the code checks `if (options.onValid) options.onNotValid()`.  
-   If you only supply `onNotValid` (and not `onValid`), it **won’t fire**.  
+   In the invalid branches the code checks `if (options.onValid) options.onNotValid()`.\
+   If you only supply `onNotValid` (and not `onValid`), it **won’t fire**.\
    **Fix:** change those two lines to `if (options.onNotValid) options.onNotValid();`.
 
 2. ### Country is fixed to `'US'`
 
    Both the “as-you-type” formatter and the parser use `'US'`. If you need international numbers:
 
-   - Add `options.country` (ISO-2 like `'GB'`, `'FR'`) and use it instead of `'US'`.
-   - Consider a separate country selector and re-instantiate or update the country when it changes.
+   * Add `options.country` (ISO-2 like `'GB'`, `'FR'`) and use it instead of `'US'`.
+   * Consider a separate country selector and re-instantiate or update the country when it changes.
 
 3. ### Caret positioning edge case
 
-   - When Backspace at the **first position**, `selectionStart - 1` is `-1` (or `0` can be falsy). The subsequent `if (self.setPosition)` check will **skip** resetting the caret.  
+   * When Backspace at the **first position**, `selectionStart - 1` is `-1` (or `0` can be falsy). The subsequent `if (self.setPosition)` check will **skip** resetting the caret.\
      **Fix:** check `self.setPosition !== false` and clamp: `Math.max(0, self.setPosition)`.
 
 4. ### `getNumber()` can throw
@@ -128,8 +128,8 @@ if (!ctl.isValid()) {
 
    Consider:
 
-   - Setting `inputmode="tel"` on the input.
-   - Providing region cues (flag/country code) if you add multi-country support.
+   * Setting `inputmode="tel"` on the input.
+   * Providing region cues (flag/country code) if you add multi-country support.
 
 ***
 
