@@ -33,3 +33,4 @@
 - ticket_contact_list_save
 - event_ticketemail_save
 - event_ticketconfirmation_save
+- ticket_taptopay_save
