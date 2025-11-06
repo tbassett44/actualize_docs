@@ -100,3 +100,4 @@
 - scope_save
 - stripe_location_save
 - general_webhook_save
+- general_webhook_stat_save
