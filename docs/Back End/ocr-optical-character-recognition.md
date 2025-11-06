@@ -18,9 +18,9 @@ From Documentation of node module [Tesseract OCR](https://github.com/zapolnoch/n
 
 # Tesseract OCR for Node.js
 
-[![Build Status](https://img.shields.io/travis/zapolnoch/node-tesseract-ocr/master.svg?style=flat-square)](https://travis-ci.org/zapolnoch/node-tesseract-ocr)  
-[![npm](https://img.shields.io/npm/v/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)  
-[![npm](https://img.shields.io/npm/dm/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)  
+[![Build Status](https://img.shields.io/travis/zapolnoch/node-tesseract-ocr/master.svg?style=flat-square)](https://travis-ci.org/zapolnoch/node-tesseract-ocr)\
+[![npm](https://img.shields.io/npm/v/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)\
+[![npm](https://img.shields.io/npm/dm/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)\
 [![Known Vulnerabilities](https://snyk.io/test/github/zapolnoch/node-tesseract-ocr/badge.svg)](https://snyk.io/test/github/zapolnoch/node-tesseract-ocr)
 
 ## Installation
