@@ -87,3 +87,4 @@
 - termdata_save
 - config_save
 - current_subscription_info_save
+- changelog_save
