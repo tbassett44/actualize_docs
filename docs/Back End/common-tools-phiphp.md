@@ -12,242 +12,242 @@ next:
 ---
 # `phi.php` Utility Functions
 
-_Auto-generated overview. Descriptions are inferred heuristically from names and code cues—please review._
+*Auto-generated overview. Descriptions are inferred heuristically from names and code cues—please review.*
 
 ## Index
 
-- [breakNetwork](#breaknetwork)
-- [flagIp](#flagip)
-- [debug](#debug)
-- [stopMaliciousIp](#stopmaliciousip)
-- [isVPN](#isvpn)
-- [digestApi](#digestapi)
-- [logRequest](#logrequest)
-- [convertToPlainText](#converttoplaintext)
-- [getUrlInfo](#geturlinfo)
-- [ordinal](#ordinal)
-- [getEmailToken](#getemailtoken)
-- [formatMoney](#formatmoney)
-- [getModel](#getmodel)
-- [getLocationAddress](#getlocationaddress)
-- [getLocationInfo](#getlocationinfo)
-- [getCoords](#getcoords)
-- [getLatestFileCount](#getlatestfilecount)
-- [getLineCount](#getlinecount)
-- [buildSearchQuery](#buildsearchquery)
-- [ensure](#ensure)
-- [getMaxBound](#getmaxbound)
-- [getMapboxPolygon](#getmapboxpolygon)
-- [getRandomSplash](#getrandomsplash)
-- [getRand](#getrand)
-- [gzip](#gzip)
-- [prettyfyTag](#prettyfytag)
-- [obfuscateText](#obfuscatetext)
-- [throttleJob](#throttlejob)
-- [rateLimitMessage](#ratelimitmessage)
-- [emitHook](#emithook)
-- [saveHooks](#savehooks)
-- [fixContent](#fixcontent)
-- [scheduleBulkJob](#schedulebulkjob)
-- [saveBulkJobs](#savebulkjobs)
-- [scheduleJob](#schedulejob)
-- [clearJob](#clearjob)
-- [saveBase64File](#savebase64file)
-- [stripJsonComments](#stripjsoncomments)
-- [removeJob](#removejob)
-- [dieMessage](#diemessage)
-- [die404](#die404)
-- [getAppList](#getapplist)
-- [getColor](#getcolor)
-- [prompt](#prompt)
-- [promptSilent](#promptsilent)
-- [getCreds](#getcreds)
-- [getApp](#getapp)
-- [fixHtmlContent](#fixhtmlcontent)
-- [mongoRand](#mongorand)
-- [getMongoId](#getmongoid)
-- [isValidApp](#isvalidapp)
-- [getMongoTS](#getmongots)
-- [getAnonToken](#getanontoken)
-- [tagToName](#tagtoname)
-- [getMagicLink](#getmagiclink)
-- [getMagicLinkId](#getmagiclinkid)
-- [makeMongoTime](#makemongotime)
-- [getKeyWords](#getkeywords)
-- [strpos_array](#strpos_array)
-- [extract](#extract)
-- [get_server_memory_usage](#get_server_memory_usage)
-- [cpuStats](#cpustats)
-- [getCoordsFromIp](#getcoordsfromip)
-- [isAllowed](#isallowed)
-- [isScrape](#isscrape)
-- [isBot](#isbot)
-- [hasScope](#hasscope)
-- [registerToApp](#registertoapp)
-- [getImageAR](#getimagear)
-- [makeUrl](#makeurl)
-- [getReplayUrl](#getreplayurl)
-- [getQS](#getqs)
-- [getUAInfo](#getuainfo)
-- [isok](#isok)
-- [downloadSite](#downloadsite)
-- [parseObject](#parseobject)
-- [parseString](#parsestring)
-- [dotGet](#dotget)
-- [dotPush](#dotpush)
-- [dotSet](#dotset)
-- [dotUnset](#dotunset)
-- [getTimeZones](#gettimezones)
-- [makeLinkUid](#makelinkuid)
-- [getDB](#getdb)
-- [flog](#flog)
-- [getSecurityInfo](#getsecurityinfo)
-- [log](#log)
-- [dieMongo](#diemongo)
-- [alertAdmin](#alertadmin)
-- [execNode](#execnode)
-- [execNode2](#execnode2)
-- [clearStdin](#clearstdin)
-- [clog](#clog)
-- [redir](#redir)
-- [getIP](#getip)
-- [outputFileToHeaders](#outputfiletoheaders)
-- [isValidUrl](#isvalidurl)
-- [XMLtoJSON](#xmltojson)
-- [niceGUID](#niceguid)
-- [sanitize](#sanitize)
-- [strToHex](#strtohex)
-- [hexToStr](#hextostr)
-- [genCode](#gencode)
-- [outputCSV](#outputcsv)
-- [downloadFile](#downloadfile)
-- [download](#download)
-- [deferTask](#defertask)
-- [getMonthDiff](#getmonthdiff)
-- [execTasks](#exectasks)
-- [toMoney](#tomoney)
-- [saveToMongo](#savetomongo)
-- [fixImg](#fiximg)
-- [clean](#clean)
-- [minifile](#minifile)
-- [getPageData](#getpagedata)
-- [translate](#translate)
-- [translateBlock](#translateblock)
-- [translateSRT](#translatesrt)
-- [getSES](#getses)
-- [getAwsCreds](#getawscreds)
-- [getTranscribe](#gettranscribe)
-- [getTranslate](#gettranslate)
-- [getS3](#gets3)
-- [getGlacier](#getglacier)
-- [deleteS3dir](#deletes3dir)
-- [getPrefix](#getprefix)
-- [toURL](#tourl)
-- [keepFields](#keepfields)
-- [formatTime](#formattime)
-- [getFirstName](#getfirstname)
-- [getLastName](#getlastname)
-- [objectToSize](#objecttosize)
-- [getCollectionSize](#getcollectionsize)
-- [formatBytes](#formatbytes)
-- [renderRedactorContent](#renderredactorcontent)
-- [processVars](#processvars)
-- [render2](#render2)
-- [createElementFromHTML](#createelementfromhtml)
-- [convertArray](#convertarray)
-- [render](#render)
-- [getSubdomain](#getsubdomain)
-- [clearFileCache](#clearfilecache)
-- [clearCache](#clearcache)
-- [cache](#cache)
-- [uncache](#uncache)
-- [getRemainingTime](#getremainingtime)
-- [getWeather](#getweather)
-- [getWindDirection](#getwinddirection)
-- [time](#time)
-- [getForecast](#getforecast)
-- [push](#push)
-- [getBackTrace](#getbacktrace)
-- [sendPush](#sendpush)
-- [readLogFile](#readlogfile)
-- [formatNumber](#formatnumber)
-- [getLocalIp](#getlocalip)
-- [getAesKey](#getaeskey)
-- [encryptFile](#encryptfile)
-- [decryptFile](#decryptfile)
-- [aesEncryptFile](#aesencryptfile)
-- [aesDecryptFile](#aesdecryptfile)
-- [encrypt](#encrypt)
-- [decrypt](#decrypt)
-- [safeEncrypt](#safeencrypt)
-- [safeDecrypt](#safedecrypt)
-- [getPostData](#getpostdata)
-- [cleanData](#cleandata)
-- [decodeUnicode](#decodeunicode)
-- [isRealObject](#isrealobject)
-- [curl](#curl)
-- [getIndexByKey](#getindexbykey)
-- [isJson](#isjson)
-- [generateCallTrace](#generatecalltrace)
-- [getUniqueNumber](#getuniquenumber)
-- [getUniqueTime](#getuniquetime)
-- [mail](#mail)
-- [sendMail](#sendmail)
-- [isValidEmail](#isvalidemail)
-- [sendRawMail](#sendrawmail)
-- [getObjectKeys](#getobjectkeys)
-- [getObjectKeys2](#getobjectkeys2)
-- [db](#db)
-- [getImg](#getimg)
-- [isadmin](#isadmin)
-- [getDay](#getday)
-- [uploadProgress](#uploadprogress)
-- [relTime](#reltime)
-- [getFiles](#getfiles)
-- [getDirs](#getdirs)
-- [loadProxyImage](#loadproxyimage)
-- [get_headers_from_curl_response](#get_headers_from_curl_response)
-- [getUrlsFromString](#geturlsfromstring)
-- [getUrlHeaders](#geturlheaders)
-- [limitLength](#limitlength)
-- [getPageTags](#getpagetags)
-- [getBase64Image](#getbase64image)
-- [getBase64data](#getbase64data)
-- [getFileInfo](#getfileinfo)
-- [getPath](#getpath)
-- [getDomain](#getdomain)
-- [sort](#sort)
-- [getIcons](#geticons)
-- [fixFontCss](#fixfontcss)
-- [getFont64](#getfont64)
-- [get_timezone_offset](#get_timezone_offset)
-- [getFileConfs](#getfileconfs)
-- [publish](#publish)
-- [renderFileTemplate](#renderfiletemplate)
-- [renderTemplate](#rendertemplate)
-- [deleteDirectory](#deletedirectory)
-- [loadCsvData](#loadcsvdata)
-- [copyDirectory](#copydirectory)
-- [getByKey](#getbykey)
-- [clear_tags_redactor](#clear_tags_redactor)
-- [rateLimit](#ratelimit)
-- [decryptCode](#decryptcode)
-- [getPurifier](#getpurifier)
-- [ensureRedactorContent](#ensureredactorcontent)
-- [cleanRedactorContent](#cleanredactorcontent)
-- [clear_tags](#clear_tags)
-- [isVideo](#isvideo)
-- [mime_content_type](#mime_content_type)
-- [isWebsite](#iswebsite)
-- [getContentType](#getcontenttype)
-- [upload](#upload)
-- [exportCSV](#exportcsv)
-- [flatten](#flatten)
-- [getDistanceBetweenPoints](#getdistancebetweenpoints)
-- [getLatLngDistance](#getlatlngdistance)
-- [getDiff](#getdiff)
-- [exportjson](#exportjson)
-- [diejson](#diejson)
+* [breakNetwork](#breaknetwork)
+* [flagIp](#flagip)
+* [debug](#debug)
+* [stopMaliciousIp](#stopmaliciousip)
+* [isVPN](#isvpn)
+* [digestApi](#digestapi)
+* [logRequest](#logrequest)
+* [convertToPlainText](#converttoplaintext)
+* [getUrlInfo](#geturlinfo)
+* [ordinal](#ordinal)
+* [getEmailToken](#getemailtoken)
+* [formatMoney](#formatmoney)
+* [getModel](#getmodel)
+* [getLocationAddress](#getlocationaddress)
+* [getLocationInfo](#getlocationinfo)
+* [getCoords](#getcoords)
+* [getLatestFileCount](#getlatestfilecount)
+* [getLineCount](#getlinecount)
+* [buildSearchQuery](#buildsearchquery)
+* [ensure](#ensure)
+* [getMaxBound](#getmaxbound)
+* [getMapboxPolygon](#getmapboxpolygon)
+* [getRandomSplash](#getrandomsplash)
+* [getRand](#getrand)
+* [gzip](#gzip)
+* [prettyfyTag](#prettyfytag)
+* [obfuscateText](#obfuscatetext)
+* [throttleJob](#throttlejob)
+* [rateLimitMessage](#ratelimitmessage)
+* [emitHook](#emithook)
+* [saveHooks](#savehooks)
+* [fixContent](#fixcontent)
+* [scheduleBulkJob](#schedulebulkjob)
+* [saveBulkJobs](#savebulkjobs)
+* [scheduleJob](#schedulejob)
+* [clearJob](#clearjob)
+* [saveBase64File](#savebase64file)
+* [stripJsonComments](#stripjsoncomments)
+* [removeJob](#removejob)
+* [dieMessage](#diemessage)
+* [die404](#die404)
+* [getAppList](#getapplist)
+* [getColor](#getcolor)
+* [prompt](#prompt)
+* [promptSilent](#promptsilent)
+* [getCreds](#getcreds)
+* [getApp](#getapp)
+* [fixHtmlContent](#fixhtmlcontent)
+* [mongoRand](#mongorand)
+* [getMongoId](#getmongoid)
+* [isValidApp](#isvalidapp)
+* [getMongoTS](#getmongots)
+* [getAnonToken](#getanontoken)
+* [tagToName](#tagtoname)
+* [getMagicLink](#getmagiclink)
+* [getMagicLinkId](#getmagiclinkid)
+* [makeMongoTime](#makemongotime)
+* [getKeyWords](#getkeywords)
+* [strpos\_array](#strpos_array)
+* [extract](#extract)
+* [get\_server\_memory\_usage](#get_server_memory_usage)
+* [cpuStats](#cpustats)
+* [getCoordsFromIp](#getcoordsfromip)
+* [isAllowed](#isallowed)
+* [isScrape](#isscrape)
+* [isBot](#isbot)
+* [hasScope](#hasscope)
+* [registerToApp](#registertoapp)
+* [getImageAR](#getimagear)
+* [makeUrl](#makeurl)
+* [getReplayUrl](#getreplayurl)
+* [getQS](#getqs)
+* [getUAInfo](#getuainfo)
+* [isok](#isok)
+* [downloadSite](#downloadsite)
+* [parseObject](#parseobject)
+* [parseString](#parsestring)
+* [dotGet](#dotget)
+* [dotPush](#dotpush)
+* [dotSet](#dotset)
+* [dotUnset](#dotunset)
+* [getTimeZones](#gettimezones)
+* [makeLinkUid](#makelinkuid)
+* [getDB](#getdb)
+* [flog](#flog)
+* [getSecurityInfo](#getsecurityinfo)
+* [log](#log)
+* [dieMongo](#diemongo)
+* [alertAdmin](#alertadmin)
+* [execNode](#execnode)
+* [execNode2](#execnode2)
+* [clearStdin](#clearstdin)
+* [clog](#clog)
+* [redir](#redir)
+* [getIP](#getip)
+* [outputFileToHeaders](#outputfiletoheaders)
+* [isValidUrl](#isvalidurl)
+* [XMLtoJSON](#xmltojson)
+* [niceGUID](#niceguid)
+* [sanitize](#sanitize)
+* [strToHex](#strtohex)
+* [hexToStr](#hextostr)
+* [genCode](#gencode)
+* [outputCSV](#outputcsv)
+* [downloadFile](#downloadfile)
+* [download](#download)
+* [deferTask](#defertask)
+* [getMonthDiff](#getmonthdiff)
+* [execTasks](#exectasks)
+* [toMoney](#tomoney)
+* [saveToMongo](#savetomongo)
+* [fixImg](#fiximg)
+* [clean](#clean)
+* [minifile](#minifile)
+* [getPageData](#getpagedata)
+* [translate](#translate)
+* [translateBlock](#translateblock)
+* [translateSRT](#translatesrt)
+* [getSES](#getses)
+* [getAwsCreds](#getawscreds)
+* [getTranscribe](#gettranscribe)
+* [getTranslate](#gettranslate)
+* [getS3](#gets3)
+* [getGlacier](#getglacier)
+* [deleteS3dir](#deletes3dir)
+* [getPrefix](#getprefix)
+* [toURL](#tourl)
+* [keepFields](#keepfields)
+* [formatTime](#formattime)
+* [getFirstName](#getfirstname)
+* [getLastName](#getlastname)
+* [objectToSize](#objecttosize)
+* [getCollectionSize](#getcollectionsize)
+* [formatBytes](#formatbytes)
+* [renderRedactorContent](#renderredactorcontent)
+* [processVars](#processvars)
+* [render2](#render2)
+* [createElementFromHTML](#createelementfromhtml)
+* [convertArray](#convertarray)
+* [render](#render)
+* [getSubdomain](#getsubdomain)
+* [clearFileCache](#clearfilecache)
+* [clearCache](#clearcache)
+* [cache](#cache)
+* [uncache](#uncache)
+* [getRemainingTime](#getremainingtime)
+* [getWeather](#getweather)
+* [getWindDirection](#getwinddirection)
+* [time](#time)
+* [getForecast](#getforecast)
+* [push](#push)
+* [getBackTrace](#getbacktrace)
+* [sendPush](#sendpush)
+* [readLogFile](#readlogfile)
+* [formatNumber](#formatnumber)
+* [getLocalIp](#getlocalip)
+* [getAesKey](#getaeskey)
+* [encryptFile](#encryptfile)
+* [decryptFile](#decryptfile)
+* [aesEncryptFile](#aesencryptfile)
+* [aesDecryptFile](#aesdecryptfile)
+* [encrypt](#encrypt)
+* [decrypt](#decrypt)
+* [safeEncrypt](#safeencrypt)
+* [safeDecrypt](#safedecrypt)
+* [getPostData](#getpostdata)
+* [cleanData](#cleandata)
+* [decodeUnicode](#decodeunicode)
+* [isRealObject](#isrealobject)
+* [curl](#curl)
+* [getIndexByKey](#getindexbykey)
+* [isJson](#isjson)
+* [generateCallTrace](#generatecalltrace)
+* [getUniqueNumber](#getuniquenumber)
+* [getUniqueTime](#getuniquetime)
+* [mail](#mail)
+* [sendMail](#sendmail)
+* [isValidEmail](#isvalidemail)
+* [sendRawMail](#sendrawmail)
+* [getObjectKeys](#getobjectkeys)
+* [getObjectKeys2](#getobjectkeys2)
+* [db](#db)
+* [getImg](#getimg)
+* [isadmin](#isadmin)
+* [getDay](#getday)
+* [uploadProgress](#uploadprogress)
+* [relTime](#reltime)
+* [getFiles](#getfiles)
+* [getDirs](#getdirs)
+* [loadProxyImage](#loadproxyimage)
+* [get\_headers\_from\_curl\_response](#get_headers_from_curl_response)
+* [getUrlsFromString](#geturlsfromstring)
+* [getUrlHeaders](#geturlheaders)
+* [limitLength](#limitlength)
+* [getPageTags](#getpagetags)
+* [getBase64Image](#getbase64image)
+* [getBase64data](#getbase64data)
+* [getFileInfo](#getfileinfo)
+* [getPath](#getpath)
+* [getDomain](#getdomain)
+* [sort](#sort)
+* [getIcons](#geticons)
+* [fixFontCss](#fixfontcss)
+* [getFont64](#getfont64)
+* [get\_timezone\_offset](#get_timezone_offset)
+* [getFileConfs](#getfileconfs)
+* [publish](#publish)
+* [renderFileTemplate](#renderfiletemplate)
+* [renderTemplate](#rendertemplate)
+* [deleteDirectory](#deletedirectory)
+* [loadCsvData](#loadcsvdata)
+* [copyDirectory](#copydirectory)
+* [getByKey](#getbykey)
+* [clear\_tags\_redactor](#clear_tags_redactor)
+* [rateLimit](#ratelimit)
+* [decryptCode](#decryptcode)
+* [getPurifier](#getpurifier)
+* [ensureRedactorContent](#ensureredactorcontent)
+* [cleanRedactorContent](#cleanredactorcontent)
+* [clear\_tags](#clear_tags)
+* [isVideo](#isvideo)
+* [mime\_content\_type](#mime_content_type)
+* [isWebsite](#iswebsite)
+* [getContentType](#getcontenttype)
+* [upload](#upload)
+* [exportCSV](#exportcsv)
+* [flatten](#flatten)
+* [getDistanceBetweenPoints](#getdistancebetweenpoints)
+* [getLatLngDistance](#getlatlngdistance)
+* [getDiff](#getdiff)
+* [exportjson](#exportjson)
+* [diejson](#diejson)
 
 ***
 
@@ -419,7 +419,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // $q['$or'][]=array('data.title'=>$regex);
+> // $q\['$or']=array('data.title'=>$regex);
 
 ***
 
@@ -675,7 +675,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // 	}else{
+> // 	}else\{
 
 ***
 
@@ -763,7 +763,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 ***
 
-### strpos_array
+### strpos\_array
 
 **Signature:** `strpos_array($haystack, $needles, &$str_return)`
 
@@ -779,7 +779,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 ***
 
-### get_server_memory_usage
+### get\_server\_memory\_usage
 
 **Signature:** `get_server_memory_usage()`
 
@@ -883,7 +883,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //$tqs='\_base64='.base64_encode(json_encode($qs));
+> //$tqs='\_base64='.base64\_encode(json\_encode($qs));
 
 ***
 
@@ -979,7 +979,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //die(json_encode($doc));
+> //die(json\_encode($doc));
 
 ***
 
@@ -1271,7 +1271,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //')===false){
+> //')===false)\{
 
 ***
 
@@ -1339,7 +1339,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //die(json_encode($info,JSON_PRETTY_PRINT));
+> //die(json\_encode($info,JSON\_PRETTY\_PRINT));
 
 ***
 
@@ -1503,7 +1503,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //die(json_encode($vars[$k]));
+> //die(json\_encode($vars\[$k]));
 
 ***
 
@@ -1819,7 +1819,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //die(json_encode($params));
+> //die(json\_encode($params));
 
 ***
 
@@ -1875,7 +1875,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //die(var_dump($mopts));
+> //die(var\_dump($mopts));
 
 ***
 
@@ -2003,7 +2003,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 ***
 
-### get_headers_from_curl_response
+### get\_headers\_from\_curl\_response
 
 **Signature:** `get_headers_from_curl_response($response)`
 
@@ -2027,7 +2027,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> //[^,\s()<>]+(?:\([\w\d]+\)|(\[^,[:punct:]\\s]|/))#', $string, $match);
+> //\[^,\s()\<>]+(?:\(\[\w\d]+\)|(\[^,\[:punct:]\\s]|/))#', $string, $match);
 
 ***
 
@@ -2139,7 +2139,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 ***
 
-### get_timezone_offset
+### get\_timezone\_offset
 
 **Signature:** `get_timezone_offset($remote_tz, $origin_tz = null)`
 
@@ -2171,7 +2171,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // die(json_encode($dir));
+> // die(json\_encode($dir));
 
 ***
 
@@ -2215,7 +2215,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 ***
 
-### clear_tags_redactor
+### clear\_tags\_redactor
 
 **Signature:** `clear_tags_redactor($str)`
 
@@ -2271,11 +2271,11 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // include_once(ROOT.'/classes/fixmsword.php');
+> // include\_once(ROOT.'/classes/fixmsword.php');
 
 ***
 
-### clear_tags
+### clear\_tags
 
 **Signature:** `clear_tags($str)`
 
@@ -2283,7 +2283,7 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // include_once(ROOT.'/classes/fixmsword.php');
+> // include\_once(ROOT.'/classes/fixmsword.php');
 
 ***
 
@@ -2295,11 +2295,11 @@ _Auto-generated overview. Descriptions are inferred heuristically from names and
 
 **Inline comment found:**
 
-> // return fixMSWord(utf8_decode($content));
+> // return fixMSWord(utf8\_decode($content));
 
 ***
 
-### mime_content_type
+### mime\_content\_type
 
 **Signature:** `mime_content_type($filename,$returnext=false,$isValid=false)`
 
