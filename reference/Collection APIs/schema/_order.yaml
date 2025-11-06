@@ -34,3 +34,4 @@
 - event_ticketemail_save
 - event_ticketconfirmation_save
 - ticket_taptopay_save
+- ticket_discount_save
