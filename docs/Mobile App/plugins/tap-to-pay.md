@@ -16,10 +16,10 @@ The Tap to Pay plugin integrates Stripe's Tap to Pay functionality into the mobi
 
 ## Plugin Information
 
-- **Plugin ID**: `cordova-plugin-stripe-tap-to-pay`
-- **Version**: `2.2.2`
-- **Status**: Enabled
-- **Platform Support**: iOS (≥16.4), Android
+* **Plugin ID**: `cordova-plugin-stripe-tap-to-pay`
+* **Version**: `2.2.2`
+* **Status**: Enabled
+* **Platform Support**: iOS (≥16.4), Android
 
 ## Overview
 
@@ -35,9 +35,9 @@ Tap to Pay allows merchants to accept contactless payments directly on their mob
 
 ### Device Requirements
 
-- **iOS**: Version 16.4 or higher
-- **Android**: NFC-enabled device
-- **Permissions**: NFC access permissions
+* **iOS**: Version 16.4 or higher
+* **Android**: NFC-enabled device
+* **Permissions**: NFC access permissions
 
 ## API Reference
 
@@ -58,9 +58,9 @@ if (phone.tapToPay.canUse()) {
 
 **Behavior:**
 
-- **iOS**: Returns `true` if device version ≥ 16.4
-- **Android**: Returns `true` (assumes NFC capability)
-- **Web**: Shows toast message and returns `false`
+* **iOS**: Returns `true` if device version ≥ 16.4
+* **Android**: Returns `true` (assumes NFC capability)
+* **Web**: Shows toast message and returns `false`
 
 ### Backend API Endpoints
 
@@ -80,9 +80,9 @@ api.call('user/taptopay', {}, function(response) {
 
 **Response Data:**
 
-- `location_info`: Stripe Terminal location details
-- `stripe_info`: User's Stripe account information
-- `stripe_express`: Express account details (if available)
+* `location_info`: Stripe Terminal location details
+* `stripe_info`: User's Stripe account information
+* `stripe_express`: Express account details (if available)
 
 #### Create Tap to Pay User
 
@@ -103,9 +103,9 @@ api.call('user/tap_to_pay_create', {
 
 **Requirements:**
 
-- Admin role required (`RHJGBVT45LMY`)
-- Valid email address
-- User data in `current` object
+* Admin role required (`RHJGBVT45LMY`)
+* Valid email address
+* User data in `current` object
 
 ## Stripe Integration
 
@@ -261,43 +261,43 @@ Stores user Stripe account information:
 
 ### Test Mode
 
-- Use Stripe test keys for development
-- Test with Stripe's test card numbers
-- Verify device compatibility on target devices
+* Use Stripe test keys for development
+* Test with Stripe's test card numbers
+* Verify device compatibility on target devices
 
 ### Production Checklist
 
-- [ ] Stripe live keys configured
-- [ ] Express account fully onboarded
-- [ ] Location registered with Stripe
-- [ ] Device permissions granted
-- [ ] NFC functionality tested
+* [ ] Stripe live keys configured
+* [ ] Express account fully onboarded
+* [ ] Location registered with Stripe
+* [ ] Device permissions granted
+* [ ] NFC functionality tested
 
 ## Troubleshooting
 
 ### iOS Issues
 
-- Ensure iOS version ≥ 16.4
-- Check device NFC capability
-- Verify app permissions
+* Ensure iOS version ≥ 16.4
+* Check device NFC capability
+* Verify app permissions
 
 ### Android Issues
 
-- Confirm NFC is enabled
-- Check device NFC hardware support
-- Verify app permissions
+* Confirm NFC is enabled
+* Check device NFC hardware support
+* Verify app permissions
 
 ### Stripe Issues
 
-- Validate API keys
-- Check Express account status
-- Verify location configuration
+* Validate API keys
+* Check Express account status
+* Verify location configuration
 
 ## Related Documentation
 
-- [Stripe Terminal Documentation](https://docs.stripe.com/terminal)
-- [Stripe Tap to Pay Setup](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay)
-- [Cordova Plugin Development](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/)
+* [Stripe Terminal Documentation](https://docs.stripe.com/terminal)
+* [Stripe Tap to Pay Setup](https://docs.stripe.com/terminal/payments/setup-reader/tap-to-pay)
+* [Cordova Plugin Development](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/)
 
 ## Plugin Architecture
 
@@ -322,15 +322,15 @@ cordova-plugin-stripe-tap-to-pay/
 
 #### iOS Integration
 
-- Uses Stripe Terminal iOS SDK
-- Requires iOS 16.4+ for Tap to Pay functionality
-- Integrates with Core NFC framework
+* Uses Stripe Terminal iOS SDK
+* Requires iOS 16.4+ for Tap to Pay functionality
+* Integrates with Core NFC framework
 
 #### Android Integration
 
-- Uses Stripe Terminal Android SDK
-- Requires NFC-enabled device
-- Integrates with Android NFC APIs
+* Uses Stripe Terminal Android SDK
+* Requires NFC-enabled device
+* Integrates with Android NFC APIs
 
 ### JavaScript Interface
 
@@ -425,9 +425,9 @@ function handlePaymentError(error) {
 
 ### Stripe Tap to Pay Fees
 
-- **In-person payments**: 2.7% + 5¢ per transaction
-- **No additional hardware costs**
-- **Standard Stripe processing fees apply**
+* **In-person payments**: 2.7% + 5¢ per transaction
+* **No additional hardware costs**
+* **Standard Stripe processing fees apply**
 
 Refer to [Stripe's pricing page](https://stripe.com/pricing) for current rates.
 
