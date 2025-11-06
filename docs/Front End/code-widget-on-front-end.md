@@ -23,8 +23,8 @@ bun run build:widget
 
 This will create two files in the `dist-widget` directory:
 
-- `event-management-widget.js` - The widget JavaScript bundle
-- `event-management-widget.css` - The widget styles
+* `event-management-widget.js` - The widget JavaScript bundle
+* `event-management-widget.css` - The widget styles
 
 ## Integration
 
@@ -92,11 +92,11 @@ Mounts the widget into a container element.
 
 **Parameters:**
 
-- `config.containerId` (string, required): The ID of the container element
-- `config.eventId` (string, optional): The event ID to use throughout the app
-- `config.basePath` (string, optional): Base path for routing (future feature)
-- `config.onReady` (function, optional): Callback when widget is mounted
-- `config.onError` (function, optional): Callback when an error occurs
+* `config.containerId` (string, required): The ID of the container element
+* `config.eventId` (string, optional): The event ID to use throughout the app
+* `config.basePath` (string, optional): Base path for routing (future feature)
+* `config.onReady` (function, optional): Callback when widget is mounted
+* `config.onError` (function, optional): Callback when an error occurs
 
 **Example:**
 
@@ -115,7 +115,7 @@ Unmounts the widget from a container.
 
 **Parameters:**
 
-- `containerId` (string, required): The ID of the container element
+* `containerId` (string, required): The ID of the container element
 
 **Example:**
 
@@ -127,42 +127,42 @@ EventManagementWidget.unmount('widget-root');
 
 The widget includes the full event management application with:
 
-- Dashboard and Overview
-- Ticket Management
-- Ticket Orders and Search
-- Affiliates Management
-- Promotions and Flyers
-- Payouts and Banking
-- Support Interface
-- Comprehensive Settings
-- Theme Switching (Light/Dark mode)
+* Dashboard and Overview
+* Ticket Management
+* Ticket Orders and Search
+* Affiliates Management
+* Promotions and Flyers
+* Payouts and Banking
+* Support Interface
+* Comprehensive Settings
+* Theme Switching (Light/Dark mode)
 
 ## Routing
 
 The widget includes built-in React Router for navigation between different sections. All routes are handled internally:
 
-- `/` - Overview
-- `/dashboard` - Dashboard
-- `/tickets` - Ticket Management
-- `/ticket-orders` - Ticket Orders
-- `/affiliates` - Affiliates
-- `/promotions` - Promotions
-- `/flyers` - Flyers
-- `/payouts` - Payouts
-- `/bank` - Banking
-- `/support` - Support
-- `/preview` - Preview
-- `/settings/*` - Settings pages
+* `/` - Overview
+* `/dashboard` - Dashboard
+* `/tickets` - Ticket Management
+* `/ticket-orders` - Ticket Orders
+* `/affiliates` - Affiliates
+* `/promotions` - Promotions
+* `/flyers` - Flyers
+* `/payouts` - Payouts
+* `/bank` - Banking
+* `/support` - Support
+* `/preview` - Preview
+* `/settings/*` - Settings pages
 
 ## Styling
 
 The widget is completely self-contained with all styles bundled. It includes:
 
-- Responsive design
-- Dark mode support
-- Tailwind CSS styling
-- Custom design system
-- All component styles
+* Responsive design
+* Dark mode support
+* Tailwind CSS styling
+* Custom design system
+* All component styles
 
 ## Testing
 
@@ -177,13 +177,13 @@ A complete example HTML file is provided in `widget-example.html`. Open it in a 
 
 ## Browser Support
 
-- Modern browsers with ES6+ support
-- React 18+
-- No IE11 support
+* Modern browsers with ES6+ support
+* React 18+
+* No IE11 support
 
 ## Notes
 
-- The widget manages its own state and routing
-- Multiple instances can be mounted on the same page using different container IDs
-- The widget is responsive and works on mobile devices
-- All API calls use the authentication system from `src/lib/utils.ts`
+* The widget manages its own state and routing
+* Multiple instances can be mounted on the same page using different container IDs
+* The widget is responsive and works on mobile devices
+* All API calls use the authentication system from `src/lib/utils.ts`
