@@ -18,12 +18,12 @@ Boot.js is the first JavaScript file loaded when a page initializes. It serves a
 
 The bootloader is a sophisticated system that handles:
 
-- **Framework Initialization**: Sets up core utilities and global objects
-- **Dependency Management**: Loads libraries, core modules, and application code
-- **Caching System**: Implements intelligent file caching with version control
-- **Error Handling**: Provides comprehensive error screens and recovery mechanisms
-- **Platform Detection**: Handles differences between web and mobile (PhoneGap) environments
-- **Configuration Management**: Loads and processes application configuration
+* **Framework Initialization**: Sets up core utilities and global objects
+* **Dependency Management**: Loads libraries, core modules, and application code
+* **Caching System**: Implements intelligent file caching with version control
+* **Error Handling**: Provides comprehensive error screens and recovery mechanisms
+* **Platform Detection**: Handles differences between web and mobile (PhoneGap) environments
+* **Configuration Management**: Loads and processes application configuration
 
 ## Core Components
 
@@ -103,12 +103,12 @@ bootloader.init();
 
 #### Key Properties
 
-- `version`: Bootloader version (currently 4)
-- `splashDisabled`: Controls splash screen behavior
-- `config`: Application configuration object
-- `publicconf`: Public configuration loaded from server
-- `settings`: User settings and preferences
-- `versions`: Version tracking for cached files
+* `version`: Bootloader version (currently 4)
+* `splashDisabled`: Controls splash screen behavior
+* `config`: Application configuration object
+* `publicconf`: Public configuration loaded from server
+* `settings`: User settings and preferences
+* `versions`: Version tracking for cached files
 
 #### Core Methods
 
@@ -141,10 +141,10 @@ bootloader.loadConf({
 
 The bootloader implements a sophisticated caching system with:
 
-- **Hash-based Versioning**: Files are cached with MD5 hashes for integrity
-- **Length Verification**: File size validation before loading cached content
-- **Automatic Invalidation**: Clears cache when versions don't match
-- **Offline Support**: Falls back to cached content when network unavailable
+* **Hash-based Versioning**: Files are cached with MD5 hashes for integrity
+* **Length Verification**: File size validation before loading cached content
+* **Automatic Invalidation**: Clears cache when versions don't match
+* **Offline Support**: Falls back to cached content when network unavailable
 
 #### File Loading Process
 
@@ -184,29 +184,29 @@ bootloader.store.delete('key', function(success) {
 The bootloader follows a specific loading sequence:
 
 1. **Initialization**
-   - Load cached settings and configuration
-   - Set up device detection and platform-specific behavior
-   - Initialize file system and storage
+   * Load cached settings and configuration
+   * Set up device detection and platform-specific behavior
+   * Initialize file system and storage
 
 2. **Configuration Loading**
-   - Fetch public configuration from server
-   - Process cached vs. fresh configuration
-   - Validate configuration integrity
+   * Fetch public configuration from server
+   * Process cached vs. fresh configuration
+   * Validate configuration integrity
 
 3. **Library Loading**
-   - Load core libraries (jQuery, utilities, etc.)
-   - Process CSS and JavaScript files
-   - Handle font loading
+   * Load core libraries (jQuery, utilities, etc.)
+   * Process CSS and JavaScript files
+   * Handle font loading
 
 4. **Core Framework Loading**
-   - Load core application framework
-   - Initialize template system
-   - Set up global modules
+   * Load core application framework
+   * Initialize template system
+   * Set up global modules
 
 5. **Application Loading**
-   - Load application-specific code
-   - Initialize application entry points
-   - Complete framework initialization
+   * Load application-specific code
+   * Initialize application entry points
+   * Complete framework initialization
 
 ### 5. Error Handling
 
@@ -224,16 +224,16 @@ bootloader.hideErrorScreen();
 
 #### Error Types
 
-- **timeout**: Network connectivity issues
-- **code**: JavaScript execution errors
-- **blank_conf**: Invalid configuration
-- **api_issue**: Server-side problems
+* **timeout**: Network connectivity issues
+* **code**: JavaScript execution errors
+* **blank\_conf**: Invalid configuration
+* **api\_issue**: Server-side problems
 
 #### Recovery Mechanisms
 
-- **Retry Button**: Reloads the application
-- **Contact Support**: Submits error logs to support
-- **Cache Clearing**: Automatically clears problematic cached files
+* **Retry Button**: Reloads the application
+* **Contact Support**: Submits error logs to support
+* **Cache Clearing**: Automatically clears problematic cached files
 
 ### 6. Template Processing
 
@@ -259,17 +259,17 @@ Templates are stored in a special format separated by `@@@`:
 
 #### Development Mode
 
-- Loads individual files for easier debugging
-- Includes cache-busting timestamps
-- Supports hot reloading
-- Provides detailed logging
+* Loads individual files for easier debugging
+* Includes cache-busting timestamps
+* Supports hot reloading
+* Provides detailed logging
 
 #### Production Mode
 
-- Loads combined/minified files
-- Implements aggressive caching
-- Optimized for performance
-- Minimal logging
+* Loads combined/minified files
+* Implements aggressive caching
+* Optimized for performance
+* Minimal logging
 
 ## Configuration Structure
 
@@ -330,68 +330,68 @@ Templates are stored in a special format separated by `@@@`:
 
 ### Mobile (PhoneGap/Cordova)
 
-- **NativeStorage**: Persistent storage using native APIs
-- **File System**: Local file caching using Cordova File plugin
-- **Device Detection**: Access to device information and capabilities
-- **Splash Screen**: Native splash screen management
-- **Status Bar**: Platform-specific status bar control
+* **NativeStorage**: Persistent storage using native APIs
+* **File System**: Local file caching using Cordova File plugin
+* **Device Detection**: Access to device information and capabilities
+* **Splash Screen**: Native splash screen management
+* **Status Bar**: Platform-specific status bar control
 
 ### Web Browser
 
-- **localStorage**: Fallback storage mechanism
-- **IndexedDB**: File caching using Dexie.js
-- **Service Workers**: (Future enhancement for offline support)
-- **Progressive Web App**: PWA-ready architecture
+* **localStorage**: Fallback storage mechanism
+* **IndexedDB**: File caching using Dexie.js
+* **Service Workers**: (Future enhancement for offline support)
+* **Progressive Web App**: PWA-ready architecture
 
 ## Best Practices
 
 ### 1. Configuration Management
 
-- Always validate configuration before processing
-- Implement proper error handling for configuration failures
-- Use version hashing for cache invalidation
+* Always validate configuration before processing
+* Implement proper error handling for configuration failures
+* Use version hashing for cache invalidation
 
 ### 2. Performance Optimization
 
-- Minimize bootloader size for faster initial load
-- Implement progressive loading for large applications
-- Use intelligent caching to reduce network requests
+* Minimize bootloader size for faster initial load
+* Implement progressive loading for large applications
+* Use intelligent caching to reduce network requests
 
 ### 3. Error Recovery
 
-- Provide clear error messages to users
-- Implement automatic retry mechanisms
-- Log errors for debugging and monitoring
+* Provide clear error messages to users
+* Implement automatic retry mechanisms
+* Log errors for debugging and monitoring
 
 ### 4. Development Workflow
 
-- Use development mode for debugging
-- Test both cached and fresh loading scenarios
-- Validate cross-platform compatibility
+* Use development mode for debugging
+* Test both cached and fresh loading scenarios
+* Validate cross-platform compatibility
 
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Infinite Loading**
-   - Check network connectivity
-   - Verify configuration URL accessibility
-   - Clear application cache
+   * Check network connectivity
+   * Verify configuration URL accessibility
+   * Clear application cache
 
 2. **JavaScript Errors**
-   - Check browser console for specific errors
-   - Verify all dependencies are loaded
-   - Test in development mode
+   * Check browser console for specific errors
+   * Verify all dependencies are loaded
+   * Test in development mode
 
 3. **Cache Issues**
-   - Clear bootloader cache: `bootloader.setVersionInfo('delete')`
-   - Force fresh configuration load
-   - Check file hash mismatches
+   * Clear bootloader cache: `bootloader.setVersionInfo('delete')`
+   * Force fresh configuration load
+   * Check file hash mismatches
 
 4. **Platform-Specific Problems**
-   - Verify PhoneGap plugins are installed
-   - Check platform-specific permissions
-   - Test on actual devices vs simulators
+   * Verify PhoneGap plugins are installed
+   * Check platform-specific permissions
+   * Test on actual devices vs simulators
 
 ## Integration Examples
 
