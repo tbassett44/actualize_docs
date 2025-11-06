@@ -12,7 +12,7 @@ next:
 ---
 # Actualize Earth – Backend & Network Architecture (v1)
 
-_Last updated: Oct 13, 2025 (us‑east‑1)_
+*Last updated: Oct 13, 2025 (us‑east‑1)*
 
 ## 0. Intent
 
@@ -22,17 +22,17 @@ A concise, implementation‑ready description of the **as‑is** infrastructure 
 
 ## 1. High‑Level Overview (as‑is)
 
-- **Edge**: Cloudflare for DNS, WAF, CDN.
-- **TLS**: Client → Cloudflare (TLS) → **ALB (TLS termination)**.
-- **Region/VPC**: Single VPC in **us‑east‑1**.
-- **Compute**: EC2 Auto Scaling Group using AMIs on **t3.medium**; stateless app tier.
-- **Services** (on EC2):
+* **Edge**: Cloudflare for DNS, WAF, CDN.
+* **TLS**: Client → Cloudflare (TLS) → **ALB (TLS termination)**.
+* **Region/VPC**: Single VPC in **us‑east‑1**.
+* **Compute**: EC2 Auto Scaling Group using AMIs on **t3.medium**; stateless app tier.
+* **Services** (on EC2):
 
-  - `api` → PHP/FPM REST endpoints.
-  - `api2` → Node endpoints for async‑heavy operations; exposed at **api2.actualize.earth** (reverse‑proxied).
-  - `ws` → Socket.IO server; exposed at **ws.actualize.earth** (reverse‑proxied).
-- **Workers (private)**: `cron.js`, `jobs.js`, `notifier.js` under pm2 on private instances (no public ingress).
-- **Data**: MongoDB Atlas (details TBD); **S3** for static assets.
+  * `api` → PHP/FPM REST endpoints.
+  * `api2` → Node endpoints for async‑heavy operations; exposed at **api2.actualize.earth** (reverse‑proxied).
+  * `ws` → Socket.IO server; exposed at **ws.actualize.earth** (reverse‑proxied).
+* **Workers (private)**: `cron.js`, `jobs.js`, `notifier.js` under pm2 on private instances (no public ingress).
+* **Data**: MongoDB Atlas (details TBD); **S3** for static assets.
 
 ### Diagram A — Request Flow (Edge → Services)
 
@@ -68,50 +68,50 @@ Workers (jobs/notifier/cron) ─▶ MongoDB Atlas ─▶ Email/SMS/Push + S3
 
 ## 2. Networking & Security
 
-- **Cloudflare**
+* **Cloudflare**
 
-  - DNS, WAF rules for `/api/*` JSON; basic rate limits on auth/abuse‑prone routes.
-  - Caching static and "safe" semi‑static responses (configurable per path).
-- **ALB**
+  * DNS, WAF rules for `/api/*` JSON; basic rate limits on auth/abuse‑prone routes.
+  * Caching static and "safe" semi‑static responses (configurable per path).
+* **ALB**
 
-  - HTTPS listener (443), host‑based routing to three target groups: `api`, `api2`, `ws`.
-  - WebSocket upgrades enabled for `ws` target group.
-- **TLS**
+  * HTTPS listener (443), host‑based routing to three target groups: `api`, `api2`, `ws`.
+  * WebSocket upgrades enabled for `ws` target group.
+* **TLS**
 
-  - End‑to‑end TLS; termination at ALB. Prefer ACM certs on ALB; Cloudflare set to **Full (strict)**.
-- **Security Groups**
+  * End‑to‑end TLS; termination at ALB. Prefer ACM certs on ALB; Cloudflare set to **Full (strict)**.
+* **Security Groups**
 
-  - ALB: 0.0.0.0/0:443 inbound → App TGs.
-  - App/Worker nodes: inbound from ALB SG; egress to Atlas, S3, SES/SNS/APNs/FCM.
-- **IAM & Secrets**
+  * ALB: 0.0.0.0/0:443 inbound → App TGs.
+  * App/Worker nodes: inbound from ALB SG; egress to Atlas, S3, SES/SNS/APNs/FCM.
+* **IAM & Secrets**
 
-  - App/Workers use IAM roles; secrets from AWS Secrets Manager / SSM Parameter Store.
+  * App/Workers use IAM roles; secrets from AWS Secrets Manager / SSM Parameter Store.
 
 ***
 
 ## 3. Compute & Services
 
-- **EC2/ASG**
+* **EC2/ASG**
 
-  - AMI‑based immutable instances; stateless services (sessions not stored locally).
-  - `t3.medium` today; monitor CPU credits & network PPS.
-- **Service separation**
+  * AMI‑based immutable instances; stateless services (sessions not stored locally).
+  * `t3.medium` today; monitor CPU credits & network PPS.
+* **Service separation**
 
-  - `api` (PHP/FPM) for core REST.
-  - `api2` (Node) for async‑heavy endpoints.
-  - `ws` (Socket.IO) for realtime.
-- **Reverse Proxy**
+  * `api` (PHP/FPM) for core REST.
+  * `api2` (Node) for async‑heavy endpoints.
+  * `ws` (Socket.IO) for realtime.
+* **Reverse Proxy**
 
-  - Lighttpd/nginx on instance; host‑based route to local processes/ports.
+  * Lighttpd/nginx on instance; host‑based route to local processes/ports.
 
 ***
 
 ## 4. Background Workers
 
-- **cron.js**: time‑based tasks (pm2).
-- **jobs.js**: queue processor. Mongo collection for scheduled/active/complete; currently polling.
-- **notifier.js**: email/push/SMS dispatch; Mongo‑polled queue.
-- **Access**: workers in private subnets; no public ingress.
+* **cron.js**: time‑based tasks (pm2).
+* **jobs.js**: queue processor. Mongo collection for scheduled/active/complete; currently polling.
+* **notifier.js**: email/push/SMS dispatch; Mongo‑polled queue.
+* **Access**: workers in private subnets; no public ingress.
 
 ### Reliability controls to add (minimal effort)
 
@@ -124,41 +124,41 @@ Workers (jobs/notifier/cron) ─▶ MongoDB Atlas ─▶ Email/SMS/Push + S3
 
 ## 5. Realtime (Socket.IO)
 
-- **Today**: single‑ASG behind ALB; no external adapter (risk for fan‑out across nodes).
-- **Add**: **Redis adapter** for presence/rooms/broadcasts across nodes.
-- **Health**: `/socketz` endpoint (returns connection counts, room metrics, adapter status).
+* **Today**: single‑ASG behind ALB; no external adapter (risk for fan‑out across nodes).
+* **Add**: **Redis adapter** for presence/rooms/broadcasts across nodes.
+* **Health**: `/socketz` endpoint (returns connection counts, room metrics, adapter status).
 
 ***
 
 ## 6. Observability
 
-- **Health**: `/healthz` (api), `/readyz` (api2), `/socketz` (ws).
-- **Metrics (min set)**: request rate, p50/p95 latency, WS connections, queue depth/lag, job failure rate.
-- **Logs**: JSON logs -> CloudWatch; redact PII; correlate with request IDs.
-- **Alerts**:
+* **Health**: `/healthz` (api), `/readyz` (api2), `/socketz` (ws).
+* **Metrics (min set)**: request rate, p50/p95 latency, WS connections, queue depth/lag, job failure rate.
+* **Logs**: JSON logs -> CloudWatch; redact PII; correlate with request IDs.
+* **Alerts**:
 
-  - p95 latency > budget for 5 min,
-  - queue lag > N minutes,
-  - WS conn drop > X% within 2 min,
-  - 5xx rate spike.
+  * p95 latency > budget for 5 min,
+  * queue lag > N minutes,
+  * WS conn drop > X% within 2 min,
+  * 5xx rate spike.
 
 ***
 
 ## 7. CI/CD & AMI Pipeline (proposed minimal flow)
 
-- **Build**: GitHub Actions → tests → Packer AMI build (includes PHP/FPM/Node + systemd/pm2).
-- **Deploy**: Update Launch Template → ASG rolling update (minHealthy 90%, maxSurge 1).
-- **Config/Secrets**: pulled at boot from SSM/Secrets Manager.
-- **Smoke**: synthetic probe via Cloudflare → ALB → `/healthz` and representative API call.
+* **Build**: GitHub Actions → tests → Packer AMI build (includes PHP/FPM/Node + systemd/pm2).
+* **Deploy**: Update Launch Template → ASG rolling update (minHealthy 90%, maxSurge 1).
+* **Config/Secrets**: pulled at boot from SSM/Secrets Manager.
+* **Smoke**: synthetic probe via Cloudflare → ALB → `/healthz` and representative API call.
 
 ***
 
 ## 8. Cost & Scaling Notes
 
-- **t3.medium**: watch CPU credits; consider **split ASGs** (api/api2 vs ws) if WS spikes.
-- **Redis (small ElastiCache)**: ~$15–30/mo; major reduction in WS operational complexity.
-- **Mongo polling → Change Streams**: reduces Atlas read load & jitter; lowers cost at scale.
-- **Cloudflare**: cache headers for static/semi‑static to reduce ALB+EC2 egress and compute.
+* **t3.medium**: watch CPU credits; consider **split ASGs** (api/api2 vs ws) if WS spikes.
+* **Redis (small ElastiCache)**: \~$15–30/mo; major reduction in WS operational complexity.
+* **Mongo polling → Change Streams**: reduces Atlas read load & jitter; lowers cost at scale.
+* **Cloudflare**: cache headers for static/semi‑static to reduce ALB+EC2 egress and compute.
 
 ***
 
@@ -177,15 +177,15 @@ Workers (jobs/notifier/cron) ─▶ MongoDB Atlas ─▶ Email/SMS/Push + S3
 
 ### A) Hostnames & Target Groups
 
-- `api.actualize.earth`  → TG: `api-php`
-- `api2.actualize.earth` → TG: `api2-node`
-- `ws.actualize.earth`   → TG: `ws-socketio`
+* `api.actualize.earth`  → TG: `api-php`
+* `api2.actualize.earth` → TG: `api2-node`
+* `ws.actualize.earth`   → TG: `ws-socketio`
 
 ### B) Suggested Health Endpoints
 
-- `GET /healthz` → { status: "ok", build_sha, uptime }
-- `GET /readyz`  → checks DB/connectivity; returns 200 only when ready
-- `GET /socketz` → { connections, rooms, adapter: "redis|none" }
+* `GET /healthz` → \{ status: "ok", build\_sha, uptime }
+* `GET /readyz`  → checks DB/connectivity; returns 200 only when ready
+* `GET /socketz` → \{ connections, rooms, adapter: "redis|none" }
 
 ### C) Minimal Code Sketches
 
@@ -228,10 +228,10 @@ if (lock.value.holder !== process.env.INSTANCE_ID) return; // another node holds
 
 ## 11. Roadmap (optional, when ready)
 
-- Define Mongo Atlas topology (tier, multi‑AZ, PITR backups; connection pooling & retryable writes).
-- Add synthetic monitoring from multiple geos (Cloudflare + Route 53 health checks optional).
-- Document DR drill (Atlas regional failover; ASG warm pool; S3 restoration runbook).
-- Explore portable/edge node path once core cloud is stable.
+* Define Mongo Atlas topology (tier, multi‑AZ, PITR backups; connection pooling & retryable writes).
+* Add synthetic monitoring from multiple geos (Cloudflare + Route 53 health checks optional).
+* Document DR drill (Atlas regional failover; ASG warm pool; S3 restoration runbook).
+* Explore portable/edge node path once core cloud is stable.
 
 ***
 
