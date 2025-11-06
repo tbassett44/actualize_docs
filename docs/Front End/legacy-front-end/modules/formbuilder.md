@@ -28,7 +28,7 @@ The form builder reads your `schema.json` and **renders dynamic, data-bound inpu
 | `onoff`             | Boolean toggle (true/false switch)  .                                                                              |
 | `buttonselect`      | Button group selector with named options (supports order, list of values, descriptions)  .                         |
 | `tags`              | Tagging input with API-backed search for tags, templates for display .                                             |
-| `color`             | Color picker widget using iro.js, supports hex input【85:2†formbuilder.js†L:contentReference[oaicite:0]{index=0}    |
+| `color`             | Color picker widget using iro.js, supports hex input【85:2†formbuilder.js†L:contentReference\[oaicite:0]\{index=0}  |
 | `email_link_tags`   | Complex object to associate tags with links inside emails .                                                        |
 | `module`            | Embeds or references another module.                                                                               |
 | `select`            | Standard dropdown select input.                                                                                    |
@@ -39,7 +39,7 @@ The form builder reads your `schema.json` and **renders dynamic, data-bound inpu
 | `radio`             | Radio button group for single-choice selections.                                                                   |
 | `file`              | File uploader (integrates with file/image uploaders).                                                              |
 | `image`             | Specialized file/image uploader with preview.                                                                      |
-| `richtext` / `html` | Rich text editor (Redactor-based), supports AI, images, variables:contentReference[oaicite:1]{index=1}.            |
+| `richtext` / `html` | Rich text editor (Redactor-based), supports AI, images, variables:contentReference\[oaicite:1]\{index=1}.          |
 | `password`          | Password field (hidden input).                                                                                     |
 | `currency`          | Numeric field formatted as currency.                                                                               |
 | `percent`           | Numeric field formatted as percentage.                                                                             |
@@ -55,11 +55,11 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Text / Textarea
 
-**What it does:** Renders a plain text input rendered as a textarea. Often used for short titles or one-liners with optional limits.  
+**What it does:** Renders a plain text input rendered as a textarea. Often used for short titles or one-liners with optional limits.\
 **Key options:**
 
-- `type: "textarea"` — render as textarea.
-- `placeholder`, `maxlength`, `minHeight`, `default`, `singleLine` (when used in rich-text variants).   
+* `type: "textarea"` — render as textarea.
+* `placeholder`, `maxlength`, `minHeight`, `default`, `singleLine` (when used in rich-text variants).   
 
 **Example:**
 
@@ -76,15 +76,15 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Rich Text (Redactor)
 
-**What it does:** Rich-text / HTML editor with plugins, variables, and media uploads. Also supports “plain text only” when `nohtml: true`.  
+**What it does:** Rich-text / HTML editor with plugins, variables, and media uploads. Also supports “plain text only” when `nohtml: true`.\
 **Key options:**
 
-- `type: "redactor"`
-- `plugins` (e.g., `"variable"`), `variables` (token list with `[]`), `buttons`, `minHeight`, `maxlength`, `singleLine`, `nohtml`, `placeholder`, `default`
-- `uploadOpts.image|file` endpoints
-- Live syncing to sibling fields via `htmlField` (full HTML) and `textField` (plain-text).
-- Autosave: `autosave: { versionField: "…" }`
-- Editor stream/AI config wired internally.    
+* `type: "redactor"`
+* `plugins` (e.g., `"variable"`), `variables` (token list with `[]`), `buttons`, `minHeight`, `maxlength`, `singleLine`, `nohtml`, `placeholder`, `default`
+* `uploadOpts.image|file` endpoints
+* Live syncing to sibling fields via `htmlField` (full HTML) and `textField` (plain-text).
+* Autosave: `autosave: { versionField: "…" }`
+* Editor stream/AI config wired internally.    
 
 **Example:**
 
@@ -111,31 +111,31 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Email Editor
 
-**What it does:** Specialized editor for email content/blocks with support for variables and programmatic actions.  
+**What it does:** Specialized editor for email content/blocks with support for variables and programmatic actions.\
 **Key options:**
 
-- `type: "email_editor"` (template: `formbuilder_email_editor`)
-- Supports actions such as variable injection/clear via `handleAction`.  
+* `type: "email_editor"` (template: `formbuilder_email_editor`)
+* Supports actions such as variable injection/clear via `handleAction`.  
 
 ***
 
 ## Code Editor (ACE)
 
-**What it does:** Inline ACE editor for code/json with mode selection.  
+**What it does:** Inline ACE editor for code/json with mode selection.\
 **Key options:**
 
-- `type: "code_editor"` (template: `formbuilder_code_editor`)
-- `mode` (e.g., `ace/mode/json` auto-defaults to `"{}"`), `default`.  
+* `type: "code_editor"` (template: `formbuilder_code_editor`)
+* `mode` (e.g., `ace/mode/json` auto-defaults to `"{}"`), `default`.  
 
 ***
 
 ## Button Select (Pills / Segmented)
 
-**What it does:** Renders a segmented set of choice buttons with labels and descriptions.  
+**What it does:** Renders a segmented set of choice buttons with labels and descriptions.\
 **Key options:**
 
-- `type: "buttonselect"`
-- `default`, `keepPlaceholder`, `options.order`, `options.list[{ value, name, description }]`. 
+* `type: "buttonselect"`
+* `default`, `keepPlaceholder`, `options.order`, `options.list[{ value, name, description }]`. 
 
 **Example:**
 
@@ -158,12 +158,12 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Tags (Remote Search/Select)
 
-**What it does:** Search & select one or more tag records (with optional extra info caching).  
+**What it does:** Search & select one or more tag records (with optional extra info caching).\
 **Key options:**
 
-- `type: "tags"` or `"tag"`
-- `endpoint`, `endpointOpts` (e.g., `{ collection: "role" }`), `template` (e.g., `formbuilder_tag_page`), `icon`, `placeholder`, `info` (where to store fetched info).  
-- Selected IDs and optional `info` map stored into `current`. 
+* `type: "tags"` or `"tag"`
+* `endpoint`, `endpointOpts` (e.g., `{ collection: "role" }`), `template` (e.g., `formbuilder_tag_page`), `icon`, `placeholder`, `info` (where to store fetched info).  
+* Selected IDs and optional `info` map stored into `current`. 
 
 **Example:**
 
@@ -185,11 +185,11 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Page / Entity Picker
 
-**What it does:** Opens a page-style picker (aggregate search) to select a user/page/etc.  
+**What it does:** Opens a page-style picker (aggregate search) to select a user/page/etc.\
 **Key options:**
 
-- `type: "page"`
-- `template` for item view (`formbuilder_tag_page`), `endpoint` (aggregate), `endpointOpts.filters` and flags like `allowMe`. 
+* `type: "page"`
+* `template` for item view (`formbuilder_tag_page`), `endpoint` (aggregate), `endpointOpts.filters` and flags like `allowMe`. 
 
 **Example:**
 
@@ -212,12 +212,12 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Location (Place Autocomplete + Geo Hooks)
 
-**What it does:** Structured place selector with `id` and optional info hydration; used with geo hooks to set a `point`.  
+**What it does:** Structured place selector with `id` and optional info hydration; used with geo hooks to set a `point`.\
 **Key options:**
 
-- `type: "location"` (object with `fields.id`)
-- `types` (e.g., `["place"]`), `nomore`, `info` target for fetched details.
-- Pairs with hook `ensureLocation` to derive/store geo point.  
+* `type: "location"` (object with `fields.id`)
+* `types` (e.g., `["place"]`), `nomore`, `info` target for fetched details.
+* Pairs with hook `ensureLocation` to derive/store geo point.  
 
 **Example:**
 
@@ -236,125 +236,125 @@ Below is a concise, copy-pasteable reference for every form element type I could
 
 ## Phone (Composite)
 
-**What it does:** i18n phone input composed of code/number/iso2; rendered inline.  
+**What it does:** i18n phone input composed of code/number/iso2; rendered inline.\
 **Key options:**
 
-- `type: "phone"` on `form` for an object with fields `code`, `number`, `iso2`; `inline: true`. 
+* `type: "phone"` on `form` for an object with fields `code`, `number`, `iso2`; `inline: true`. 
 
 ***
 
 ## Date / Time (Timestamp)
 
-**What it does:** Timestamp input with event-aware formatting and timezone coupling.  
+**What it does:** Timestamp input with event-aware formatting and timezone coupling.\
 **Key options:**
 
-- `type: "date"` on `form` for a `timestamp` field.
-- `format: "event"`, `timezoneField`, and `linkedTo` to constrain end vs. start.  
+* `type: "date"` on `form` for a `timestamp` field.
+* `format: "event"`, `timezoneField`, and `linkedTo` to constrain end vs. start.  
 
 ***
 
 ## Timezone
 
-**What it does:** Timezone selector; often referenced by date fields with `timezoneField`.  
+**What it does:** Timezone selector; often referenced by date fields with `timezoneField`.\
 **Key options:**
 
-- `type: "timezone"`. 
+* `type: "timezone"`. 
 
 ***
 
 ## Hidden
 
-**What it does:** Stores internal/system values not shown to users.  
+**What it does:** Stores internal/system values not shown to users.\
 **Key options:**
 
-- `type: "hidden"`; commonly used for IDs, derived geo points, or system flags.  
+* `type: "hidden"`; commonly used for IDs, derived geo points, or system flags.  
 
 ***
 
 ## Image
 
-**What it does:** Image picker/uploader with display presets and cropping modes.  
+**What it does:** Image picker/uploader with display presets and cropping modes.\
 **Key options:**
 
-- `type: "image"`; `multiple`, `display: "background"`, `crop: "background"`, `placeholder`. 
+* `type: "image"`; `multiple`, `display: "background"`, `crop: "background"`, `placeholder`. 
 
 ***
 
 ## Media (Composite Uploader)
 
-**What it does:** General media uploader for posts/markers with processing hook.  
+**What it does:** General media uploader for posts/markers with processing hook.\
 **Key options:**
 
-- `type: "media"` in `form`
-- Hook `processMedia` runs `onBeforeValidation`. 
+* `type: "media"` in `form`
+* Hook `processMedia` runs `onBeforeValidation`. 
 
 ***
 
 ## Upload File (Generic File)
 
-**What it does:** Single file upload (non-image), with progress, remove, and `saveto` target.  
+**What it does:** Single file upload (non-image), with progress, remove, and `saveto` target.\
 **Key options:**
 
-- `type: "uploadfile"` (template: `formbuilder_uploadfile`)
-- `saveto` (destination key for the uploaded `{ ext,name,path }`), `allowedExtensions`, `module` (uploads to `/upload/{module}/submit`)
-- Handles abort/progress/errors and stores file meta in `current[saveto]`.  
+* `type: "uploadfile"` (template: `formbuilder_uploadfile`)
+* `saveto` (destination key for the uploaded `{ ext,name,path }`), `allowedExtensions`, `module` (uploads to `/upload/{module}/submit`)
+* Handles abort/progress/errors and stores file meta in `current[saveto]`.  
 
 ***
 
 ## Payment Method
 
-**What it does:** Selects a stored payment source (card) and fetches methods from API; persists selection.  
+**What it does:** Selects a stored payment source (card) and fetches methods from API; persists selection.\
 **Key options:**
 
-- `type: "payment"` (template: `formbuilder_payment`)
-- Auto-loads `/core/user/bankmethods` and sets default source on first load.  
+* `type: "payment"` (template: `formbuilder_payment`)
+* Auto-loads `/core/user/bankmethods` and sets default source on first load.  
 
 ***
 
 ## Preview (Computed / Inline Summary)
 
-**What it does:** Renders a template preview block driven by current form state (e.g., event broadcast counts, promotions).  
+**What it does:** Renders a template preview block driven by current form state (e.g., event broadcast counts, promotions).\
 **Key options:**
 
-- `type: "preview"` with `form.template` (e.g., `event_broadcast_count`, `event_promotion`); can show/hide dependent sections like `payment` based on API results.  
+* `type: "preview"` with `form.template` (e.g., `event_broadcast_count`, `event_promotion`); can show/hide dependent sections like `payment` based on API results.  
 
 ***
 
 ## Button (Single Choice as “Card”)
 
-**What it does:** A single-choice control that maps a `value` to a labeled/described option object; resolves current label/desc from list.  
+**What it does:** A single-choice control that maps a `value` to a labeled/described option object; resolves current label/desc from list.\
 **Key options:**
 
-- `type: "button"` (template: `formbuilder_button`)
-- `options.list[{ value,name,description }]`, `default`.  
+* `type: "button"` (template: `formbuilder_button`)
+* `options.list[{ value,name,description }]`, `default`.  
 
 ***
 
 ## Drive (External File/Permission Picker)
 
-**What it does:** Lets users pick an external Drive item, display it, clear it, and change sharing permissions (reader/commenter/writer).  
+**What it does:** Lets users pick an external Drive item, display it, clear it, and change sharing permissions (reader/commenter/writer).\
 **Key options:**
 
-- `type: "drive"` (renders item view and a permission menu)
-- `saveto` for the selected item; permission update via `/module/drive/setpermissions`.  
+* `type: "drive"` (renders item view and a permission menu)
+* `saveto` for the selected item; permission update via `/module/drive/setpermissions`.  
 
 ***
 
 ## Color Picker
 
-**What it does:** Visual color picker with hex input; updates `current[key]`.  
+**What it does:** Visual color picker with hex input; updates `current[key]`.\
 **Key options:**
 
-- `type: "color"` (template uses a `.colorpicker` control). 
+* `type: "color"` (template uses a `.colorpicker` control). 
 
 ***
 
 ## URL Name (Slug Helper)
 
-**What it does:** A helper to create a short URL/slug for entities.  
+**What it does:** A helper to create a short URL/slug for entities.\
 **Key options:**
 
-- `type: "url_name"`. 
+* `type: "url_name"`. 
 
 ***
 
@@ -366,10 +366,10 @@ Other frequently used system fields use `hidden` to carry app/session derived da
 
 # Patterns You Can Use Across Elements
 
-- **`default` values**: Many inputs seed `current[key]` with a default if none exists. Redactor/ACE explicitly set empty strings/objects. 
-- **Linkage**: Date end can be `linkedTo` start; editors can write to `htmlField`/`textField`; tag pickers can also store `info` side-maps for selected IDs.   
-- **Autosave**: Redactor supports debounced autosave with `autosave.versionField`. 
-- **Templates**: Most elements accept an override `template` to use a custom `formbuilder_*` template (payment, uploadfile, button, preview, editors).   
+* **`default`values** : Many inputs seed `current[key]` with a default if none exists. Redactor/ACE explicitly set empty strings/objects. 
+* **Linkage**: Date end can be `linkedTo` start; editors can write to `htmlField`/`textField`; tag pickers can also store `info` side-maps for selected IDs.   
+* **Autosave**: Redactor supports debounced autosave with `autosave.versionField`. 
+* **Templates**: Most elements accept an override `template` to use a custom `formbuilder_*` template (payment, uploadfile, button, preview, editors).   
 
 ***
 
@@ -404,7 +404,7 @@ Other frequently used system fields use `hidden` to carry app/session derived da
 
 ## Notes & Gaps
 
-- I documented every element surfaced in `formbuilder.js` plus every `form.type` used in `schema.json`. If you have custom `formbuilder.templates` entries beyond these, point me to the specific template names and I’ll add them.
-- If you want a **matrix** (type → props → template → example), say the word and I’ll generate it from these sources.
+* I documented every element surfaced in `formbuilder.js` plus every `form.type` used in `schema.json`. If you have custom `formbuilder.templates` entries beyond these, point me to the specific template names and I’ll add them.
+* If you want a **matrix** (type → props → template → example), say the word and I’ll generate it from these sources.
 
 If you want this split into separate markdown files per type (or a single “cookbook” page), I can output those next.
