@@ -95,3 +95,4 @@
 - invoice_save
 - microapp_save
 - apps_save
+- role_save
