@@ -42,3 +42,4 @@
 - event_categories_save
 - post_event_save
 - app_stat_save
+- geo_hook_save
