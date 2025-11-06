@@ -24,11 +24,11 @@ This dual-role architecture mirrors how systems like **Apple AirDrop**, **Google
 
 This module enables devices to:
 
-- Discover nearby BLE-enabled devices
-- Establish peer-to-peer connections
-- Exchange data between connected devices
-- Manage connection states and handle disconnections
-- Implement secure pairing protocols
+* Discover nearby BLE-enabled devices
+* Establish peer-to-peer connections
+* Exchange data between connected devices
+* Manage connection states and handle disconnections
+* Implement secure pairing protocols
 
 ## Module Structure
 
@@ -71,12 +71,12 @@ Initializes the BLE adapter and sets up the peer connection system.
 
 **Parameters:**
 
-- `options` (Object): Configuration options
-  - `scanInterval` (Number): Scan interval in milliseconds (default: 5000)
-  - `connectionTimeout` (Number): Connection timeout in milliseconds (default: 10000)
-  - `maxConnections` (Number): Maximum simultaneous connections (default: 5)
-  - `serviceUUID` (String): BLE service UUID for the application
-  - `characteristicUUID` (String): BLE characteristic UUID for data exchange
+* `options` (Object): Configuration options
+  * `scanInterval` (Number): Scan interval in milliseconds (default: 5000)
+  * `connectionTimeout` (Number): Connection timeout in milliseconds (default: 10000)
+  * `maxConnections` (Number): Maximum simultaneous connections (default: 5)
+  * `serviceUUID` (String): BLE service UUID for the application
+  * `characteristicUUID` (String): BLE characteristic UUID for data exchange
 
 **Example:**
 
@@ -141,11 +141,11 @@ Establishes a connection to a specific device.
 
 **Parameters:**
 
-- `deviceId` (String): Target device identifier
-- `options` (Object): Connection options
-  - `timeout` (Number): Connection timeout override
-  - `retries` (Number): Number of retry attempts (default: 3)
-  - `secure` (Boolean): Use secure pairing (default: true)
+* `deviceId` (String): Target device identifier
+* `options` (Object): Connection options
+  * `timeout` (Number): Connection timeout override
+  * `retries` (Number): Number of retry attempts (default: 3)
+  * `secure` (Boolean): Use secure pairing (default: true)
 
 **Returns:** `Promise<Connection>`
 
@@ -169,7 +169,7 @@ Disconnects from a specific device.
 
 **Parameters:**
 
-- `deviceId` (String): Device to disconnect from
+* `deviceId` (String): Device to disconnect from
 
 **Returns:** `Promise<void>`
 
@@ -187,12 +187,12 @@ Sends data to a connected device.
 
 **Parameters:**
 
-- `deviceId` (String): Target device identifier
-- `data` (Object|String|ArrayBuffer): Data to send
-- `options` (Object): Send options
-  - `reliable` (Boolean): Ensure delivery (default: true)
-  - `timeout` (Number): Send timeout in milliseconds
-  - `priority` (String): Message priority ('high', 'normal', 'low')
+* `deviceId` (String): Target device identifier
+* `data` (Object|String|ArrayBuffer): Data to send
+* `options` (Object): Send options
+  * `reliable` (Boolean): Ensure delivery (default: true)
+  * `timeout` (Number): Send timeout in milliseconds
+  * `priority` (String): Message priority ('high', 'normal', 'low')
 
 **Returns:** `Promise<void>`
 
@@ -215,10 +215,10 @@ Broadcasts data to all connected devices.
 
 **Parameters:**
 
-- `data` (Object|String|ArrayBuffer): Data to broadcast
-- `options` (Object): Broadcast options
-  - `excludeDevices` (Array): Device IDs to exclude
-  - `reliable` (Boolean): Ensure delivery to all devices
+* `data` (Object|String|ArrayBuffer): Data to broadcast
+* `options` (Object): Broadcast options
+  * `excludeDevices` (Array): Device IDs to exclude
+  * `reliable` (Boolean): Ensure delivery to all devices
 
 **Returns:** `Promise<Array<Result>>`
 
@@ -230,14 +230,14 @@ Registers an event listener.
 
 **Events:**
 
-- `deviceDiscovered`: New device found during scanning
-- `deviceLost`: Previously discovered device no longer visible
-- `connectionEstablished`: Successfully connected to a device
-- `connectionFailed`: Failed to connect to a device
-- `connectionLost`: Lost connection to a device
-- `dataReceived`: Received data from a peer
-- `dataSent`: Successfully sent data to a peer
-- `error`: General error occurred
+* `deviceDiscovered`: New device found during scanning
+* `deviceLost`: Previously discovered device no longer visible
+* `connectionEstablished`: Successfully connected to a device
+* `connectionFailed`: Failed to connect to a device
+* `connectionLost`: Lost connection to a device
+* `dataReceived`: Received data from a peer
+* `dataSent`: Successfully sent data to a peer
+* `error`: General error occurred
 
 **Example:**
 
@@ -273,14 +273,14 @@ modules.btle_peer.on('dataReceived', function(device, data) {
 
 ### Device States
 
-- `discovered`: Device found during scanning
-- `connecting`: Connection attempt in progress
-- `connected`: Successfully connected and ready for data exchange
-- `pairing`: Secure pairing process in progress
-- `paired`: Secure pairing completed
-- `disconnecting`: Disconnection in progress
-- `disconnected`: No longer connected
-- `error`: Connection error occurred
+* `discovered`: Device found during scanning
+* `connecting`: Connection attempt in progress
+* `connected`: Successfully connected and ready for data exchange
+* `pairing`: Secure pairing process in progress
+* `paired`: Secure pairing completed
+* `disconnecting`: Disconnection in progress
+* `disconnected`: No longer connected
+* `error`: Connection error occurred
 
 ### Connection Lifecycle
 
@@ -319,29 +319,29 @@ modules.btle_peer.on('connectionLost', (device) => {
 
 ### Pairing and Authentication
 
-- Uses BLE secure pairing protocols
-- Implements device authentication
-- Supports encryption for data transmission
-- Validates device certificates when available
+* Uses BLE secure pairing protocols
+* Implements device authentication
+* Supports encryption for data transmission
+* Validates device certificates when available
 
 ### Data Protection
 
-- Encrypts sensitive data before transmission
-- Implements message integrity checks
-- Supports secure key exchange
-- Validates incoming data for security threats
+* Encrypts sensitive data before transmission
+* Implements message integrity checks
+* Supports secure key exchange
+* Validates incoming data for security threats
 
 ## Error Handling
 
 ### Common Error Types
 
-- `BLUETOOTH_DISABLED`: Bluetooth is turned off
-- `PERMISSION_DENIED`: Missing BLE permissions
-- `DEVICE_NOT_FOUND`: Target device not discoverable
-- `CONNECTION_TIMEOUT`: Connection attempt timed out
-- `PAIRING_FAILED`: Secure pairing unsuccessful
-- `DATA_TRANSMISSION_FAILED`: Failed to send/receive data
-- `UNSUPPORTED_DEVICE`: Device doesn't support required features
+* `BLUETOOTH_DISABLED`: Bluetooth is turned off
+* `PERMISSION_DENIED`: Missing BLE permissions
+* `DEVICE_NOT_FOUND`: Target device not discoverable
+* `CONNECTION_TIMEOUT`: Connection attempt timed out
+* `PAIRING_FAILED`: Secure pairing unsuccessful
+* `DATA_TRANSMISSION_FAILED`: Failed to send/receive data
+* `UNSUPPORTED_DEVICE`: Device doesn't support required features
 
 ### Error Handling Example
 
@@ -368,16 +368,16 @@ modules.btle_peer.on('error', function(error) {
 
 ### Mobile Platforms
 
-- **iOS**: Requires iOS 10+ with Core Bluetooth framework
-- **Android**: Requires Android 5.0+ with BLE support
-- **Permissions**: Location and Bluetooth permissions required
+* **iOS**: Requires iOS 10+ with Core Bluetooth framework
+* **Android**: Requires Android 5.0+ with BLE support
+* **Permissions**: Location and Bluetooth permissions required
 
 ### Web Platforms
 
-- **Chrome**: Web Bluetooth API support (Chrome 56+)
-- **Edge**: Limited Web Bluetooth support
-- **Safari**: No Web Bluetooth support (iOS/macOS)
-- **Firefox**: Experimental Web Bluetooth support
+* **Chrome**: Web Bluetooth API support (Chrome 56+)
+* **Edge**: Limited Web Bluetooth support
+* **Safari**: No Web Bluetooth support (iOS/macOS)
+* **Firefox**: Experimental Web Bluetooth support
 
 ## Integration with Connection Discovery
 
@@ -405,18 +405,18 @@ modules.btle_peer.startScanning();
 
 ### Optimization Tips
 
-- Limit scanning frequency to preserve battery
-- Use connection pooling for multiple devices
-- Implement data compression for large transfers
-- Cache device information to reduce discovery overhead
-- Use appropriate MTU sizes for data transmission
+* Limit scanning frequency to preserve battery
+* Use connection pooling for multiple devices
+* Implement data compression for large transfers
+* Cache device information to reduce discovery overhead
+* Use appropriate MTU sizes for data transmission
 
 ### Battery Management
 
-- Stop scanning when not needed
-- Implement connection keep-alive mechanisms
-- Use low-power BLE modes when available
-- Optimize data transmission frequency
+* Stop scanning when not needed
+* Implement connection keep-alive mechanisms
+* Use low-power BLE modes when available
+* Optimize data transmission frequency
 
 ## Troubleshooting
 
@@ -452,29 +452,29 @@ The BTLE Peer module provides a robust foundation for Bluetooth Low Energy peer-
 
 **1️⃣ Discovery**
 
-- Each device advertises a service UUID and optional short name.
-- Each device scans continuously for others advertising the same UUID.
+* Each device advertises a service UUID and optional short name.
+* Each device scans continuously for others advertising the same UUID.
 
 **2️⃣ Connection & Negotiation**
 
-- When one device detects another:
+* When one device detects another:
 
-  - It connects as a Central.
-  - It discovers the GATT service and reads the **ID characteristic**.
-  - If the peer’s `nodeId` matches its own → disconnect (self-advert).
-  - Otherwise → establish the link.
+  * It connects as a Central.
+  * It discovers the GATT service and reads the **ID characteristic**.
+  * If the peer’s `nodeId` matches its own → disconnect (self-advert).
+  * Otherwise → establish the link.
 
 **3️⃣ Messaging**
 
-- **Central → Peripheral:** Write data to the peer’s `RX` characteristic.
-- **Peripheral → Central:** Notify subscribed centrals on the `TX` characteristic.
-- Messages are framed with a 2-byte length header and chunked to respect MTU (~180 bytes typical).
+* **Central → Peripheral:** Write data to the peer’s `RX` characteristic.
+* **Peripheral → Central:** Notify subscribed centrals on the `TX` characteristic.
+* Messages are framed with a 2-byte length header and chunked to respect MTU (\~180 bytes typical).
 
 **4️⃣ Teardown**
 
-- Either side can unsubscribe or disconnect.
-- The peripheral removes unsubscribed addresses from its peer map.
-- Both sides may continue advertising/scanning for new peers.
+* Either side can unsubscribe or disconnect.
+* The peripheral removes unsubscribed addresses from its peer map.
+* Both sides may continue advertising/scanning for new peers.
 
 ***
 
@@ -519,14 +519,14 @@ if (evt.status === "readRequested" && evt.characteristicUuid === ID_UUID) {
 
 ## 🔑 Node Identity & Self-Detection
 
-Each install generates a persistent 16-byte `nodeId`, stored locally.  
+Each install generates a persistent 16-byte `nodeId`, stored locally.\
 This prevents self-connections and helps uniquely identify peers across sessions.
 
 **Algorithm:**
 
-- On first launch, generate `crypto.getRandomValues(16)` → hex string → store in `localStorage`.
-- When connecting to a peer, read its `ID` characteristic.
-- If peer’s `nodeId` === your own → disconnect (self-advert).
+* On first launch, generate `crypto.getRandomValues(16)` → hex string → store in `localStorage`.
+* When connecting to a peer, read its `ID` characteristic.
+* If peer’s `nodeId` === your own → disconnect (self-advert).
 
 ***
 
@@ -566,10 +566,10 @@ peer.send({ kind: "announcement", msg: "hello neighbors" });
 
 The library automatically:
 
-- Encodes the payload (UTF-8)
-- Frames it with 2-byte length header
-- Splits into MTU-safe chunks (~180 B)
-- Reassembles on the receiver side
+* Encodes the payload (UTF-8)
+* Frames it with 2-byte length header
+* Splits into MTU-safe chunks (\~180 B)
+* Reassembles on the receiver side
 
 ***
 
@@ -593,19 +593,19 @@ Ensures clean restarts without “Device previously connected” errors.
 
 ✅ Both devices log:
 
-- `Advertising started…`
-- `Scan started…`
-- `Found peer…`
-- `connect OK…`
-- `subscribe OK…`
-- `📩 From Peripheral…` or `📩 From Central…`
+* `Advertising started…`
+* `Scan started…`
+* `Found peer…`
+* `connect OK…`
+* `subscribe OK…`
+* `📩 From Peripheral…` or `📩 From Central…`
 
 ⚠️ If no peers are found:
 
-- Relax UUID filtering in scan
-- Ensure `bluetoothle.initialize({ request:true })` completed
-- Verify permissions (`BLUETOOTH_SCAN`, `ACCESS_FINE_LOCATION`)
-- Ensure BT is enabled and screen is on (iOS background throttles BLE)
+* Relax UUID filtering in scan
+* Ensure `bluetoothle.initialize({ request:true })` completed
+* Verify permissions (`BLUETOOTH_SCAN`, `ACCESS_FINE_LOCATION`)
+* Ensure BT is enabled and screen is on (iOS background throttles BLE)
 
 ***
 
@@ -641,10 +641,10 @@ Ensures clean restarts without “Device previously connected” errors.
 
 ## 🧩 Next Steps / Roadmap
 
-- [ ] Optional message signing (ECDSA over nodeId)
-- [ ] Advertise short public key hash via manufacturer data (requires native plugin)
-- [ ] WebRTC or Wi-Fi Direct escalation channel after handshake
-- [ ] Multi-peer mesh relaying
-- [ ] Integrate into Actualize App social layer for “proximity connection”
-  - [ ] Friending
-  - [ ] Financial Payments?
+* [ ] Optional message signing (ECDSA over nodeId)
+* [ ] Advertise short public key hash via manufacturer data (requires native plugin)
+* [ ] WebRTC or Wi-Fi Direct escalation channel after handshake
+* [ ] Multi-peer mesh relaying
+* [ ] Integrate into Actualize App social layer for “proximity connection”
+  * [ ] Friending
+  * [ ] Financial Payments?
