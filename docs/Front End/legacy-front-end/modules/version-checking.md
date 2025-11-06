@@ -45,18 +45,18 @@ Although not option-based, two inputs are significant:
 
 ## Dependencies & Side Effects
 
-- **Environment checks:** `isPhoneGap()`; uses `window.app_conf.version` and `window.app_conf.app_identifier`.
-- **Globals used:** `app.device`, `app.name`, `app.isdev`, `app.ios_store_id`.
-- **UI/Plugins:**
+* **Environment checks:** `isPhoneGap()`; uses `window.app_conf.version` and `window.app_conf.app_identifier`.
+* **Globals used:** `app.device`, `app.name`, `app.isdev`, `app.ios_store_id`.
+* **UI/Plugins:**
 
-  - `$('body').alert(...)` (the alert/modal plugin) with `template: 'updatealert'`.
-  - `$('body').spin(...)` spinner plugin.
-  - `phone.statusBar.set()` (status bar reset).
-- **Linking:** `cordova.InAppBrowser` if available; otherwise `_.openLink` with https/market/itms-apps URLs.
-- **Side effects:**
+  * `$('body').alert(...)` (the alert/modal plugin) with `template: 'updatealert'`.
+  * `$('body').spin(...)` spinner plugin.
+  * `phone.statusBar.set()` (status bar reset).
+* **Linking:** `cordova.InAppBrowser` if available; otherwise `_.openLink` with https/market/itms-apps URLs.
+* **Side effects:**
 
-  - `min()` sets `app.appversion = { major, minor, build }` (parsed from the running app version).
-  - `check()` registers a `document.addEventListener('resume', ...)` that clears spinners.
+  * `min()` sets `app.appversion = { major, minor, build }` (parsed from the running app version).
+  * `check()` registers a `document.addEventListener('resume', ...)` that clears spinners.
 
 ***
 
@@ -64,32 +64,32 @@ Although not option-based, two inputs are significant:
 
 ### Version Comparison (`min`)
 
-- Gate condition: runs only when `(isPhoneGap() && window.app_conf && window.app_conf.version) || test` is truthy. Otherwise returns `true` (i.e., no restriction in web environments).
-- Parses both `ver` (required minimum) and the **current app version** (`window.app_conf.version` or `test`) into `{major, minor, build}` and compares lexicographically:
+* Gate condition: runs only when `(isPhoneGap() && window.app_conf && window.app_conf.version) || test` is truthy. Otherwise returns `true` (i.e., no restriction in web environments).
+* Parses both `ver` (required minimum) and the **current app version** (`window.app_conf.version` or `test`) into `{major, minor, build}` and compares lexicographically:
 
-  - If required **major** > current major → **false** (too old).
-  - If majors equal, compare **minor** similarly.
-  - If minors equal, compare **build** similarly.
-  - Otherwise **true** (meets or exceeds min).
+  * If required **major** > current major → **false** (too old).
+  * If majors equal, compare **minor** similarly.
+  * If minors equal, compare **build** similarly.
+  * Otherwise **true** (meets or exceeds min).
 
 ### Update UX (`updateAlert` & `updateInAppStore`)
 
-- Renders an overlay with a single button:
+* Renders an overlay with a single button:
 
-  - iOS: “Update from App Store”
-  - Android: “Update From Google Play”
-- Button tap opens the relevant store page. While navigating, a full-screen spinner shows; on app `resume`, spinner hides, alert closes, and status bar resets.
+  * iOS: “Update from App Store”
+  * Android: “Update From Google Play”
+* Button tap opens the relevant store page. While navigating, a full-screen spinner shows; on app `resume`, spinner hides, alert closes, and status bar resets.
 
 ### Gate on App Start (`check`)
 
-- If device is PhoneGap and a current app version is present:
+* If device is PhoneGap and a current app version is present:
 
-  - Retrieves `min = current[app.device]`.
-  - If `min` exists and `modules.version.min(min)` is **false**:
+  * Retrieves `min = current[app.device]`.
+  * If `min` exists and `modules.version.min(min)` is **false**:
 
-    - When `disable_alert` is falsy → show `updateAlert()`, wire `resume` → **return false** to block further load.
-    - When `disable_alert` is truthy → **return false** silently (caller can handle UX).
-- Returns `true` if no min is set, environment is non-PhoneGap, or version is adequate.
+    * When `disable_alert` is falsy → show `updateAlert()`, wire `resume` → **return false** to block further load.
+    * When `disable_alert` is truthy → **return false** silently (caller can handle UX).
+* Returns `true` if no min is set, environment is non-PhoneGap, or version is adequate.
 
 ***
 
@@ -120,34 +120,34 @@ modules.version.updateAlert();
 
 ## Notes & Edge Cases (rigorous checks)
 
-1. **Version format assumptions**  
-   Both `ver` and current (`window.app_conf.version` or `test`) are split on `'.'` and `parseInt` is used. **Non-numeric or missing parts** will produce `NaN`, making comparisons unreliable.  
+1. **Version format assumptions**\
+   Both `ver` and current (`window.app_conf.version` or `test`) are split on `'.'` and `parseInt` is used. **Non-numeric or missing parts** will produce `NaN`, making comparisons unreliable.\
    **Recommendation:** Validate and coerce missing parts to `0`; bail gracefully on malformed versions.
 
-2. **Operator precedence in the gate**  
+2. **Operator precedence in the gate**\
    `if (isPhoneGap() && window.app_conf && window.app_conf.version || test)` is evaluated as `(A && B && C) || test`. This is likely intended (allow `test` to force-run), but be aware `test` **always** enables comparison even in web. Good for unit tests.
 
-3. **Side effect: sets `app.appversion`**  
-   `min()` writes `app.appversion` on every call. If other code depends on this field, that’s fine; otherwise it’s a hidden side effect.  
+3. **Side effect: sets`app.appversion`**\
+   `min()` writes `app.appversion` on every call. If other code depends on this field, that’s fine; otherwise it’s a hidden side effect.\
    **Recommendation:** Document or confine this mutation.
 
-4. **Device key alignment**  
+4. **Device key alignment**\
    `getCurrentVersion()` and `check()` use `app.device` to index `current`. Ensure your keys match (`'iOS'` vs `'iOS'`, `'Android'` vs `'Android'`) exactly.
 
-5. **UI dependencies**  
-   `updateAlert()` assumes the `updatealert` template exists for the alert plugin and that the spinner + statusBar APIs are available.  
+5. **UI dependencies**\
+   `updateAlert()` assumes the `updatealert` template exists for the alert plugin and that the spinner + statusBar APIs are available.\
    **Recommendation:** Guard with feature detection or provide graceful fallbacks.
 
 6. **Store URLs**
 
-   - iOS: uses both `itms-apps://itunes.apple.com/app/id{store_id}` (in-app) and `https://itunes.apple.com/...` (fallback).
-   - Android: uses `market://details?id={app_identifier}` or Play Store https link.  
+   * iOS: uses both `itms-apps://itunes.apple.com/app/id{store_id}` (in-app) and `https://itunes.apple.com/...` (fallback).
+   * Android: uses `market://details?id={app_identifier}` or Play Store https link.\
      Ensure `app.ios_store_id` and `window.app_conf.app_identifier` are set.
 
-7. **Blocking load semantics**  
+7. **Blocking load semantics**\
    `check()` returning `false` is the mechanism to halt the app. Ensure the caller checks the boolean and **early-returns** from initialization code.
 
-8. **Dev message branch**  
+8. **Dev message branch**\
    There is a dev-only `_alert(...)` path commented/guarded by `app.isdev && false`. It currently never fires; delete or wire appropriately.
 
 ***
