@@ -3,3 +3,4 @@
 - user_follow_save
 - user_prefs_save
 - post_save
+- awards_save
