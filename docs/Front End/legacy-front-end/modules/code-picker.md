@@ -14,7 +14,7 @@ next:
 
 ## High-Level Summary
 
-`modules.codepicker(options)` renders a modal “enter code” view with a title, input, and confirm/close actions. It can either (a) **POST the code to an API** via `modules.api` and invoke `onSuccess` on positive responses, or (b) **hand the code to a local `onSubmit` callback** when no endpoint is provided. It uppercases input keystrokes, animates in/out with GSAP/TweenLite, and prevents double-submissions with an internal `confirming` flag.
+`modules.codepicker(options)` renders a modal “enter code” view with a title, input, and confirm/close actions. It can either (a) **POST the code to an API** via `modules.api` and invoke `onSuccess` on positive responses, or (b) **hand the code to a local`onSubmit` callback** when no endpoint is provided. It uppercases input keystrokes, animates in/out with GSAP/TweenLite, and prevents double-submissions with an internal `confirming` flag.
 
 ***
 
@@ -54,18 +54,18 @@ next:
 
 ## Dependencies & Side Effects
 
-- **Rendering:** `$('body').render({ template: 'codepicker_page', data, binding })` (template must output specific class hooks, below).
-- **Animation:** GSAP/TweenLite (`set` and `to`).
-- **Touch/click:** `.stap(handler, 1, 'tapactive')` tap abstraction.
-- **API:** `modules.api` for network calls; `modules.toast({ content })` for error messages.
-- **Keyboard:** If present, `modules.keyboard_global.hide()` is called before showing.
-- **DOM contract (template must provide):**
+* **Rendering:** `$('body').render({ template: 'codepicker_page', data, binding })` (template must output specific class hooks, below).
+* **Animation:** GSAP/TweenLite (`set` and `to`).
+* **Touch/click:** `.stap(handler, 1, 'tapactive')` tap abstraction.
+* **API:** `modules.api` for network calls; `modules.toast({ content })` for error messages.
+* **Keyboard:** If present, `modules.keyboard_global.hide()` is called before showing.
+* **DOM contract (template must provide):**
 
-  - `.pane` (sliding drawer)
-  - `.bg` (dim overlay)
-  - `.x_close` (close button)
-  - `.x_confirm` (confirm button)
-  - `.x_code` (input field)
+  * `.pane` (sliding drawer)
+  * `.bg` (dim overlay)
+  * `.x_close` (close button)
+  * `.x_confirm` (confirm button)
+  * `.x_code` (input field)
 
 ***
 
@@ -73,28 +73,28 @@ next:
 
 ### Network submission vs. local submission
 
-- If `options.endpoint` is provided, `confirm()` calls:
+* If `options.endpoint` is provided, `confirm()` calls:
 
-  - URL: `options.endpoint`
-  - Body: `{ [endpointKey]: value, schema?, ...endpointOpts }`
-  - Timeout: `40000ms`
-  - On response: if `resp.success`, call `options.onSuccess(resp, hidePicker, code)`; else show `modules.toast({ content: resp.error })`.
-- If **no** `endpoint`, `confirm()` calls `options.onSubmit(code, hidePicker)` if provided.
+  * URL: `options.endpoint`
+  * Body: `{ [endpointKey]: value, schema?, ...endpointOpts }`
+  * Timeout: `40000ms`
+  * On response: if `resp.success`, call `options.onSuccess(resp, hidePicker, code)`; else show `modules.toast({ content: resp.error })`.
+* If **no** `endpoint`, `confirm()` calls `options.onSubmit(code, hidePicker)` if provided.
 
 ### Submission guard & button state
 
-- Uses `this.confirming` to avoid duplicate submits.
-- Sets `.x_confirm` HTML to a spinner (`<i class="icon-refresh animate-spin"></i>`) during request.
-- Restores the button label to `options.submitBtn` after **API callback** returns.
+* Uses `this.confirming` to avoid duplicate submits.
+* Sets `.x_confirm` HTML to a spinner (`<i class="icon-refresh animate-spin"></i>`) during request.
+* Restores the button label to `options.submitBtn` after **API callback** returns.
 
 ### Show / Hide animations
 
-- On show: slides `.pane` up from its height; fades `.bg` opacity to `0.3`.
-- On hide: reverses animations and removes the element from DOM. Calls `instance.onHide()` if provided.
+* On show: slides `.pane` up from its height; fades `.bg` opacity to `0.3`.
+* On hide: reverses animations and removes the element from DOM. Calls `instance.onHide()` if provided.
 
 ### Input normalization
 
-- Forces **uppercase** on every `keyup` in `.x_code`.
+* Forces **uppercase** on every `keyup` in `.x_code`.
 
 ***
 
@@ -137,38 +137,38 @@ picker.onHide = () => console.log('Picker closed');
 
 ## Notes & Edge Cases (rigorous checks)
 
-1. **Inconsistent options access (`options` vs `self.options`)**  
-   Inside `confirm()`, the code mixes `options.*` and `self.options.*`. If you mutate `self.options` later, `confirm()` may still read the original `options`.  
-   **Recommendation:** Use **only `self.options`** inside methods.
+1. **Inconsistent options access (`options` vs `self.options`)**\
+   Inside `confirm()`, the code mixes `options.*` and `self.options.*`. If you mutate `self.options` later, `confirm()` may still read the original `options`.\
+   **Recommendation:** Use **only`self.options`** inside methods.
 
-2. **Button label restoration when no endpoint**  
-   The spinner is shown before branching, but if **no `endpoint`** is provided, the button label is **not restored** to `submitBtn`.  
+2. **Button label restoration when no endpoint**\
+   The spinner is shown before branching, but if **no`endpoint`** is provided, the button label is **not restored** to `submitBtn`.\
    **Fix:** Reset `.x_confirm` text in the `else` branch after invoking `onSubmit`.
 
-3. **`confirming` reset on non-endpoint path**  
-   `this.confirming` is cleared only in the API callback. In the no-endpoint branch, it remains `true`, blocking subsequent confirms.  
+3. **`confirming`reset on non-endpoint path**\
+   `this.confirming` is cleared only in the API callback. In the no-endpoint branch, it remains `true`, blocking subsequent confirms.\
    **Fix:** Set `self.confirming = false;` after `onSubmit()` returns.
 
-4. **Uppercasing codes**  
-   All input is forced to uppercase. If case matters for certain codes, this will break validation.  
+4. **Uppercasing codes**\
+   All input is forced to uppercase. If case matters for certain codes, this will break validation.\
    **Fix:** Make this behavior configurable (e.g., `forceUppercase: true`).
 
-5. **Error feedback**  
-   On API failure the code toasts `resp.error`, which may be undefined.  
+5. **Error feedback**\
+   On API failure the code toasts `resp.error`, which may be undefined.\
    **Fix:** Fallback to a generic message if `resp.error` is missing.
 
-6. **Focus & accessibility**  
-   There’s no initial focus on `.x_code`, no focus trap, and close isn’t bound to Escape.  
+6. **Focus & accessibility**\
+   There’s no initial focus on `.x_code`, no focus trap, and close isn’t bound to Escape.\
    **Improvement:** Focus the input on show; optionally bind ESC to close; ensure ARIA roles.
 
-7. **Template & class dependencies**  
+7. **Template & class dependencies**\
    The picker depends on `template: 'codepicker_page'` emitting specific classes (`.bg`, `.pane`, `.x_code`, `.x_confirm`, `.x_close`). Missing classes will break animations/handlers.
 
-8. **Global keyboard dependency**  
+8. **Global keyboard dependency**\
    Calls `modules.keyboard_global.hide()` if present; ensure this singleton exists (or guard the call).
 
-9. **Animation timing constants**  
+9. **Animation timing constants**\
    Durations are hardcoded (`.3s`, `100ms` delay). Consider centralizing or making configurable if you need coherent motion across the app.
 
-10. **Chaining multiple pickers**  
+10. **Chaining multiple pickers**\
     There’s no queueing/overlay management like the alert plugin. Creating multiple instances in quick succession may stack UIs. Add guards if needed.
