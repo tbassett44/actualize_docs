@@ -40,3 +40,4 @@
 - event_affiliate_save
 - event_type_save
 - event_categories_save
+- post_event_save
