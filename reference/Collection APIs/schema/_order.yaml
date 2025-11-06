@@ -110,3 +110,4 @@
 - app_publish_token_save
 - podcast_album_save
 - ci_question_save
+- signal_group_save
