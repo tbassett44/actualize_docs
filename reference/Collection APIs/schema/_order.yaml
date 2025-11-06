@@ -15,3 +15,4 @@
 - news_feed_save
 - user_questions_save
 - deal_save
+- phi_token_distribution_save
