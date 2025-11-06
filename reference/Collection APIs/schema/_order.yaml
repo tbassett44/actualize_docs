@@ -31,3 +31,4 @@
 - event_broadcast_save
 - ticket_response_save
 - ticket_contact_list_save
+- event_ticketemail_save
