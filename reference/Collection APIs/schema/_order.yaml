@@ -85,3 +85,4 @@
 - page_stat_save
 - email_template_save
 - termdata_save
+- config_save
