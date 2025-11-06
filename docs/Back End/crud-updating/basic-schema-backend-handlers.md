@@ -10,14 +10,14 @@ metadata:
 next:
   description: ''
 ---
-Below is an example [schema].php (for the deal object, so deal.php).
+Below is an example \[schema].php (for the deal object, so deal.php).
 
-DEAL::handleRequest() is called automatically when the endpoint called is: <https://api.actualize.earth/core/module/deal/[load|feed|promotioncost]>
+DEAL::handleRequest() is called automatically when the endpoint called is: [https://api.actualize.earth/core/module/deal/\[load|feed|promotioncost\]](https://api.actualize.earth/core/module/deal/\[load|feed|promotioncost])
 
-ALL FEEDs of data should be handled in the [schema].php field.  These requests should be guarded to ensure nobody gets to load feeds of data without some type of query selecting based on user scope/permissions/filtering
+ALL FEEDs of data should be handled in the \[schema].php field.  These requests should be guarded to ensure nobody gets to load feeds of data without some type of query selecting based on user scope/permissions/filtering
 
-DEAL::checkPermissions($r,$schema,$last,$proposed,$type) is the permission checker.  This passes the $last data object as well as the $proposed data object.  This is useful to ensure changes are valid (eg not changing the author of a post).  It is also used to ensure an author can edit a post.  
-$r is the request object. This contains most all relevant information you will need from the request, notably, $r['auth]['uid'] is set when the request has been authenticated based on token/app_id in the parameters. 
+DEAL::checkPermissions($r,$schema,$last,$proposed,$type) is the permission checker.  This passes the $last data object as well as the $proposed data object.  This is useful to ensure changes are valid (eg not changing the author of a post).  It is also used to ensure an author can edit a post.\
+$r is the request object. This contains most all relevant information you will need from the request, notably, $r\['uid'] is set when the request has been authenticated based on token/app\_id in the parameters. 
 
 ```php
  <?php
