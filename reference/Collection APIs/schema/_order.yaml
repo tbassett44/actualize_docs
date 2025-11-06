@@ -24,3 +24,4 @@
 - event_breakdown_save
 - event_rsvp_save
 - ticket_save
+- ticket_settings_save
