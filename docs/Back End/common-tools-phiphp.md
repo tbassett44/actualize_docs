@@ -2059,7 +2059,7 @@ next:
 
 **Inline comment found:**
 
-> // supports line breaks inside <title>
+`> // supports line breaks inside <title>`
 
 ***
 
