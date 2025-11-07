@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To install the front end repo, please ensure you have an account created on Gitlab and access to front end code.  Reach out to [juicy@actualize.earth](mailto:juicy@actualize.earth) if you need access to a front end repo.
+To install the front end repo, please ensure you have an account created on Gitlab and access to front end code. Reach out to [juicy@actualize.earth](mailto:juicy@actualize.earth) if you need access to a front end repo.
 
 ```text
 git clone https://gitlab.com/actualize_earth/app-core.git
@@ -21,25 +21,25 @@ npm install nodemon -g
 npm start
 ```
 
-<br />
+<br/>
 
 # Enabling Developer Mode
 
-Go to [Actualize Web Interface](https://app.actualize.earth) and create/log in to your profile.  Make sure to load it in a mobile view. Click on your profile picture in the top right, then tap on the version number at the bottom 5x to enable developer mode. You will then see a "Restart in Local Mode", click that and then "Use Local Development Code (3333)"
+Go to [Actualize Web Interface](https://app.actualize.earth) and create/log in to your profile. Make sure to load it in a mobile view. Click on your profile picture in the top right, then tap on the version number at the bottom 5x to enable developer mode. You will then see a "Restart in Local Mode", click that and then "Use Local Development Code (3333)"
 
-![](https://s3.amazonaws.com/one-earth/static/enable_dev.png "dev_mode") 
+<Image src="https://s3.amazonaws.com/one-earth/static/enable_dev.png" alt="dev_mode" /> 
 
-![dev\_mode\_enabled](https://s3.amazonaws.com/one-earth/static/dev_testing.png "dev_mode_enabled")
+<Image src="https://s3.amazonaws.com/one-earth/static/dev_testing.png" alt="dev_mode_enabled" />
 
 For Mobile app views, load the site in a mobile view using your browser development tools. I recommend viewing the code and the app view in the same window at the same time, like this.
 
-![docs](https://one-earth.s3.amazonaws.com/static/code_editor.png "docs")
+<Image src="https://one-earth.s3.amazonaws.com/static/code_editor.png" alt="docs" />
 
 You should see the change happen immediately in your browser.
 
-When adding a new view (/app/views/\[new\_view].view), you need to register the view in the conf.json file.
+When adding a new view (`/app/views/[new_view].view`), you need to register the view in the conf.json file.
 
-*note* I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading.  First fix is reload the page and try again.  If its still broken, there is probably an issue with templates or the logic.  check your developers console to look for messages that may help.
+*note* I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading. First fix is reload the page and try again. If its still broken, there is probably an issue with templates or the logic. check your developers console to look for messages that may help.
 
 Templating is done with EJS, you can learn more about how EJS works [here](https://ejs.co/#docs).
 
@@ -55,7 +55,8 @@ The relevant files for just getting started are in the
 
 # Using Branches of the Code
 
-Branches allow different versions of code to co-exists and be merge-able with each other.\
+Branches allow different versions of code to co-exists and be merge-able with each other.
+
 Creating a branch
 
 ```
@@ -86,14 +87,15 @@ There are 5 main sections that can be used in a view, defined by the following t
 
 # Notable aspects of templating / linking
 
-HTML Attributes\
-action="\[event type]\:[Function in Context]" - Used to link an event to a function within the context.  EG action="click:alert" will call a this.alert=function()\{} within the context of the view if it exists.
+HTML Attributes
 
-link="/route/to/go" - Used to navigate to another page / view within the app.  Routes are made first by the view name, eg event.view gets a route to /event/\[event.id].  Additional variables can be passed/used by the view in however they want.
+`action="[event type]:[Function in Context]"` - Used to link an event to a function within the context. EG action="click:alert" will call a this.alert=function(){} within the context of the view if it exists.
 
-Views are assigned a route when <route></route> tag is present in the the \[file\_name].view file. The view can then be accessed by using link="/\[file\_name]".  Or if it is within javascript, you can use app.history.go('/file\_name').
+`link="/route/to/go"` - Used to navigate to another page / view within the app. Routes are made first by the view name, eg event.view gets a route to `/event/[event.id]`. Additional variables can be passed/used by the view in however they want.
 
-Within a view, there are a few command methods to be aware of.  The first two (renderOptions and showOptions) are *required*
+Views are assigned a route when `<route></route>` tag is present in the the `[file_name].view` file. The view can then be accessed by using `link="/[file_name]"`. Or if it is within javascript, you can use `app.history.go('/file_name')`.
+
+Within a view, there are a few command methods to be aware of. The first two (renderOptions and showOptions) are *required*
 
 ```javascript
 this.renderOptions={
@@ -131,7 +133,7 @@ this.onResume=function(){} // when a view goes from inactive to active (eg a bac
 this.onDestroy=function(){} //any logic needed to clean-up the view before being destroyed
 ```
 
-By default when using link="" or app.history.go(), the view will render to the default view container based on this logic.  It is also possible to directly register a view.  This is useful if there are more options that you need to pass than just showing a view.  You do this by calling:
+By default when using link="" or app.history.go(), the view will render to the default view container based on this logic. It is also possible to directly register a view. This is useful if there are more options that you need to pass than just showing a view. You do this by calling:
 
 ```javascript
 phi.registerView('[view_name]',{
@@ -142,7 +144,7 @@ phi.registerView('[view_name]',{
 });
 ```
 
-bind="" - A template shortcut to load other componets into a view
+`bind=""` - A template shortcut to load other componets into a view
 
 ```html
 bind="loadError:<%=_util.formatOptions({
@@ -160,11 +162,11 @@ bind="loadError:<%=_util.formatOptions({
 })%>"
 ```
 
-References a module to load in the template and the options to pass.  As objects / DOM elements cannot be passed, there is a hydration step that happens, so passing an element is possible by a shorthand method.  EG ele:'$' will pass a jQuery element of the element the component is rendered within.  You can also chain these, like $:.className, where it will first get the parent and then so a search in the DOM for an element with a class "className".
+References a module to load in the template and the options to pass. As objects / DOM elements cannot be passed, there is a hydration step that happens, so passing an element is possible by a shorthand method. EG ele:'$' will pass a jQuery element of the element the component is rendered within. You can also chain these, like $:.className, where it will first get the parent and then so a search in the DOM for an element with a class "className".
 
 # Templates
 
-Each View can have multiple templates that are used. They are defined in the <templates></templates> tags, which looks like this
+Each View can have multiple templates that are used. They are defined in the `<templates></templates>` tags, which looks like this
 
 ```html
 <templates>
@@ -178,11 +180,7 @@ Each View can have multiple templates that are used. They are defined in the <te
 </templates>
 ```
 
-Rendering additional templates into a view, used in functions in <HTMLBlock>{`
-<script>
-`}</HTMLBlock><HTMLBlock>{`
-</script>
-`}</HTMLBlock> tags
+Rendering additional templates into a view, used in functions in `<script></script>` tags
 
 ```javascript
 phi.render([jquery or dom element],{ //eg self.ele.find('.extra_area')
@@ -210,7 +208,7 @@ this.getRoute=function(){
 
 # Useful App Variables Available
 
-On the app boot, we connect with an Actualize Server to provide dynamic variables based on the environment.  This includes things like server endpoint bases. Here is a list of some of the relevant ones. Below are listed for production environment, development environment backends follow a similar convention, however all subdomains are adapted to point to the development server configured based on developer.  EG [https://api.actualize.earth](https://api.actualize.earth) points to production API whereas [https://api-juicy.actualize.earth](https://api-juicy.actualize.earth) points to the API on my development server.
+On the app boot, we connect with an Actualize Server to provide dynamic variables based on the environment. This includes things like server endpoint bases. Here is a list of some of the relevant ones. Below are listed for production environment, development environment backends follow a similar convention, however all subdomains are adapted to point to the development server configured based on developer. EG [https://api.actualize.earth](https://api.actualize.earth) points to production API whereas [https://api-juicy.actualize.earth](https://api-juicy.actualize.earth) points to the API on my development server.
 
 ```json
 {
@@ -239,7 +237,7 @@ On the app boot, we connect with an Actualize Server to provide dynamic variable
 
 # Icons
 
-We use fontello's open source icon library builder to customize the icons we use in the project.  The current icon set can be found [here](https://icons.actualize.earth).
+We use fontello's open source icon library builder to customize the icons we use in the project. The current icon set can be found [here](https://icons.actualize.earth).
 
 They can be used like this
 
