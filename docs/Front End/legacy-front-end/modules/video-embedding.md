@@ -420,6 +420,23 @@ sendIncrement: function (reason) {
 
 Back-end endpoint: `POST /v1/schema/video_view`.
 
+### Data Example
+
+```json
+{
+    "_id": "691c0cbb73f9df40d70b7b92",
+    "id": "1111301216_UIAMPLAYER1",
+    "uid": "UIAMPLAYER1",
+    "type": "vimeo",
+    "vid": "1111301216",
+    "views": 20,
+    "last_view": 1763466114,
+    "last_time": 0,
+    "max_progress": 100
+}
+
+```
+
 ***
 
 ## 7. Usage examples
