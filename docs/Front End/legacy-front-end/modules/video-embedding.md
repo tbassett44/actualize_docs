@@ -44,7 +44,8 @@ modules.video_embed({
   type: 'youtube' | 'video',   // Player type (see below)
   id: 'pK_axPtr23Y',           // Video identifier (YouTube ID, DB id, etc.)
   controls: true | false,      // Optional, defaults to true
-  events: {                    // Optional callbacks
+  nobigplay:true | false,				// Optional, defaults to false
+	events: {                    // Optional callbacks
     ready: function(){},
     loadedmetadata: function(meta){},
     timeupdate: function(timeInfo){}
@@ -244,6 +245,35 @@ Authenticates the request so only logged-in users with a valid token can view an
 
 **Purpose:**
 Allows the embedding context to hide all onscreen player controls (useful for custom UI overlays or kiosk modes). The player can still be controlled via the postMessage API from the parent page.
+
+<br />
+
+### 4.4. `nobigplay`
+
+* **Type:** boolean flag (presence-based)
+* **Set by:** `modules.video_embed` option `options.nobigplay`.
+* **Used by:** PHP:
+
+  ```php
+  $controls=[
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'fullscreen'
+      ];
+      if(isset($r['qs']['nocontrols'])){
+        $controls=[];
+      }
+      if(isset($r['qs']['nobigplay'])&&$r['qs']['nobigplay']=="1"){
+      }else{
+        $controls[]='play-large';
+      }
+  ```
+
+**Purpose:**
+Allows for turning on or off the big play button at the center of the video player
 
 ***
 
