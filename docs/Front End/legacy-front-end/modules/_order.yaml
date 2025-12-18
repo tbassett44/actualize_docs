@@ -7,6 +7,7 @@
 - formbuilder
 - geocoding
 - keyboard-1
+- moment-time-formatting
 - version-checking
 - infinite-scrolling
 - phone
@@ -15,7 +16,6 @@
 - report-1
 - scroller
 - video
-- moment-time-formatting
 - user
 - login
 - video-embedding
