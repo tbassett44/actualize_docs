@@ -9,7 +9,6 @@
 - keyboard-1
 - infinite-scrolling
 - moment-time-formatting
-- version-checking
 - phone
 - phonenumber
 - qrcode-scanner
@@ -18,5 +17,6 @@
 - video
 - user
 - login
+- version-checking
 - video-embedding
 - imageviewer
