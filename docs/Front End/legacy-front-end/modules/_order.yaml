@@ -7,6 +7,7 @@
 - formbuilder
 - geocoding
 - keyboard-1
+- imageviewer
 - infinite-scrolling
 - moment-time-formatting
 - phone
@@ -19,4 +20,3 @@
 - login
 - version-checking
 - video-embedding
-- imageviewer
