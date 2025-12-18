@@ -1,12 +1,12 @@
 - alert
 - api
-- version-checking
 - clipboard
 - code-picker
 - crop-uploader
 - file-uploading
 - formbuilder
 - geocoding
+- version-checking
 - keyboard-1
 - infinite-scrolling
 - phone
