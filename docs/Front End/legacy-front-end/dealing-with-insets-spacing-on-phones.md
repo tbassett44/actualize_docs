@@ -1,5 +1,5 @@
 ---
-title: Dealing With Insets / Spacing on Phones
+title: Insets / Spacing on Phones
 deprecated: false
 hidden: false
 metadata:
