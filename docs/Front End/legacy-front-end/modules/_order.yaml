@@ -9,6 +9,7 @@
 - keyboard-1
 - imageviewer
 - infinite-scrolling
+- login
 - moment-time-formatting
 - phone
 - phonenumber
@@ -16,7 +17,6 @@
 - report-1
 - scroller
 - user
-- login
 - version-checking
 - video
 - video-embedding
