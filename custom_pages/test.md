@@ -1,9 +1,9 @@
 ---
-title: Test
+title: Status
 fullscreen: false
 hidden: false
 metadata:
   title: ''
   description: ''
 ---
-test page for a q and a
+<iframe src="https://status.actualize.earth"></iframe>
