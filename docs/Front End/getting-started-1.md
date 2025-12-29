@@ -21,25 +21,25 @@ npm install nodemon -g
 npm start
 ```
 
-<br/>
+<br />
 
 # Enabling Developer Mode
 
 Go to [Actualize Web Interface](https://app.actualize.earth) and create/log in to your profile. Make sure to load it in a mobile view. Click on your profile picture in the top right, then tap on the version number at the bottom 5x to enable developer mode. You will then see a "Restart in Local Mode", click that and then "Use Local Development Code (3333)"
 
-<Image src="https://s3.amazonaws.com/one-earth/static/enable_dev.png" alt="dev_mode" /> 
+<Image alt="dev_mode" border={false} src="https://s3.amazonaws.com/one-earth/static/enable_dev.png" />
 
-<Image src="https://s3.amazonaws.com/one-earth/static/dev_testing.png" alt="dev_mode_enabled" />
+<Image alt="dev_mode_enabled" border={false} src="https://s3.amazonaws.com/one-earth/static/dev_testing.png" />
 
 For Mobile app views, load the site in a mobile view using your browser development tools. I recommend viewing the code and the app view in the same window at the same time, like this.
 
-<Image src="https://one-earth.s3.amazonaws.com/static/code_editor.png" alt="docs" />
+<Image alt="docs" border={false} src="https://one-earth.s3.amazonaws.com/static/code_editor.png" />
 
 You should see the change happen immediately in your browser.
 
 When adding a new view (`/app/views/[new_view].view`), you need to register the view in the conf.json file.
 
-*note* I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading. First fix is reload the page and try again. If its still broken, there is probably an issue with templates or the logic. check your developers console to look for messages that may help.
+_note_ I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading. First fix is reload the page and try again. If its still broken, there is probably an issue with templates or the logic. check your developers console to look for messages that may help.
 
 Templating is done with EJS, you can learn more about how EJS works [here](https://ejs.co/#docs).
 
@@ -47,7 +47,7 @@ Templating is done with EJS, you can learn more about how EJS works [here](https
 
 Go to the code editor of your choice.
 
-The relevant files for just getting started are in the 
+The relevant files for just getting started are in the
 
 ```
 /app/views (directory)
@@ -95,7 +95,7 @@ HTML Attributes
 
 Views are assigned a route when `<route></route>` tag is present in the the `[file_name].view` file. The view can then be accessed by using `link="/[file_name]"`. Or if it is within javascript, you can use `app.history.go('/file_name')`.
 
-Within a view, there are a few command methods to be aware of. The first two (renderOptions and showOptions) are *required*
+Within a view, there are a few command methods to be aware of. The first two (renderOptions and showOptions) are _required_
 
 ```javascript
 this.renderOptions={
@@ -271,3 +271,57 @@ Themeing CSS
 .button2 => Alt Colored button with themes boarder color
 .frostedbg => creates a semi-transparent but "frosted" background.  Useful when content is scrollign behind something to create a modern look
 ```
+
+Inset Spacing (accounting for phone status/footer bars)
+
+```css
+/*
+var [top] = phone.insets.data.top;
+var [bottom] = phone.insets.data.bottom;
+var [top_header] = (phone.insets.data.top+phone.insets.headerHeight);
+var [top_header_20] = phone.insets.data.top+phone.insets.headerHeight+20
+var [bottom_nav]=(phone.insets.data.bottom+phone.insets.footerHeight;
+*/
+
+.mobiletop{
+  top:[top_header]px !important;
+}
+.mobiletop2{
+  top:[top_header_20]px !important;
+}
+.mobileheader{
+  padding-top:[top]px !important;
+}
+.mobilestatusbartop{
+  top:[top]px !important;
+}
+.mobilespacer{
+  height:[top_header]px !important;
+}
+.mobilescrollcontent{
+  padding-top:[top_header]px !important;
+}
+.mobilepageresponsive{
+  top:[top_header]px !important;
+}
+.infinitescroll_sticky_container{
+  top:[top_header]px !important;
+}
+.infinitescroll_sticky_container_top{
+  padding-top:[top]px !important;
+}
+.mobilestatusbar{
+  height:[top]px !important;
+}
+.mobilefooter{
+  padding-bottom:[bottom]px !important;
+}
+.keyboardpage{
+  bottom:[bottom]px !important;
+}
+.keyboardpagenav,.mobilebottom{
+   bottom:[bottom_nav]px !important;
+}
+```
+
+<br />
