@@ -22,125 +22,70 @@ Plugins appended with -NECTAR or -actualize are plugins where i manually needed 
 
 Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html)
 
-\+----------+------------------+---------------------------------------------------+\
-\| Status   | Version          | Plugin ID                                         |\
-+----------+------------------+---------------------------------------------------+\
-\| Disabled | 0.3.1            | capacitor-plugin-cordova-compat                   |\
-\| Disabled | 1.0.0            | cc.fovea.cordova.openwith                         |\
-\| Enabled  | 1.0.2            | com.danielsogl.cordova.clipboard                  |\
-\| Disabled | 0.1.6            | com.darktalker.cordova.screenshot                 |\
-\| Enabled  | 1.0.2            | com.nikola-breznjak.voippush                      |\
-\| Enabled  | 0.0.3            | com.ozexpert.devicemeta                           |\
-\| Disabled | 1.0.1            | com.web-mystery.cordova.openwith-ios              |\
-\| Disabled | 3.0.1            | cordova-android-support-gradle-release            |\
-\| Disabled | 1.1.5-NECTAR     | cordova-call                                      |\
-\| Disabled | 0.0.1            | cordova-google-api-version                        |\
-\| Enabled  | 2.3.3            | cordova-plugin-actionsheet                        |\
-\| Enabled  | 2.0.3            | cordova-plugin-add-swift-support                  |\
-\| Enabled  | 1.6.4-actualize  | cordova-plugin-advanced-imagepicker               |\
-\| Enabled  | 1.1.5            | cordova-plugin-android-permissions                |\
-\| Enabled  | 1.1.3            | cordova-plugin-androidx-adapter                   |\
-\| Disabled | 1.2.1            | cordova-plugin-app-event                          |\
-\| Enabled  | 1.0.0            | cordova-plugin-apple-pay-google-pay               |\
-\| Enabled  | 5.0.0            | cordova-plugin-applepay                           |\
-\| Disabled | 1.0.1            | cordova-plugin-audioinput                         |\
-\| Enabled  | 1.0.3            | cordova-plugin-audiotoggle                        |\
-\| Disabled | 0.7.3            | cordova-plugin-background-mode                    |\
-\| Enabled  | 4.0.12-actualize | cordova-plugin-background-upload                  |\
-\| Disabled | 0.8.8            | cordova-plugin-badge                              |\
-\| Enabled  | 0.8.10           | cordova-plugin-badge-fix                          |\
-\| Enabled  | 2.0.4-NECTAR     | cordova-plugin-battery-status                     |\
-\| Disabled | 1.3.1            | cordova-plugin-ble-central                        |\
-\| Enabled  | 5.1.4            | cordova-plugin-calendar                           |\
-\| Enabled  | 1.0.1            | cordova-plugin-call-number                        |\
-\| Enabled  | 8.0.0            | cordova-plugin-camera                             |\
-\| Enabled  | 1.0.0            | cordova-plugin-cleartext                          |\
-\| Disabled | 1.6.0            | cordova-plugin-cocoapod-support                   |\
-\| Enabled  | 1.2.1            | cordova-plugin-compat                             |\
-\| Enabled  | 3.0.1            | cordova-plugin-contacts                           |\
-\| Enabled  | 5.0.2            | cordova-plugin-customurlscheme                    |\
-\| Enabled  | 2.1.0            | cordova-plugin-device                             |\
-\| Enabled  | 2.0.1            | cordova-plugin-dialogs                            |\
-\| Enabled  | 1.0.0            | cordova-plugin-disable-ios11-statusbar            |\
-\| Disabled | 0.9.10           | cordova-plugin-document-viewer                    |\
-\| Disabled | 6.2.1            | cordova-plugin-facebook4                          |\
-\| Enabled  | 8.1.0            | cordova-plugin-file                               |\
-\| Enabled  | 2.0.0            | cordova-plugin-file-transfer                      |\
-\| Enabled  | 1.6.0            | cordova-plugin-filepath                           |\
-\| Enabled  | 6.0.0            | cordova-plugin-fingerprint-aio                    |\
-\| Enabled  | 3.2.1            | cordova-plugin-flashlight                         |\
-\| Enabled  | 1.1.3            | cordova-plugin-foreground-service                 |\
-\| Enabled  | 1.1.0            | cordova-plugin-fullscreen                         |\
-\| Enabled  | 5.0.0            | cordova-plugin-geolocation                        |\
-\| Enabled  | 2.2.2            | cordova-plugin-imagegallery                       |\
-\| Enabled  | 5.0.1-dev        | cordova-plugin-inappbrowser                       |\
-\| Enabled  | 4.3.0            | cordova-plugin-insomnia                           |\
-\| Enabled  | 2.2.0-dev        | cordova-plugin-ionic-keyboard                     |\
-\| Disabled | 4.0.1            | cordova-plugin-ionic-webview                      |\
-\| Disabled | 8.0.4            | cordova-plugin-iosrtc                             |\
-\| Disabled | 1.2.0            | cordova-plugin-keyboard                           |\
-\| Disabled | 3.3.0            | cordova-plugin-keychain-touch-id                  |\
-\| Disabled | 1.1.1            | cordova-plugin-lifecycle-events-extra             |\
-\| Disabled | 0.9.0-beta.3     | cordova-plugin-local-notification                 |\
-\| Enabled  | 0.1.4            | cordova-plugin-local-notification-12              |\
-\| Enabled  | 7.0.0            | cordova-plugin-media                              |\
-\| Disabled | 4.0.0            | cordova-plugin-media-capture                      |\
-\| Disabled | 5.0.1-dev        | cordova-plugin-media-with-fix                     |\
-\| Disabled | 0.2.0            | cordova-plugin-multidex                           |\
-\| Disabled | 2.2.0            | cordova-plugin-music-controls                     |\
-\| Enabled  | 3.0.5            | cordova-plugin-music-controls2                    |\
-\| Enabled  | 2.3.2            | cordova-plugin-nativestorage                      |\
-\| Enabled  | 0.0.8            | cordova-plugin-navigationbar-color                |\
-\| Enabled  | 2.0.1            | cordova-plugin-network-information                |\
-\| Enabled  | 2.2.0            | cordova-plugin-networkinterface                   |\
-\| Disabled | 3.4.3            | cordova-plugin-opentok                            |\
-\| Disabled | 1.0.0            | cordova-plugin-openwith                           |\
-\| Disabled | 2.2.1            | cordova-plugin-photo-library                      |\
-\| Disabled | 0.9.2            | cordova-plugin-playlist                           |\
-\| Enabled  | 4.0.0            | @havesource/cordova-plugin-push                   |\
-\| Enabled  | 3.0.5-actualize  | cordova-plugin-qrscanner                          |\
-\| Disabled | 3.0.5            | cordova-plugin-qrscanner-11                       |\
-\| Enabled  | 0.7.0            | cordova-plugin-saf-mediastore                     |\
-\| Enabled  | 2.0.0            | cordova-plugin-safariviewcontroller               |\
-\| Enabled  | 0.2.2            | cordova-plugin-screen-locker                      |\
-\| Disabled | 3.0.1            | cordova-plugin-screen-orientation                 |\
-\| Enabled  | 3.0.2            | cordova-plugin-screen-orientation-NECTAR          |\
-\| Enabled  | 1.0.1            | cordova-plugin-screenshot                         |\
-\| Enabled  | 1.3.3            | cordova-plugin-sim                                |\
-\| Enabled  | 1.2.0            | cordova-plugin-speechrecognition                  |\
-\| Disabled | 6.0.0            | cordova-plugin-splashscreen                       |\
-\| Enabled  | 4.0.0-dev        | cordova-plugin-statusbar                          |\
-\| Enabled  | 2.2.2            | cordova-plugin-stripe-tap-to-pay                  |\
-\| Disabled | 1.1.3            | cordova-plugin-stripe-terminal                    |\
-\| Disabled | 2.3.5            | cordova-plugin-telerik-imagepicker                |\
-\| Enabled  | 1.0.1            | cordova-plugin-timer                              |\
-\| Enabled  | 3.3.1            | cordova-plugin-touch-id                           |\
-\| Enabled  | 3.1.1            | cordova-plugin-vibration                          |\
-\| Disabled | 2.1.0            | cordova-plugin-webviewcolor                       |\
-\| Disabled | 1.3.3            | cordova-plugin-whitelist                          |\
-\| Disabled | 1.2.1            | cordova-plugin-wkwebview-engine                   |\
-\| Enabled  | 1.0.4            | cordova-plugin-wkwebview-inputfocusfix            |\
-\| Disabled | 0.1.0            | cordova-plugin-wkwebviewxhrfix                    |\
-\| Enabled  | 6.0.4            | cordova-plugin-x-socialsharing                    |\
-\| Disabled | 2.3.1            | cordova-plugin-youtube-video-player               |\
-\| Enabled  | 0.0.26           | cordova-save-image-gallery                        |\
-\| Disabled | 0.5.8            | cordova-spotify                                   |\
-\| Disabled | 0.1.11           | cordova-spotify-oauth                             |\
-\| Disabled | 1.1.0            | cordova-support-google-services                   |\
-\| Disabled | 0.0.4            | cordova-wkwebview-background                      |\
-\| Disabled | 0.1.1            | cordova.plugin.spotify                            |\
-\| Enabled  | 7.1.1-actualize  | cordova.plugins.diagnostic                        |\
-\| Disabled | 0.8.4.1          | de.appplant.cordova.plugin.local-notification     |\
-\| Enabled  | 4.2.2            | es6-promise-plugin                                |\
-\| Enabled  | 0.0.1            | in.lucasdup.bringtofront                          |\
-\| Disabled | 2.2.1            | ionic-plugin-keyboard                             |\
-\| Disabled | 0.7.0            | org.devgeeks.Canvas2ImagePlugin                   |\
-\| Disabled | 1.2.0            | phonegap-nfc                                      |\
-\| Disabled | 7.0.2            | phonegap-plugin-barcodescanner                    |\
-\| Disabled | 1.1.0            | phonegap-plugin-media-recorder                    |\
-\| Disabled | 1.2.1            | phonegap-plugin-media-stream                      |\
-\| Enabled  | 1.0.5-dev        | phonegap-plugin-mobile-accessibility              |\
-\| Enabled  | 1.0.0            | phonegap-plugin-multidex                          |\
-\| Enabled  | 5.0.4            | uk.co.workingedge.phonegap.plugin.launchnavigator |\
-\| Disabled | 1.0.2            | zz.openwith                                       |\
++----------+------------------+---------------------------------------------------+  
+| Status   | Version          | Plugin ID                                         |  
++----------+------------------+---------------------------------------------------+  
+| Enabled  | 1.0.2            | com.danielsogl.cordova.clipboard                  |  
+| Enabled  | 1.0.2            | [com.nikola-breznjak.voippush](https://github.com/NikolaBreznjak/cordova-ios-voip-push)                      |  
+| Enabled  | 0.0.3            | [com.ozexpert.devicemeta](https://github.com/ozexpert/cordova-plugin-device-meta)                           |  
+| Enabled  | 2.3.3            | [cordova-plugin-actionsheet ](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)                       |  
+| Enabled  | 2.0.3            | [cordova-plugin-add-swift-support](https://github.com/akofman/cordova-plugin-add-swift-support)                  |  
+| Enabled  | 1.6.4-actualize  | [cordova-plugin-advanced-imagepicker](https://github.com/tbassett44/cordova-plugin-advanced-imagepicker)               |  
+| Enabled  | 1.1.5            | [cordova-plugin-android-permissions](https://github.com/NeoLSN/cordova-plugin-android-permissions)                |  
+
+| Enabled  | 1.0.0            | [cordova-plugin-apple-pay-google-pay](https://github.com/tbassett44/cordova-plugin-stripe-tap-to-pay)               |  
+| Enabled  | 5.0.0            | [cordova-plugin-applepay](https://github.com/samkelleher/cordova-plugin-applepay)                           |  
+| Enabled  | 1.0.3            | [cordova-plugin-audiotoggle](https://github.com/neohelden/cordova-plugin-audiotoggle)                        |  
+| Enabled  | 4.0.12-actualize | [cordova-plugin-background-upload](https://github.com/spoonconsulting/cordova-plugin-background-upload)                  |  
+| Enabled  | 0.8.10           | [cordova-plugin-badge-fix](https://github.com/bhandaribhumin/cordova-plugin-badge-fix)                          |  
+| Enabled  | 2.0.4-NECTAR     | [cordova-plugin-battery-status](https://github.com/tbassett44/cordova-plugin-battery-status)                     |  
+| Enabled  | 5.1.4            | [cordova-plugin-calendar](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin)                           |  
+| Enabled  | 1.0.1            | [cordova-plugin-call-number](https://github.com/rohfosho/CordovaCallNumberPlugin)                        |  
+| Enabled  | 8.0.0            | [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)                             |  
+| Enabled  | 3.0.1            | [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)                           |  
+| Enabled  | 5.0.2            | [cordova-plugin-customurlscheme](https://www.npmjs.com/package/cordova-plugin-customurlscheme)                    |  
+| Enabled  | 2.1.0            | [cordova-plugin-device](https://github.com/apache/cordova-plugin-device)                             |  
+| Enabled  | 2.0.1            | [cordova-plugin-dialogs](https://github.com/apache/cordova-plugin-dialogs)                            |  
+
+| Enabled  | 8.1.0            | [cordova-plugin-file](https://github.com/apache/cordova-plugin-file)                               |  
+| Enabled  | 2.0.0            | [cordova-plugin-file-transfer](https://github.com/apache/cordova-plugin-file-transfer)                      |  
+| Enabled  | 1.6.0            | [cordova-plugin-filepath ](https://github.com/hiddentao/cordova-plugin-filepath)                          |  
+| Enabled  | 6.0.0            | [cordova-plugin-fingerprint-aio](https://github.com/niklasmerz/cordova-plugin-fingerprint-aio)                    |  
+| Enabled  | 3.2.1            | [cordova-plugin-flashlight](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin)                         |  
+| Enabled  | 1.1.3            | [cordova-plugin-foreground-service](https://github.com/DavidBriglio/cordova-plugin-foreground-service)                 |  
+| Enabled  | 1.1.0            | [cordova-plugin-fullscreen](https://github.com/mesmotronic/cordova-plugin-fullscreen)                         |  
+| Enabled  | 5.0.0            | [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)                        |  
+| Enabled  | 2.2.2            | [cordova-plugin-imagegallery](https://github.com/tbassett44/cordova-plugin-imagegallery)                       |  
+| Enabled  | 6.0.0        | [cordova-plugin-inappbrowser](https://github.com/apache/cordova-plugin-inappbrowser)                       |  
+| Enabled  | 4.3.0            | [cordova-plugin-insomnia](https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin)                           |  
+| Enabled  | 2.2.0-dev        | [cordova-plugin-ionic-keyboard](https://github.com/tbassett44/cordova-plugin-ionic-keyboard)                     |               |  
+| Enabled  | 0.1.4            | [cordova-plugin-local-notification-12](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12)              |  
+| Enabled  | 7.0.0            | [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)                              |  
+
+| Enabled  | 3.0.5            | [cordova-plugin-music-controls2](https://github.com/ghenry22/cordova-plugin-music-controls2)                    | 
+| Enabled  | 2.3.2            | [cordova-plugin-nativestorage ](https://github.com/TheCocoaProject/cordova-plugin-nativestorage)                     |  
+| Enabled  | 0.0.8            | [cordova-plugin-navigationbar-color](https://github.com/fagundes/cordova-plugin-navigationbar)                |  
+| Enabled  | 2.0.1            | [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)                |  
+| Enabled  | 2.2.0            | [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface)                   |  
+
+| Enabled  | 4.0.0            | [@havesource/cordova-plugin-push](https://github.com/havesource/cordova-plugin-push)                   |  
+| Enabled  | 3.0.5-actualize  | [cordova-plugin-qrscanner](https://github.com/tbassett44/cordova-plugin-qrscanner-11)                          |  
+| Enabled  | 0.7.0            | [cordova-plugin-saf-mediastore](https://github.com/customautosys/cordova-plugin-saf-mediastore)                     |  
+| Enabled  | 2.0.0            | [cordova-plugin-safariviewcontroller](https://github.com/EddyVerbruggen/cordova-plugin-safariviewcontroller)               |  
+| Enabled  | 0.2.2            | [cordova-plugin-screen-locker](https://github.com/kitolog/cordova-plugin-screen-locker)                      |  
+| Enabled  | 3.0.2            | [cordova-plugin-screen-orientation](https://github.com/tbassett44/cordova-plugin-screen-orientation)          |  
+| Enabled  | 1.0.1            | [cordova-plugin-screenshot](https://github.com/herdwatch-apps/cordova-plugin-screenshot)                         |  
+| Enabled  | 1.3.3            | [cordova-plugin-sim](https://github.com/pbakondy/cordova-plugin-sim)                                |  
+| Enabled  | 1.2.0            | [cordova-plugin-speechrecognition](https://github.com/pbakondy/cordova-plugin-speechrecognition)                  |  
+| Enabled  | 4.0.0-dev        | [cordova-plugin-statusbar](https://github.com/apache/cordova-plugin-statusbar)                          |  
+| Enabled  | 2.2.2            | [cordova-plugin-stripe-tap-to-pay](https://github.com/tbassett44/cordova-plugin-stripe-tap-to-pay)                  |  
+| Enabled  | 1.0.1            | [cordova-plugin-timer](https://github.com/kitolog/cordova-plugin-timer)                              |  
+| Enabled  | 3.3.1            | [cordova-plugin-touch-id](https://github.com/EddyVerbruggen/cordova-plugin-touch-id)                           |  
+| Enabled  | 3.1.1            | [cordova-plugin-vibration](https://github.com/apache/cordova-plugin-vibration)                          |  
+| Enabled  | 6.0.4            | [cordova-plugin-x-socialsharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)                    |  
+| Enabled  | 0.0.26           | [cordova-save-image-gallery](https://github.com/agomezmoron/cordova-save-image-gallery)                        |  
+| Enabled  | 7.1.1-actualize  | [cordova.plugins.diagnostic](https://github.com/tbassett44/cordova-diagnostic-plugin)                        |  
+| Enabled  | 0.0.1            | [in.lucasdup.bringtofront](https://github.com/lucasdupin/cordova-bring-to-front)                          |  
+| Enabled  | 1.0.5-dev        | [phonegap-plugin-mobile-accessibility](https://github.com/phonegap/phonegap-mobile-accessibility)              |  
+| Enabled  | 5.0.4            | [uk.co.workingedge.phonegap.plugin.launchnavigator](https://github.com/dpa99c/phonegap-launch-navigator) |  
 +----------+------------------+---------------------------------------------------+
