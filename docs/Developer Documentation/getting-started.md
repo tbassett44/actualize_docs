@@ -22,7 +22,7 @@ Our goal is not just to build software — but to cultivate a regenerative netwo
 
 The Front End section guides you through creating and publishing code that lives in the user experience layer of Actualize Earth. Here you’ll learn how to load and extend the Phi framework, use widgets to dynamically render content, and understand the modular structure that keeps the system fast and maintainable. These tools make it possible to create responsive, interactive, and meaningful interfaces that connect users to the broader ecosystem.
 
-[Getting Started](doc:getting-started-2)
+[Getting Started](getting-started-1)
 
 ## ⚙️ Back End
 
@@ -48,4 +48,4 @@ Every part of this documentation exists to help you contribute effectively — n
 
 Start your journey with some inspiration with this spoken word poetry flow by Lily Fangz from our First Earth Day Gala!
 
-<Embed url="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" title="iframe" provider="youtube.com" href="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" typeOfEmbed="iframe" height="400px" width="100%" iframe="true" />
+<Embed url="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" href="https://www.youtube.com/embed/uiJI-pOYdZI?si=Eqsha_7lcrhpYajd" typeOfEmbed="iframe" height="400px" width="100%" iframe="true" />
