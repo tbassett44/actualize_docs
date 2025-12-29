@@ -25,7 +25,7 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 +----------+------------------+---------------------------------------------------+  
 | Status   | Version          | Plugin ID                                         |  
 +----------+------------------+---------------------------------------------------+  
-| Enabled  | 1.0.2            | com.danielsogl.cordova.clipboard                  |  
+| Enabled  | 1.0.2            | [com.danielsogl.cordova.clipboard](https://github.com/danielsogl/cordova-plugin-clipboard)                  |  
 | Enabled  | 1.0.2            | [com.nikola-breznjak.voippush](https://github.com/NikolaBreznjak/cordova-ios-voip-push)                      |  
 | Enabled  | 0.0.3            | [com.ozexpert.devicemeta](https://github.com/ozexpert/cordova-plugin-device-meta)                           |  
 | Enabled  | 2.3.3            | [cordova-plugin-actionsheet ](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)                       |  
