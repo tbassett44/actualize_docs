@@ -31,7 +31,7 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 | Enabled  | 2.3.3            | [cordova-plugin-actionsheet ](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)                       |  
 | Enabled  | 2.0.3            | [cordova-plugin-add-swift-support](https://github.com/akofman/cordova-plugin-add-swift-support)                  |  
 | Enabled  | 1.6.4-actualize  | [cordova-plugin-advanced-imagepicker](https://github.com/tbassett44/cordova-plugin-advanced-imagepicker)               |  
-| Enabled  | 1.1.5            | [cordova-plugin-android-permissions](https://github.com/NeoLSN/cordova-plugin-android-permissions)                |  
+| Enabled  | 1.1.5            | [cordova-plugin-android-permissions](https://github.com/NeoLSN/cordova-plugin-android-permissions)                |
 
 | Enabled  | 1.0.0            | [cordova-plugin-apple-pay-google-pay](https://github.com/tbassett44/cordova-plugin-stripe-tap-to-pay)               |  
 | Enabled  | 5.0.0            | [cordova-plugin-applepay](https://github.com/samkelleher/cordova-plugin-applepay)                           |  
@@ -39,13 +39,15 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 | Enabled  | 4.0.12-actualize | [cordova-plugin-background-upload](https://github.com/spoonconsulting/cordova-plugin-background-upload)                  |  
 | Enabled  | 0.8.10           | [cordova-plugin-badge-fix](https://github.com/bhandaribhumin/cordova-plugin-badge-fix)                          |  
 | Enabled  | 2.0.4-NECTAR     | [cordova-plugin-battery-status](https://github.com/tbassett44/cordova-plugin-battery-status)                     |  
+
+| Enabled  | 6.7.4            | [cordova-plugin-bluetoothle](https://github.com/randdusing/cordova-plugin-bluetoothle)
 | Enabled  | 5.1.4            | [cordova-plugin-calendar](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin)                           |  
 | Enabled  | 1.0.1            | [cordova-plugin-call-number](https://github.com/rohfosho/CordovaCallNumberPlugin)                        |  
 | Enabled  | 8.0.0            | [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)                             |  
 | Enabled  | 3.0.1            | [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)                           |  
 | Enabled  | 5.0.2            | [cordova-plugin-customurlscheme](https://www.npmjs.com/package/cordova-plugin-customurlscheme)                    |  
 | Enabled  | 2.1.0            | [cordova-plugin-device](https://github.com/apache/cordova-plugin-device)                             |  
-| Enabled  | 2.0.1            | [cordova-plugin-dialogs](https://github.com/apache/cordova-plugin-dialogs)                            |  
+| Enabled  | 2.0.1            | [cordova-plugin-dialogs](https://github.com/apache/cordova-plugin-dialogs)                            |
 
 | Enabled  | 8.1.0            | [cordova-plugin-file](https://github.com/apache/cordova-plugin-file)                               |  
 | Enabled  | 2.0.0            | [cordova-plugin-file-transfer](https://github.com/apache/cordova-plugin-file-transfer)                      |  
@@ -60,13 +62,13 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 | Enabled  | 4.3.0            | [cordova-plugin-insomnia](https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin)                           |  
 | Enabled  | 2.2.0-dev        | [cordova-plugin-ionic-keyboard](https://github.com/tbassett44/cordova-plugin-ionic-keyboard)                     |               |  
 | Enabled  | 0.1.4            | [cordova-plugin-local-notification-12](https://github.com/bhandaribhumin/cordova-plugin-local-notification-12)              |  
-| Enabled  | 7.0.0            | [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)                              |  
+| Enabled  | 7.0.0            | [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)                              |
 
-| Enabled  | 3.0.5            | [cordova-plugin-music-controls2](https://github.com/ghenry22/cordova-plugin-music-controls2)                    | 
+| Enabled  | 3.0.5            | [cordova-plugin-music-controls2](https://github.com/ghenry22/cordova-plugin-music-controls2)                    |
 | Enabled  | 2.3.2            | [cordova-plugin-nativestorage ](https://github.com/TheCocoaProject/cordova-plugin-nativestorage)                     |  
 | Enabled  | 0.0.8            | [cordova-plugin-navigationbar-color](https://github.com/fagundes/cordova-plugin-navigationbar)                |  
 | Enabled  | 2.0.1            | [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)                |  
-| Enabled  | 2.2.0            | [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface)                   |  
+| Enabled  | 2.2.0            | [cordova-plugin-networkinterface](https://github.com/salbahra/cordova-plugin-networkinterface)                   |
 
 | Enabled  | 4.0.0            | [@havesource/cordova-plugin-push](https://github.com/havesource/cordova-plugin-push)                   |  
 | Enabled  | 3.0.5-actualize  | [cordova-plugin-qrscanner](https://github.com/tbassett44/cordova-plugin-qrscanner-11)                          |  
