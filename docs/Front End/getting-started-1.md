@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-To install the front end repo, please ensure you have an account created on Gitlab and access to front end code. Reach out to [juicy@actualize.earth](mailto:juicy@actualize.earth) if you need access to a front end repo
+To install the front end repo, please ensure you have an account created on Gitlab and access to front end code. Reach out to [juicy@actualize.earth](mailto:juicy@actualize.earth) if you need access to a front end repo.
 
 ```text
 git clone https://gitlab.com/actualize_earth/app-core.git
