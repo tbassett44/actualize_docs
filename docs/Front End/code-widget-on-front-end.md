@@ -2,7 +2,7 @@
 title: Code Widget on Front End
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
