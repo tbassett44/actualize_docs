@@ -23,11 +23,7 @@ There are two QR flows; both ultimately output a PNG to the response.
 Examples:
 
 ```
-//VERSION 1
 https://img.actualize.earth/qr?content=hello-world
-https://img.actualize.earth/qr?url=https%3A%2F%2Factualize.earth%2Fjoin
-https://img.actualize.earth/qr?url_64=aHR0cHM6Ly9hY3R1YWxpemUuZWFydGgvam9pbg==
-//VERSION 2
 https://img.actualize.earth/qr2?url=https%3A%2F%2Factualize.earth%2Fjoin
 https://img.actualize.earth/qr2?url_64=aHR0cHM6Ly9hY3R1YWxpemUuZWFydGgvam9pbg==
 ```
@@ -38,4 +34,4 @@ https://img.actualize.earth/qr2?url_64=aHR0cHM6Ly9hY3R1YWxpemUuZWFydGgvam9pbg==
 
 NOTE
 
-More settings are possible for version 2 of the qr code generator. Only url/url\_64 is supported right now.  Additional settings can be added from the documentation of the library used here: [https://qr-code-styling.com/](https://qr-code-styling.com/)
+More settings are possible for version 2 of the qr code generator. Only url/url_64 is supported right now.  Additional settings can be added from the documentation of the library used here: [https://qr-code-styling.com/](https://qr-code-styling.com/)
