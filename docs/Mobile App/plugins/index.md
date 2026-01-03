@@ -66,6 +66,8 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 | Enabled  | 7.0.0            | [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)                              |
 
 | Enabled  | 3.0.5            | [cordova-plugin-music-controls2](https://github.com/ghenry22/cordova-plugin-music-controls2)                    |
+
+
 | Enabled  | 2.3.2            | [cordova-plugin-nativestorage ](https://github.com/TheCocoaProject/cordova-plugin-nativestorage)                     |  
 | Enabled  | 0.0.8            | [cordova-plugin-navigationbar-color](https://github.com/fagundes/cordova-plugin-navigationbar)                |  
 | Enabled  | 2.0.1            | [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)                |  
