@@ -16,7 +16,7 @@ next:
 
 ## OS & build matrix
 
-* **iOS builds:** *macOS only* (Apple requires Xcode).
+* **iOS builds:** _macOS only_ (Apple requires Xcode).
 * **Android builds:** macOS, Linux, or Windows (WSL works, but native is simpler).
 
 > Recommended: macOS 13+ (Ventura or newer) with Apple Silicon or Intel.
@@ -297,4 +297,4 @@ If anything fails, check:
 
 ***
 
-If you want, I can tailor this to your exact template pins (e.g., `cordova-ios@7.0.1`, specific AGP/Gradle versions) and add a one-shot “doctor” script that validates the environment before `dapp` runs.
+<br />
