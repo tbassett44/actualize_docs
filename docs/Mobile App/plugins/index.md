@@ -38,9 +38,10 @@ Want to create your own plugin?? Check out the Cordova Docs: [https://cordova.ap
 | Enabled  | 1.0.3            | [cordova-plugin-audiotoggle](https://github.com/neohelden/cordova-plugin-audiotoggle)                        |  
 | Enabled  | 4.0.12-actualize | [cordova-plugin-background-upload](https://github.com/spoonconsulting/cordova-plugin-background-upload)                  |  
 | Enabled  | 0.8.10           | [cordova-plugin-badge-fix](https://github.com/bhandaribhumin/cordova-plugin-badge-fix)                          |  
-| Enabled  | 2.0.4-NECTAR     | [cordova-plugin-battery-status](https://github.com/tbassett44/cordova-plugin-battery-status)                     |  
+| Enabled  | 2.0.4-NECTAR     | [cordova-plugin-battery-status](https://github.com/tbassett44/cordova-plugin-battery-status)                     |
 
 | Enabled  | 6.7.4            | [cordova-plugin-bluetoothle](https://github.com/randdusing/cordova-plugin-bluetoothle)
+
 | Enabled  | 5.1.4            | [cordova-plugin-calendar](https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin)                           |  
 | Enabled  | 1.0.1            | [cordova-plugin-call-number](https://github.com/rohfosho/CordovaCallNumberPlugin)                        |  
 | Enabled  | 8.0.0            | [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)                             |  
