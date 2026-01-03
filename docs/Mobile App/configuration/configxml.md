@@ -1,6 +1,6 @@
 ---
 title: config.xml
-excerpt: app_build/config.xml
+excerpt: '[front_end_ui_project]/app_build/config.xml'
 deprecated: false
 hidden: false
 metadata:
