@@ -1,6 +1,6 @@
 ---
 title: entitlements.txt
-excerpt: app_build/entitlements.txt
+excerpt: entitlements.txt
 deprecated: false
 hidden: false
 metadata:
