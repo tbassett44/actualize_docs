@@ -1,5 +1,5 @@
 ---
-title: Plugins
+title: Native Plugins
 excerpt: ''
 deprecated: false
 hidden: false
