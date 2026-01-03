@@ -1,5 +1,5 @@
 ---
-title: app_creds.json
+title: app_settings.json
 deprecated: false
 hidden: false
 metadata:
