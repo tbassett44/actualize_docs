@@ -1,6 +1,7 @@
 - introduction-1
 - shortcuts
 - crud-updating
+- memory-caching
 - request-scheduling
 - notifier
 - common-tools-phiphp
@@ -14,4 +15,3 @@
 - webhooks
 - oauth2
 - database
-- memory-caching
