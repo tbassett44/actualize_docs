@@ -27,9 +27,9 @@ npm start
 
 Go to [Actualize Web Interface](https://app.actualize.earth) and create/log in to your profile. Make sure to load it in a mobile view. Click on your profile picture in the top right, then tap on the version number at the bottom 5x to enable developer mode. You will then see a "Restart in Local Mode", click that and then "Use Local Development Code (3333)"
 
-<Image alt="dev_mode" border={false} src="https://s3.amazonaws.com/one-earth/static/enable_dev.png" />
+<Image align="center" alt="dev_mode" border={false} width="200px" src="https://s3.amazonaws.com/one-earth/static/enable_dev.png" />
 
-<Image alt="dev_mode_enabled" border={false} src="https://s3.amazonaws.com/one-earth/static/dev_testing.png" />
+<Image align="center" alt="dev_mode_enabled" border={false} width="200px" src="https://s3.amazonaws.com/one-earth/static/dev_testing.png" />
 
 For Mobile app views, load the site in a mobile view using your browser development tools. I recommend viewing the code and the app view in the same window at the same time, like this.
 
