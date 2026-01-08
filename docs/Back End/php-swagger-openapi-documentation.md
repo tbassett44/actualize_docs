@@ -1,5 +1,5 @@
 ---
-title: PHP Swagger OpenAPI Documentation
+title: OpenAPI Documentation
 deprecated: false
 hidden: false
 metadata:
