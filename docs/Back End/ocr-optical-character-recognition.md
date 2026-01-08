@@ -14,14 +14,9 @@ Sometimes it can be useful to use an image as a data source by using a OCR libra
 
 You can see a full implementation in node/ocr.js
 
-From Documentation of node module [Tesseract OCR](https://github.com/zapolnoch/node-tesseract-ocr) 
+From Documentation of node module [Tesseract OCR](https://github.com/zapolnoch/node-tesseract-ocr)
 
 # Tesseract OCR for Node.js
-
-[![Build Status](https://img.shields.io/travis/zapolnoch/node-tesseract-ocr/master.svg?style=flat-square)](https://travis-ci.org/zapolnoch/node-tesseract-ocr)\
-[![npm](https://img.shields.io/npm/v/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)\
-[![npm](https://img.shields.io/npm/dm/node-tesseract-ocr.svg?style=flat-square)](https://www.npmjs.com/package/node-tesseract-ocr)\
-[![Known Vulnerabilities](https://snyk.io/test/github/zapolnoch/node-tesseract-ocr/badge.svg)](https://snyk.io/test/github/zapolnoch/node-tesseract-ocr)
 
 ## Installation
 
