@@ -39,7 +39,7 @@ You should see the change happen immediately in your browser.
 
 When adding a new view (`/app/views/[new_view].view`), you need to register the view in the conf.json file.
 
-_note_ I have not perfected all the error catching yet, so its possible that you may run into a situation where things arent changing or loading. First fix is reload the page and try again. If its still broken, there is probably an issue with templates or the logic. check your developers console to look for messages that may help.
+_note_ Error catching has not been perfected yet, so its possible that you may run into a situation where things arent changing or loading. First fix is reload the page and try again. If its still broken, there is probably an issue with templates or the logic. check your developers console to look for messages that may help.
 
 Templating is done with EJS, you can learn more about how EJS works [here](https://ejs.co/#docs).
 
