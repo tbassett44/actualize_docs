@@ -12,7 +12,7 @@ next:
 ---
 Useful for generating tickets as PDFs or Flyers as images, puppeteer is used to spin up a headless browser that can load an internal webpage to be rendered as an image or pdf.
 
-[Read Puppeteer documentation here](https://pptr.dev/) 
+<Anchor label="Read Puppeteer documentation here" target="_blank" href="https://pptr.dev/">Read Puppeteer documentation here</Anchor>
 
 ### Example as a PNG (for QR code generation, 300x300 image)
 
