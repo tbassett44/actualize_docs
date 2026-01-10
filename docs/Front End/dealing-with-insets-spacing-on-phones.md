@@ -76,6 +76,9 @@ The system would create the following CSS custom properties:
 .keyboardpage{
    bottom:[bottom]px !important;
 }
+.mobilestatusbartop{
+  top:[top]px !important;
+}
 ```
 
 <br />
