@@ -20,3 +20,10 @@ On Phone
 ## API Endpoints on Actualize (iap.js) running through pm2
 
 <br />
+
+### TODO
+
+* get /iap/verify/apple working, storing connection between originalTransactionId and user
+* ensure the webhooks are properly updating
+* connect to database
+* ensure records are correct on user account / source of truth
