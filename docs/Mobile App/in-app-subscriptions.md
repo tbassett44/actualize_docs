@@ -1,7 +1,7 @@
 ---
 title: In App Subscriptions
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
