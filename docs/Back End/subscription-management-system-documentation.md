@@ -357,9 +357,164 @@ Stored in `subscription_plan` collection:
 
 ***
 
+## In-App Purchase (IAP) / Mobile Entitlement System
+
+The IAP system handles subscriptions purchased through Apple App Store and Google Play, running alongside (not replacing) the Stripe system.
+
+### Architecture
+
+```
+Mobile App (CdvPurchase)
+    ↓ purchase / restore
+Native Store (Apple / Google)
+    ↓ receipt
+Node.js IAP Service (iap.js / iap_purchase_api.js)
+    ↓ validate + upsert
+iap_entitlement collection (MongoDB)
+    ↓ onCreate hook
+iap_entitlement.php → schedules job → process()
+    ↓ Apple Server API verification
+user.membership update
+```
+
+### Collections
+
+| Collection                | Purpose                       | Key Fields                                                                              |
+| ------------------------- | ----------------------------- | --------------------------------------------------------------------------------------- |
+| `iap_entitlement`         | Production entitlements       | `uid`, `source`, `productId`, `status`, `expiresAt`, `raw`, `_status`, `verifiedStatus` |
+| `iap_entitlement_sandbox` | Sandbox/testing entitlements  | Same as above                                                                           |
+| `app_product`             | Product definitions per store | `store` (ios/android), product IDs, pricing                                             |
+
+### Entitlement Status Values
+
+| Status          | Description                            |
+| --------------- | -------------------------------------- |
+| `active`        | Subscription is valid                  |
+| `expired`       | Subscription has expired               |
+| `revoked`       | Apple revoked the subscription         |
+| `billing_retry` | Payment failed, store retrying         |
+| `grace_period`  | In billing grace period (still active) |
+
+### `_status` Field (Processing State)
+
+| Value | Meaning                                 |
+| ----- | --------------------------------------- |
+| `0`   | Pending (just saved, not yet processed) |
+| `1`   | Successfully processed                  |
+| `-1`  | Processing failed                       |
+
+### API Endpoints
+
+| Endpoint                               | Method | Purpose                                                                             |
+| -------------------------------------- | ------ | ----------------------------------------------------------------------------------- |
+| `/account/iap`                         | POST   | Returns available plans and current entitlement (params: `platform`, `environment`) |
+| `/core/module/iap_entitlement/process` | POST   | Internal: validates entitlement with Apple and updates user membership              |
+
+### Node.js IAP Service
+
+The IAP service (`iap.js` / `iap_purchase_api.js`) runs as a standalone Node service and handles:
+
+**Apple Validation** (`/iap/apple/validate`):
+
+1. Receives receipt from mobile app
+2. Decodes JWS transaction using Apple's certificates
+3. Extracts `productId`, `expiresDate`, `originalTransactionId`
+4. Calls `iap.upsertEntitlement()` → saves to `iap_entitlement` via formbuilder
+
+**Apple Webhooks** (`/iap/apple/webhook`):
+
+1. Receives App Store Server Notifications V2
+2. Normalizes notification type (`DID_RENEW`, `DID_CHANGE_RENEWAL_PREF`, `EXPIRED`, `REVOKE`, etc.)
+3. Maps to status (`active`, `expired`, `revoked`)
+4. Upserts entitlement with pricing + renewal fields
+
+**Google Validation** (`/iap/google/validate`):
+
+1. Receives purchase token from mobile app
+2. Verifies with Google Play Developer API
+3. Upserts entitlement with status + expiry
+
+**Google Webhooks** (`/iap/google/webhook`):
+
+1. Receives Real-Time Developer Notifications (RTDN)
+2. Decodes purchase data
+3. Upserts entitlement
+
+### PHP Processing Pipeline (`iap_entitlement.php`)
+
+**`onBeforeSave()`** — Runs before every save:
+
+```php
+$d['current']['ts'] = time();
+$d['current']['expiresAt'] = $d['current']['expiresAt'] / 1000; // ms → seconds
+$d['current']['_status'] = 0; // Mark as pending
+```
+
+**`onCreate()`** — Runs after new entitlement saved:
+
+* If source is `validate` and status is `active` → immediately update user membership
+* If notification is `DID_CHANGE_RENEWAL_PREF` + `DOWNGRADE` → mark as processed (no membership change)
+* Otherwise → schedule async job to `process()` for Apple verification
+
+**`process()`** — Scheduled job for server-side verification:
+
+```
+1. Load entitlement from DB
+2. Call checkAppleSubscription() → Apple Server API
+3. Map Apple status (1=Active, 2=Expired, 3=BillingRetry, 4=GracePeriod, 5=Revoked)
+4. If not active → deactivate user membership
+5. If active → update user membership with:
+   - membership.source = 'apple' or 'google'
+   - membership.environment = 'sandbox' or 'production'
+   - membership.validUntil = expiresAt + 1 day grace period
+6. Set _status = 1 (success) or -1 (failure)
+```
+
+### Client-Side Flow (`iap.view`)
+
+```
+1. getPageData() → /account/iap (get plans + existing entitlement)
+2. If web_entitlement exists → skip native IAP (Stripe subscription takes priority)
+3. initIAP() → CdvPurchase.store.initialize()
+4. Register products from API response
+5. On purchase approved → CdvPurchase validates with Apple/Google
+6. On verified → receipt sent to Node.js IAP service
+7. On finished → reload page data to reflect new entitlement
+```
+
+### Environment Handling
+
+* **Production**: Uses `iap_entitlement` collection
+* **Sandbox**: Uses `iap_entitlement_sandbox` collection
+* Determined by `getPostfix()` / `getEnvironment()` based on `raw.environment` field
+* Apple sandbox receipts are never mixed with production
+
+### Integration with User Membership
+
+Both Stripe and IAP update the same `user.membership` object:
+
+```json
+{
+    "membership": {
+        "active": 1,
+        "stopped": 0,
+        "overdue": 0,
+        "amount": 2200,
+        "source": "apple",        // "stripe", "apple", or "google"
+        "environment": "production", // only for IAP
+        "validUntil": 1711234567    // Unix timestamp + 1 day grace
+    }
+}
+```
+
+Priority: If a user has both a web (Stripe) entitlement and an IAP entitlement, the web entitlement takes precedence (checked in `/account/iap`).
+
+***
+
 ## Known Issues / TODOs
 
 1. **invoice.payment_failed** - Currently only logs, should notify user
 2. **Double source of truth** - `stripe_subscription` vs `current_subscription_info` collections
 3. **Legacy stop() vs modern stop()** - Different cancellation behaviors (immediate vs graceful)
 4. **Webhook idempotency** - Webhooks stored but response not checked for duplicates
+5. **IAP Google validation** - Only Apple server-side verification is implemented in `process()`; Google uses client-side validation only
