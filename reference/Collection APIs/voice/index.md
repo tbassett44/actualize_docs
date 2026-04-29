@@ -1,4 +1,0 @@
----
-title: Voice
-hidden: false
----

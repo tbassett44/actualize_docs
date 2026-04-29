@@ -1,4 +1,0 @@
----
-title: Wallet
-hidden: false
----

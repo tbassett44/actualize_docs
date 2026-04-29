@@ -1,4 +1,0 @@
----
-title: Chat
-hidden: false
----

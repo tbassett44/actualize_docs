@@ -1,4 +1,0 @@
----
-title: Clouds
-hidden: false
----

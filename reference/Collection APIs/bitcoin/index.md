@@ -1,4 +1,0 @@
----
-title: Bitcoin
-hidden: false
----

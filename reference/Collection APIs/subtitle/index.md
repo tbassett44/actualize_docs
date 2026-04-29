@@ -1,4 +1,0 @@
----
-title: Subtitle
-hidden: false
----

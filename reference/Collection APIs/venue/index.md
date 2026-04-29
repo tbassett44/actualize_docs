@@ -1,4 +1,0 @@
----
-title: Venue
-hidden: false
----

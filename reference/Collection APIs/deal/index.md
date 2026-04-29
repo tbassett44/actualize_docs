@@ -1,4 +1,0 @@
----
-title: Deal
-hidden: false
----
