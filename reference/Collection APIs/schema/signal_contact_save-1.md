@@ -1,6 +1,4 @@
 ---
-title: signal_contact
-excerpt: ' '
 api:
   file: varwwwphi_managedataapi_schema.json
   operationId: signal_contact_save

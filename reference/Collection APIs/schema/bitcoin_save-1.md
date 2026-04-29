@@ -1,6 +1,4 @@
 ---
-title: bitcoin
-excerpt: Send Bitcoin
 api:
   file: varwwwphi_managedataapi_schema.json
   operationId: bitcoin_save

@@ -1,6 +1,4 @@
 ---
-title: user
-excerpt: Add Player
 api:
   file: varwwwphi_managedataapi_schema.json
   operationId: user_save

@@ -1,6 +1,4 @@
 ---
-title: checkin_locations
-excerpt: Checkin Item
 api:
   file: varwwwphi_managedataapi_schema.json
   operationId: checkin_locations_save

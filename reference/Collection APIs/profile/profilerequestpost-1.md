@@ -1,5 +1,4 @@
 ---
-title: /{profileId}/request
 api:
   file: varwwwphi_managedataapi_schema.json
   operationId: ProfileRequestPost
