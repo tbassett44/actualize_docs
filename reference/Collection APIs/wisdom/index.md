@@ -1,0 +1,4 @@
+---
+title: Wisdom
+hidden: false
+---
