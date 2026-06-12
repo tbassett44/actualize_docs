@@ -16,7 +16,7 @@ If you experience any technical issues—whether your event isn’t publishing, 
 
 Click your profile picture → Bug/Upset Reports to submit the issue, or go to Admin Tools → Support to chat with our AI assistant or use the Contact Us button.
 
-You can also reach us directly at [actualizeearthllc@gmail.com](mailto:actualizeearthllc@gmail.com)
+You can also reach us directly at [team@actualize.earth](mailto:team@actualize.earth)
 
 **How do I update event details after publishing?**
 
