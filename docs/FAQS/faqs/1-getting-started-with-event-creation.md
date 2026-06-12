@@ -53,3 +53,7 @@ Go to Edit Event and scroll to the bottom — you'll find the visibility setting
 **I accidentally cancelled my event — can I reactivate it?**
 
 Yes, reach out to the Actualize team and they can manually clear the cancelled status. Going forward, use Private mode to stage events rather than cancelling them.
+
+**How are tickets sorted and displayed on my event page?**
+
+Tickets are sorted by price by default, and the order currently cannot be manually edited. A green dot next to a ticket means it's available/visible; a yellow dot means it's not currently active.
