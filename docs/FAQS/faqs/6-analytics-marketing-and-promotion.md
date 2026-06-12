@@ -42,3 +42,7 @@ After creating your event, navigate to your event's page. Under the main image, 
 **Can I integrate with email marketing or CRM tools?**
 
 Not at this time. Actualize doesn’t currently support direct integrations with external email marketing or CRM platforms.
+
+**Does Actualize support an integration with Facebook to improve facebook ads about my event**
+
+Yes!  And we are very deliberate about how we work with Facebook.  We do not use pixel tracking, however we use something called CAPI (Conversions API) which is server side only, preventing un-necessary tracking from Facebook. You can learn more and watch a video on how to integrate this for your event here: https://actualize.earth/facebook_ads
