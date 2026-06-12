@@ -49,3 +49,7 @@ Your upcoming and previous events will be automatically connected to your profil
 **How do I change my event from Private to Public?**
 
 Go to Edit Event and scroll to the bottom — you'll find the visibility setting there. If you're staging an event before it's ready, it's best practice to create it as Private first, then switch to Public when you're ready to go live.
+
+**I accidentally cancelled my event — can I reactivate it?**
+
+Yes, reach out to the Actualize team and they can manually clear the cancelled status. Going forward, use Private mode to stage events rather than cancelling them.
