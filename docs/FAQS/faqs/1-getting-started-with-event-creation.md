@@ -36,7 +36,7 @@ When creating your event, scroll to the bottom of the form to find the Select Pr
 
 **Can I host recurring or multi-day events?**
 
-Yes! There are no restrictions, so you can schedule multiple showtimes or create an event that spans several days. 
+Yes! There are no restrictions, so you can schedule multiple showtimes or create an event that spans several days.
 
 **How do I upload media (images, videos, promo banners)?**
 
@@ -45,3 +45,7 @@ When creating an event, we allow users to upload a main image for their event pa
 **How can I integrate my event with my community profile?**
 
 Your upcoming and previous events will be automatically connected to your profile!
+
+**How do I change my event from Private to Public?**
+
+Go to Edit Event and scroll to the bottom — you'll find the visibility setting there. If you're staging an event before it's ready, it's best practice to create it as Private first, then switch to Public when you're ready to go live.
